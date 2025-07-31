@@ -35,35 +35,33 @@ function MenuItem3D({
   useEffect(() => {
     const timer = setTimeout(() => {
       setTargetOpacity(1);
-      setTargetRotationY(0.6); // 페이드인과 함께 기본 기울기로 설정
-    }, index * 200); // 각 아이템마다 200ms씩 지연
+      setTargetRotationY(0.6); // 모든 아이템이 동일한 기본 기울기
+    }, index * 100); // 각 아이템마다 100ms씩 지연 (더 빠르게)
 
     return () => clearTimeout(timer);
   }, [index]);
 
-                       useFrame((state) => {
-      if (meshRef.current) {
-        // 선택, 호버, 기본 기울기 조합
-        let finalRotationY = targetRotationY;
-        if (isSelected) {
-          finalRotationY = 0; // 선택된 메뉴는 정면으로
-        } else if (isHovered) {
-          finalRotationY = 0.2; // 호버 시 살짝 기울어짐
-        } else {
-          finalRotationY = targetRotationY; // 기본 기울기
-        }
-        
-        const targetPositionZ = isHovered ? 0.5 : 0; // 살짝 앞으로
-        const targetPositionX = isHovered ? 0.3 : 0; // 호버 시 오른쪽으로 살짝 이동
-        
-        meshRef.current.rotation.y += (finalRotationY - meshRef.current.rotation.y) * 0.1;
-        meshRef.current.position.z += (targetPositionZ - meshRef.current.position.z) * 0.1;
-        meshRef.current.position.x += (targetPositionX - meshRef.current.position.x) * 0.1;
-      }
+                               useFrame((state) => {
+          if (meshRef.current) {
+            // 선택, 호버, 기본 기울기 조합
+            let finalRotationY = 0.6; // 모든 아이템의 기본 기울기
+            if (isSelected) {
+              finalRotationY = 0; // 선택된 메뉴는 정면으로
+            } else if (isHovered) {
+              finalRotationY = 0.4; // 호버 시 살짝만 기울어짐 (0.6 -> 0.4)
+            }
+            
+            const targetPositionZ = isHovered ? 0.5 : 0; // 살짝 앞으로
+            const targetPositionX = isHovered ? 0.3 : 0; // 호버 시 오른쪽으로 살짝 이동
+            
+            meshRef.current.rotation.y += (finalRotationY - meshRef.current.rotation.y) * 0.1;
+            meshRef.current.position.z += (targetPositionZ - meshRef.current.position.z) * 0.1;
+            meshRef.current.position.x += (targetPositionX - meshRef.current.position.x) * 0.1;
+          }
 
-      // 부드러운 페이드인 애니메이션
-      setOpacity(prev => prev + (targetOpacity - prev) * 0.05);
-    });
+          // 부드러운 페이드인 애니메이션
+          setOpacity(prev => prev + (targetOpacity - prev) * 0.05);
+        });
 
                  return (
       <group position={[-0.5, 0, 0]}>
@@ -105,9 +103,9 @@ function MenuScene({ items, onItemClick }: Menu3DProps) {
     <>
       
 
-      {/* 메뉴 아이템들 */}
-      {items.map((item, index) => (
-        <group key={item} position={[-10, 3 - index * 2, 0]}>
+             {/* 메뉴 아이템들 */}
+       {items.map((item, index) => (
+         <group key={item} position={[-12, 3 - index * 2, 0]}>
           <MenuItem3D
             text={item}
             index={index}
