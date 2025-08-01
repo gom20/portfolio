@@ -1,12 +1,12 @@
 // src/components/Menu3D.tsx
 import { useState, useEffect } from 'react';
 
-interface Menu3DProps {
+interface MenuItemProps {
   items: string[];
   onItemClick?: (index: number) => void;
 }
 
-function MenuItem3D({ 
+function MenuItem({ 
   text, 
   index, 
   totalItems,
@@ -65,8 +65,8 @@ function MenuItem3D({
   const delay = disappearDelay + (index * 100); // 순차 애니메이션 딜레이
 
   // 색상 그라데이션 계산 (위로 갈수록 진해짐, 상단 진하기 증가)
-  const colorIntensity = Math.floor(((totalItems - 1 - index) / (totalItems - 1)) * 140 + 80); // 80~220 범위로 조정
-  const textColor = `rgb(${colorIntensity} ${colorIntensity + 20} ${colorIntensity + 40})`;
+  const colorIntensity = Math.floor(((totalItems - 1 - index) / (totalItems - 1)) * 120 + 120); // 120~240 범위로 조정 (전체적으로 밝게)
+  const textColor = `rgb(${colorIntensity} ${colorIntensity} ${colorIntensity})`;
 
   return (
     <div
@@ -90,7 +90,7 @@ function MenuItem3D({
         lineHeight: '0.9',
         transformOrigin: 'right center',
         color: (isHovered || isSelected) ? 'transparent' : textColor,
-        WebkitTextStroke: `1px ${textColor}`,
+                 WebkitTextStroke: `1.5px ${textColor}`,
         fontSize: '9rem',
         fontWeight: '900',
         fontFamily: 'Arial, sans-serif',
@@ -106,7 +106,7 @@ function MenuItem3D({
   );
 }
 
-export default function Menu3D({ items, onItemClick }: Menu3DProps) {
+export default function Menu3D({ items, onItemClick }: MenuItemProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -134,7 +134,7 @@ export default function Menu3D({ items, onItemClick }: Menu3DProps) {
         }}
       >
         {items.map((item, index) => (
-          <MenuItem3D
+          <MenuItem
             key={item}
             text={item}
             index={index}
