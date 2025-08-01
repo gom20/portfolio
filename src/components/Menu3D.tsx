@@ -1,8 +1,5 @@
 // src/components/Menu3D.tsx
-import { useState, useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Text3D, Center } from '@react-three/drei';
-import * as THREE from 'three';
+import { useState, useEffect } from 'react';
 
 interface Menu3DProps {
   items: string[];
@@ -12,85 +9,100 @@ interface Menu3DProps {
 function MenuItem3D({ 
   text, 
   index, 
+  totalItems,
   isHovered, 
   isSelected,
+  isAnySelected,
   onClick,
   onHover,
   onUnhover
 }: { 
   text: string; 
   index: number; 
+  totalItems: number;
   isHovered: boolean; 
   isSelected: boolean;
+  isAnySelected: boolean;
   onClick: () => void;
   onHover: () => void;
   onUnhover: () => void;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
   const [opacity, setOpacity] = useState(0);
-  const [targetOpacity, setTargetOpacity] = useState(0);
-  const [targetRotationY, setTargetRotationY] = useState(0); // 처음에는 기울어지지 않음
 
-  // 페이드인 효과
+  // 초기 나타나는 애니메이션 상태
+  const isInitialAppearing = opacity === 0;
+  const initialDelay = (totalItems - 1 - index) * 80; // 위에서 아래로 순차적으로
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTargetOpacity(1);
-      setTargetRotationY(0.6); // 모든 아이템이 동일한 기본 기울기
-    }, index * 100); // 각 아이템마다 100ms씩 지연 (더 빠르게)
-
+      setOpacity(1);
+    }, initialDelay);
     return () => clearTimeout(timer);
-  }, [index]);
+  }, [initialDelay]);
 
-                               useFrame((state) => {
-          if (meshRef.current) {
-            // 선택, 호버, 기본 기울기 조합
-            let finalRotationY = 0.6; // 모든 아이템의 기본 기울기
-            if (isSelected) {
-              finalRotationY = 0; // 선택된 메뉴는 정면으로
-            } else if (isHovered) {
-              finalRotationY = 0.4; // 호버 시 살짝만 기울어짐 (0.6 -> 0.4)
-            }
-            
-            const targetPositionZ = isHovered ? 0.5 : 0; // 살짝 앞으로
-            const targetPositionX = isHovered ? 0.3 : 0; // 호버 시 오른쪽으로 살짝 이동
-            
-            meshRef.current.rotation.y += (finalRotationY - meshRef.current.rotation.y) * 0.1;
-            meshRef.current.position.z += (targetPositionZ - meshRef.current.position.z) * 0.1;
-            meshRef.current.position.x += (targetPositionX - meshRef.current.position.x) * 0.1;
-          }
+  // 애니메이션 계산
+  let rotationY = -0.6; // 기본 기울기 (라디안) - 오른쪽으로 이동했으므로 반대 방향
+  let scale = 1;
 
-          // 부드러운 페이드인 애니메이션
-          setOpacity(prev => prev + (targetOpacity - prev) * 0.05);
-        });
+  if (isInitialAppearing) {
+    rotationY = -1.0; // 초기에는 더 기울어진 상태 (반대 방향)
+    scale = 0.8; // 초기에는 작게
+  } else if (isSelected) {
+    rotationY = 0; // 선택된 메뉴는 정면으로
+  } else if (isHovered) {
+    rotationY = -0.4; // 호버 시 살짝만 기울어짐 (반대 방향)
+  } else {
+    // 기본 상태 - 모든 아이템이 동일한 기울기 (반대 방향)
+    rotationY = -0.6;
+  }
 
-                 return (
-      <group position={[-0.5, 0, 0]}>
-        <mesh
-          ref={meshRef}
-          onClick={onClick}
-          onPointerOver={onHover}
-          onPointerOut={onUnhover}
-        >
-          <Text3D
-            font="/fonts/Anton_Regular.typeface.json"
-            size={1.5}
-            height={0.1}
-            curveSegments={12}
-            bevelEnabled={false}
-          >
-            {text}
-            <meshBasicMaterial
-              color={isHovered ? "#ff6b6b" : "#ffffff"}
-              transparent={true}
-              opacity={opacity}
-            />
-          </Text3D>
-        </mesh>
-      </group>
+  // 라디안을 도로 변환
+  const rotationDegrees = (rotationY * 180) / Math.PI;
+
+  // 사라지는 애니메이션 로직 (참고 코드 방식)
+  const shouldDisappear = isAnySelected && !isSelected;
+  const disappearDelay = 700; // 선택 후 800ms 대기
+  const delay = disappearDelay + (index * 100); // 순차 애니메이션 딜레이
+
+  return (
+    <div
+      className="menu-item"
+      style={{
+        opacity: shouldDisappear ? 0 : (isInitialAppearing ? 0 : opacity),
+        transform: shouldDisappear
+          ? 'perspective(1000px) rotateY(90deg) translateX(100px)'
+          : `perspective(1000px) rotateX(${isInitialAppearing ? -30 : 0}deg) rotateY(${isInitialAppearing ? -90 : rotationDegrees}deg) scale(${scale}) translateZ(${isInitialAppearing ? '-200px' : '0px'}) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
+        transition: shouldDisappear 
+          ? 'opacity 600ms ease-out 400ms, transform 1000ms ease-out'
+          : isInitialAppearing
+          ? 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          : isHovered
+          ? 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        transitionDelay: shouldDisappear ? `${delay}ms` : isInitialAppearing ? `${initialDelay}ms` : '0ms',
+        marginBottom: '-10px',
+        margin: '0px',
+        padding: '0px',
+        lineHeight: '0.9',
+        transformOrigin: 'right center',
+        color: (isHovered || isSelected) ? 'transparent' : '#000000',
+        WebkitTextStroke: '1px #000000',
+        fontSize: '9rem',
+        fontWeight: '900',
+        fontFamily: 'Arial, sans-serif',
+        userSelect: 'none',
+        cursor: 'pointer'
+      }}
+      onClick={onClick}
+      onMouseEnter={onHover}
+      onMouseLeave={onUnhover}
+    >
+      {text}
+    </div>
   );
 }
 
-function MenuScene({ items, onItemClick }: Menu3DProps) {
+export default function Menu3D({ items, onItemClick }: Menu3DProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -100,37 +112,39 @@ function MenuScene({ items, onItemClick }: Menu3DProps) {
   };
 
   return (
-    <>
-      
-
-             {/* 메뉴 아이템들 */}
-       {items.map((item, index) => (
-         <group key={item} position={[-12, 3 - index * 2, 0]}>
+    <div 
+      className="w-full h-full flex items-start justify-end"
+      style={{
+        perspective: '1000px',
+        background: '#8B5CF6',
+        paddingTop: '20px',
+        paddingLeft: '20px',
+        paddingRight: '20px'
+      }}
+    >
+      <div 
+        className="menu-container"
+        style={{
+          transformStyle: 'preserve-3d',
+          padding: '40px',
+          paddingTop: '40px'
+        }}
+      >
+        {items.map((item, index) => (
           <MenuItem3D
+            key={item}
             text={item}
             index={index}
+            totalItems={items.length}
             isHovered={hoveredIndex === index}
             isSelected={selectedIndex === index}
+            isAnySelected={selectedIndex !== null}
             onClick={() => handleItemClick(index)}
             onHover={() => setHoveredIndex(index)}
             onUnhover={() => setHoveredIndex(null)}
           />
-        </group>
-      ))}
-    </>
-  );
-}
-
-export default function Menu3D({ items, onItemClick }: Menu3DProps) {
-  return (
-    <div className="relative h-full w-full bg-black">
-      <Canvas
-        camera={{ position: [0, 0, 20], fov: 35 }}
-        gl={{ antialias: true }}
-        style={{ width: '100vw', height: '100vh' }}
-      >
-        <MenuScene items={items} onItemClick={onItemClick} />
-      </Canvas>
+        ))}
+      </div>
     </div>
   );
-} 
+}
