@@ -16,10 +16,115 @@ body {
   min-height: 100vh;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  /* 스크롤 관성과 탄력성 추가 */
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  /* 스크롤 관성 개선 */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* 스크롤 바운스 효과 */
+  overscroll-behavior-y: contain;
 }
 
 html {
   scroll-behavior: smooth;
+  /* 스크롤 관성 설정 */
+  overscroll-behavior: contain;
+  /* 스크롤 바운스 효과 */
+  overscroll-behavior-y: contain;
+}
+
+/* 커스텀 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(226, 232, 240, 0.3);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(226, 232, 240, 0.6);
+  transform: scale(1.1);
+}
+
+/* 스크롤 스냅 컨테이너 */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* 탄력적 스크롤 효과 */
+.bouncy-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* 스크롤 관성 개선 */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* 스크롤 바운스 효과 */
+  overscroll-behavior-y: contain;
+}
+
+/* 스크롤 관성 애니메이션 */
+@keyframes scrollBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.scroll-bounce {
+  animation: scrollBounce 0.6s ease-out;
+}
+
+/* 스크롤 시 요소들에 대한 부드러운 전환 */
+.scroll-smooth-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 스크롤 시 텍스트 효과 */
+.scroll-text-effect {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 스크롤 시 배경 효과 */
+.scroll-bg-effect {
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 스크롤 관성 개선을 위한 추가 스타일 */
+* {
+  scroll-behavior: smooth;
+}
+
+/* 모바일에서 스크롤 관성 개선 */
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  .bouncy-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
 }
 
 .menu-item {

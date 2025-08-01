@@ -64,6 +64,10 @@ function MenuItem3D({
   const disappearDelay = 700; // 선택 후 800ms 대기
   const delay = disappearDelay + (index * 100); // 순차 애니메이션 딜레이
 
+  // 색상 그라데이션 계산 (위로 갈수록 진해짐, 상단 진하기 증가)
+  const colorIntensity = Math.floor(((totalItems - 1 - index) / (totalItems - 1)) * 140 + 80); // 80~220 범위로 조정
+  const textColor = `rgb(${colorIntensity} ${colorIntensity + 20} ${colorIntensity + 40})`;
+
   return (
     <div
       className="menu-item"
@@ -85,8 +89,8 @@ function MenuItem3D({
         padding: '0px',
         lineHeight: '0.9',
         transformOrigin: 'right center',
-        color: (isHovered || isSelected) ? 'transparent' : '#000000',
-        WebkitTextStroke: '1px #000000',
+        color: (isHovered || isSelected) ? 'transparent' : textColor,
+        WebkitTextStroke: `1px ${textColor}`,
         fontSize: '9rem',
         fontWeight: '900',
         fontFamily: 'Arial, sans-serif',
@@ -116,7 +120,6 @@ export default function Menu3D({ items, onItemClick }: Menu3DProps) {
       className="w-full h-full flex items-start justify-end"
       style={{
         perspective: '1000px',
-        background: '#8B5CF6',
         paddingTop: '20px',
         paddingLeft: '20px',
         paddingRight: '20px'
