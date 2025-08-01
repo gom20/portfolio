@@ -78,107 +78,109 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
         </div>
       )}
       
-      <div className="fixed bottom-8 left-16 z-50" style={{ maxWidth: '300px' }}>
-      {/* 이름 부분 - 이동하는 애니메이션 */}
-      <div 
-        className="font-bold text-4xl"
-        style={{
-          fontFamily: 'Arial, sans-serif',
-          fontWeight: '900',
-          color: 'white',
-                     transform: isAboutActive ? 'translateY(-60vh)' : 'translateY(0)',
-                     transition: 'transform 1.2s cubic-bezier(0.175, 0.885, 0.1, 1.0)'
-        }}
-      >
-        <div 
-          className="cursor-pointer"
-          onMouseEnter={(e) => handleNameHover(e, true)}
-          onMouseLeave={(e) => handleNameHover(e, false)}
-        >
-          <div style={{ overflow: 'hidden' }}>
-            <div
-              className="go-text"
-              style={{
-                transform: nameAnimation ? 'translateY(0)' : 'translateY(100%)',
-                transition: 'transform 0.8s ease-out 0.2s',
-                color: 'white',
-                WebkitTextStroke: '0.5px white'
-              }}
-            >
-              GO.
-            </div>
-          </div>
-          <div style={{ overflow: 'hidden' }}>
-            <div
-              className="miyoung-text"
-              style={{
-                transform: nameAnimation ? 'translateY(0)' : 'translateY(100%)',
-                transition: 'transform 0.8s ease-out 0.4s',
-                color: 'white',
-                WebkitTextStroke: '0.5px white'
-              }}
-            >
-              MIYOUNG
-            </div>
-          </div>
-        </div>
-      </div>
-
-             {/* Full-Stack Developer - 고정 위치 */}
-       <div style={{ overflow: 'hidden' }}>
-         <div
+                                                                                                                      {/* 이름 부분 - 이동하는 애니메이션 */}
+       <div className="fixed bottom-8 left-16 z-50" style={{ maxWidth: '300px', bottom: '110px' }}>
+         <div 
+           className="font-bold text-4xl"
            style={{
-             fontSize: '1rem',
-             fontWeight: '400',
-             marginTop: '8px',
-             opacity: nameAnimation && !isAboutActive ? 1 : 0,
-             transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
-             transition: 'opacity 0.3s ease-out, transform 0.8s ease-out 0.8s',
-             color: 'rgba(255, 255, 255, 0.7)',
-             whiteSpace: 'nowrap'
+             fontFamily: 'Arial, sans-serif',
+             fontWeight: '900',
+             color: 'white',
+                           transform: isAboutActive ? 'translateY(-500px)' : 'translateY(0)',
+             transition: 'transform 1.2s cubic-bezier(0.175, 0.885, 0.1, 1.0)'
            }}
          >
-           Full-Stack Developer
+           <div 
+             className="cursor-pointer"
+             onMouseEnter={(e) => handleNameHover(e, true)}
+             onMouseLeave={(e) => handleNameHover(e, false)}
+           >
+             <div style={{ overflow: 'hidden' }}>
+               <div
+                 className="go-text"
+                 style={{
+                   transform: nameAnimation ? 'translateY(0)' : 'translateY(100%)',
+                   transition: 'transform 0.8s ease-out 0.2s',
+                   color: 'white',
+                   WebkitTextStroke: '0.5px white'
+                 }}
+               >
+                 GO.
+               </div>
+             </div>
+             <div style={{ overflow: 'hidden' }}>
+               <div
+                 className="miyoung-text"
+                 style={{
+                   transform: nameAnimation ? 'translateY(0)' : 'translateY(100%)',
+                   transition: 'transform 0.8s ease-out 0.4s',
+                   color: 'white',
+                   WebkitTextStroke: '0.5px white'
+                 }}
+               >
+                 MIYOUNG
+               </div>
+             </div>
+           </div>
          </div>
        </div>
 
-      {/* 메뉴 아이템들 - 고정 위치 */}
-      <div style={{ marginTop: '24px', display: 'flex', gap: '32px' }}>
-        {menuItems.map((item, index) => (
-          <div 
-            key={item.id}
-            className="menu-item"
-                         style={{ 
-               fontSize: '0.9rem', 
-               fontWeight: '700', 
-               marginBottom: '8px', 
-               color: hoveredItem === item.id ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.7)',
-               cursor: 'pointer',
-               display: 'flex',
-               alignItems: 'center',
+               {/* Full-Stack Developer - 고정 위치 */}
+                                                                                                                                                                                                                                                                                               <div className="fixed bottom-20 left-16 z-50" style={{ maxWidth: '300px' }}>
+         <div style={{ overflow: 'hidden', bottom: '110px' }}>
+           <div
+             style={{
+               fontSize: '1rem',
+               fontWeight: '400',
                opacity: nameAnimation && !isAboutActive ? 1 : 0,
-               transition: 'opacity 0.2s ease-out 0.1s, color 0.3s ease'
+               transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
+                               transition: 'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s',
+               color: 'rgba(255, 255, 255, 0.7)',
+               whiteSpace: 'nowrap'
              }}
-            onMouseEnter={() => setHoveredItem(item.id)}
-            onMouseLeave={() => setHoveredItem(null)}
-            onClick={() => item.id === 'about' && handleAboutClick()}
-          >
-            <div 
-              className="line"
-              style={{
-                width: hoveredItem === item.id ? '40px' : '20px',
-                height: '1px',
-                backgroundColor: hoveredItem === item.id ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.7)',
-                marginRight: '8px',
-                transition: 'width 0.3s ease, background-color 0.3s ease'
-              }}
-            />
-            <span style={{ fontWeight: '400', marginRight: '8px' }}>{item.number}</span>
-            {item.label}
-          </div>
-                 ))}
+           >
+             Full-Stack Developer
+           </div>
+         </div>
        </div>
-     </div>
+
+               {/* 메뉴 아이템들 - 고정 위치 */}
+        <div className="fixed bottom-8 left-16 z-50" style={{ maxWidth: '300px', marginTop: '180px' }}>
+         <div style={{ display: 'flex', gap: '32px' }}>
+           {menuItems.map((item, index) => (
+             <div 
+               key={item.id}
+               className="menu-item"
+               style={{ 
+                 fontSize: '0.9rem', 
+                 fontWeight: '700', 
+                 marginBottom: '8px', 
+                 color: hoveredItem === item.id ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.7)',
+                 cursor: 'pointer',
+                 display: 'flex',
+                 alignItems: 'center',
+                                   opacity: nameAnimation && !isAboutActive ? 1 : 0, transition: nameAnimation ? 'opacity 0.2s ease-out 0.2s, color 0.3s' : 'opacity 0.2s ease-out, color 0.3s'
+               }}
+               onMouseEnter={() => setHoveredItem(item.id)}
+               onMouseLeave={() => setHoveredItem(null)}
+               onClick={() => item.id === 'about' && handleAboutClick()}
+             >
+               <div 
+                 className="line"
+                 style={{
+                   width: hoveredItem === item.id ? '40px' : '20px',
+                   height: '1px',
+                   backgroundColor: hoveredItem === item.id ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.7)',
+                   marginRight: '8px',
+                   transition: 'width 0.3s ease, background-color 0.3s ease'
+                 }}
+               />
+               <span style={{ fontWeight: '400', marginRight: '8px' }}>{item.number}</span>
+               {item.label}
+             </div>
+           ))}
+         </div>
+       </div>
      </>
    );
 } 
