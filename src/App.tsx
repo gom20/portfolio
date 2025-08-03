@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import MenuItem from './layout/MenuItem';
+import MenuItem from './components/menus/SideMenuItem';
 import YearPage from './pages/YearPage';
-import MouseLight from './components/MouseLight';
-import SideMenu from './layout/SideMenu';
+import MouseLight from './components/common/CursurLight';
+import SideMenu from './components/menus/FooterMenu';
 import { useNameAnimation } from './hooks/useNameAnimation';
 import { menuItems } from './data/menuData';
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import AboutContent from "../sections/About/About";
-import SkillsContent from "../sections/Skills/Skills";
+import AboutContent from "../../sections/About/About";
+import SkillsContent from "../../sections/Skills/Skills";
 
 interface SideMenuProps {
   nameAnimation: boolean;
