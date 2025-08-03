@@ -1,6 +1,6 @@
 // src/components/YearPage.tsx
 import { useState, useEffect } from 'react';
-import ScrollProgress from './ScrollProgress';
+import ScrollProgress from '../../components/ScrollProgress';
 
 interface YearPageProps {
   year: string;
