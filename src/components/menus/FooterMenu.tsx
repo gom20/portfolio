@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import AboutContent from "../../sections/About/About";
-import SkillsContent from "../../sections/Skills/Skills";
+import AboutOverlay from "../../overlays/AboutOverlay";
+import SkillsContent from "../../overlays/SkillOveraly";
 
 interface SideMenuProps {
   nameAnimation: boolean;
@@ -97,7 +97,7 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
           >
             ✕
           </div>
-          <AboutContent isActive={isAboutActive} />
+          <AboutOverlay isActive={isAboutActive} />
         </div>
       )}
 
