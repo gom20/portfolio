@@ -23,8 +23,10 @@ export default function AboutOverlay({ isActive }: AboutContentProps) {
       }}
     >
       <div
-        className="max-w-7xl text-white overflow-y-auto w-full px-5 md:px-10 lg:px-16"
+        className="max-w-7xl text-white overflow-y-auto w-full"
         style={{
+          paddingLeft: '65px',
+          paddingRight: '65px',
           fontFamily: "'Noto Sans KR', sans-serif",
           maxHeight: 'calc(100vh - 170px - 50px)',
           paddingBottom: '50px',
@@ -36,117 +38,70 @@ export default function AboutOverlay({ isActive }: AboutContentProps) {
           visibility: isActive ? 'visible' : 'hidden',
         }}
       >
-        <div className="flex flex-col lg:flex-row lg:gap-6">
-          <div className="lg:flex-[6] lg:pr-4">
-            <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-4">
-              Who I Am
-            </h2>
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300 mb-6">
-              안녕하세요! 저는 열정적인 Full-Stack Developer입니다. 사용자
-              경험을 최우선으로 생각하며, 깔끔하고 효율적인 코드를 작성하는 것을
-              좋아합니다.
-            </p>
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300 mb-6">
-              새로운 기술을 배우는 것에 대한 열정이 있으며, 항상 최신 트렌드와
-              베스트 프랙티스를 따라가려고 노력합니다.
-            </p>
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300 mb-6">
-              React, TypeScript, Node.js를 주력 기술로 사용하며, 클라우드
-              서비스와 DevOps에도 관심이 많습니다. 팀 협업을 중요시하며, 코드
-              리뷰와 지식 공유를 통해 함께 성장하는 것을 즐깁니다.
-            </p>
+        <div>
+          <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-6">
+            About Me
+          </h2>
+
+          <div className="space-y-8">
             <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              현재는 사용자 중심의 웹 애플리케이션 개발에 집중하고 있으며, 성능
-              최적화와 접근성 개선에 대한 지속적인 연구를 하고 있습니다.
+              안녕하세요, 고미영입니다. 저는 5년 이상의 경험을 보유한 풀스택
+              개발자로서, 사용자 중심의 웹 애플리케이션 개발에 전념하고
+              있습니다. 프론트엔드에서는 React, TypeScript, Vue.js를 주로
+              사용하며, 백엔드에서는 Node.js, Spring Boot, Python을 활용한
+              다양한 프로젝트를 성공적으로 완료했습니다. 특히 사용자 경험(UX)을
+              최우선으로 고려한 인터페이스 설계와 성능 최적화에 강점을 가지고
+              있으며, 복잡한 비즈니스 로직을 효율적으로 구현하는 것을 즐깁니다.
             </p>
-            <br />
-          </div>
 
-          <div className="lg:flex-[2] lg:pr-3">
-            <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-4">
-              Experience
-            </h2>
-            <div className="space-y-4">
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium">
-                  현대오토에버
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300 italic">
-                  2023.12 - 2025.08
-                </p>
-                <ul className="text-xs md:text-sm lg:text-sm text-gray-300 mt-2 space-y-1">
-                  <li>차량 위치 관리 시스템 구축</li>
-                  <li>의장 차량 트래킹 시스템 I/F 개발</li>
-                </ul>
-              </div>
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium">
-                  미띵스
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300 italic">
-                  2023.04 - 2023.12
-                </p>
-                <ul className="text-xs md:text-sm lg:text-sm text-gray-300 mt-2 space-y-1">
-                  <li>리서치 서비스 유지보수 및 개발</li>
-                </ul>
-              </div>
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium">
-                  프리랜서
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300 italic">
-                  2021.04 - 2021.07
-                </p>
-                <ul className="text-xs md:text-sm lg:text-sm text-gray-300 mt-2 space-y-1">
-                  <li>반도체 자재 사용량 분석 시스템 개발</li>
-                </ul>
-              </div>
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium">
-                  삼성SDS
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300 italic">
-                  2013.02 - 2020.07
-                </p>
-                <ul className="text-xs md:text-sm lg:text-sm text-gray-300 mt-2 space-y-1">
-                  <li>반도체 자재 사용량 분석 시스템 운영</li>
-                  <li>리테일 솔루션 Admin 모듈 개발</li>
-                  <li>SMART TV 앱 유지보수 및 개발</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
+              현재까지 대기업부터 스타트업까지 다양한 규모의 조직에서 근무하며
+              폭넓은 경험을 쌓아왔습니다. 삼성SDS에서 대규모 엔터프라이즈
+              시스템을 구축하며 안정성과 확장성의 중요성을 깊이 이해했고,
+              스타트업 환경에서는 빠른 프로토타이핑과 MVP 개발을 통해 민첩한
+              개발 프로세스를 체득했습니다. 팀 협업에서는 코드 리뷰와 지식
+              공유를 통해 팀 전체의 기술 역량 향상에 기여하는 것을 중요하게
+              생각하며, 신기술 도입 시에는 항상 팀원들과 충분한 논의를 거쳐
+              최적의 기술 스택을 선택하고자 노력합니다.
+            </p>
 
-          <div className="lg:flex-[1]">
-            <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-4">
-              Contact
-            </h2>
-            <div className="space-y-3">
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium mb-2">
-                  Email
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300">
-                  miyoung.go@example.com
-                </p>
-              </div>
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium mb-2">
-                  GitHub
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300">
-                  github.com/miyounggo
-                </p>
-              </div>
-              <div className="border-l-4 border-white pl-4">
-                <h3 className="text-sm md:text-base lg:text-base font-medium mb-2">
-                  LinkedIn
-                </h3>
-                <p className="text-xs md:text-sm lg:text-sm text-gray-300">
-                  linkedin.com/in/miyounggo
-                </p>
-              </div>
-            </div>
+            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
+              개발자로서 지속적인 성장을 위해 새로운 기술 트렌드를 적극적으로
+              학습하고 적용하고 있습니다. 최근에는 클라우드 네이티브 아키텍처와
+              마이크로서비스, 그리고 DevOps 문화에 깊은 관심을 가지고 있으며,
+              AWS와 Docker를 활용한 현대적인 배포 파이프라인 구축에 열정을 쏟고
+              있습니다. 또한 사용자 접근성과 웹 표준을 준수하는 개발을 중시하며,
+              모든 사용자가 불편함 없이 서비스를 이용할 수 있도록 하는 것이
+              개발자의 사회적 책임이라고 생각합니다.
+            </p>
+
+            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
+              개인적으로는 오픈소스 프로젝트 기여와 기술 블로그 작성을 통해 개발
+              커뮤니티와 지식을 나누는 것을 좋아합니다. 또한 주니어 개발자들의
+              멘토링에도 관심이 많아 개발자 모임이나 세미나에 적극적으로
+              참여하고 있습니다. 업무 외에는 새로운 프로그래밍 언어를 학습하거나
+              사이드 프로젝트를 통해 창의적인 아이디어를 구현해보는 시간을
+              보내며, 이러한 경험들이 본업에서도 더 나은 개발자가 되는 데 큰
+              도움이 되고 있다고 생각합니다.
+            </p>
+
+            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
+              현재는 차세대 웹 기술인 WebAssembly와 Progressive Web App에 대한
+              연구를 진행하고 있으며, 특히 모바일 웹 성능 최적화 분야에서
+              혁신적인 솔루션을 개발하는 것이 목표입니다. 미래에는 AI와 머신러닝
+              기술을 웹 개발에 접목시켜 더욱 지능적이고 개인화된 사용자 경험을
+              제공하는 서비스를 만들고 싶습니다.
+            </p>
+
+            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
+              협업에서는 소통을 가장 중요하게 생각하며, 다양한 배경을 가진
+              팀원들과 함께 일하는 것을 즐깁니다. 기획자, 디자이너, QA 엔지니어
+              등 다른 직무의 동료들과 효과적으로 협업하기 위해 각 분야에 대한
+              기본적인 이해를 넓히려고 노력하고 있습니다. 또한 글로벌 팀과의
+              원활한 소통을 위해 영어 실력 향상에도 지속적으로 투자하고 있으며,
+              문화적 다양성을 존중하는 포용적인 개발 문화 조성에 기여하고
+              싶습니다.
+            </p>
           </div>
         </div>
       </div>
