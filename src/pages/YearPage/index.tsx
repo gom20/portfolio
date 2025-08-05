@@ -201,7 +201,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         </svg>
       </button>
 
-      {/* 좌측 하단 사선 회색 배경 - 고정 크기 */}
+      {/* 좌측 하단 곡선 도형 - 물결 애니메이션 */}
       <div
         className="fixed z-40"
         style={{
@@ -209,18 +209,144 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           left: 0,
           width: '600px',
           height: '450px',
-          background: 'rgba(156, 163, 175, 0.4)',
-          clipPath: 'polygon(0 100%, 0 35%, 100% 100%)',
-          transition: 'opacity 0.8s ease-in-out',
-          opacity: isVisible && windowWidth >= 768 ? 1 : 0,
+          opacity: windowWidth >= 768 ? 1 : 0,
+          transition: 'opacity 0.8s ease-out',
         }}
-      />
+      >
+        <svg
+          width="600"
+          height="450"
+          viewBox="0 0 600 450"
+          className="absolute bottom-0 left-0"
+        >
+          {/* 고정된 하단 직선 삼각형 베이스 */}
+          <path
+            d="M 0 450 L 0 200 L 600 450 Z"
+            fill="rgba(156, 163, 175, 0.15)"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transition: 'opacity 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) 0.6s',
+            }}
+          />
+
+          {/* 물결치는 사선 삼각형 레이어 1 - 하단 고정 */}
+          <g
+            style={{
+              transformOrigin: '300px 450px',
+              animation: isVisible
+                ? 'waveFloat 6s ease-in-out infinite'
+                : 'none',
+            }}
+          >
+            <path
+              d="M 0 450 L 0 160 L 600 450 Z"
+              fill="rgba(156, 163, 175, 0.25)"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) 0.8s',
+              }}
+            />
+          </g>
+
+          {/* 물결치는 사선 삼각형 레이어 2 - 하단 고정 */}
+          <g
+            style={{
+              transformOrigin: '300px 450px',
+              animation: isVisible
+                ? 'waveFloat2 8s ease-in-out infinite'
+                : 'none',
+            }}
+          >
+            <path
+              d="M 0 450 L 0 140 L 600 450 Z"
+              fill="rgba(156, 163, 175, 0.2)"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) 1.2s',
+              }}
+            />
+          </g>
+
+          {/* 물결치는 사선 삼각형 레이어 3 - 가장 작은 곡선 */}
+          <g
+            style={{
+              transformOrigin: '300px 450px',
+              animation: isVisible
+                ? 'waveFloat3 10s ease-in-out infinite'
+                : 'none',
+            }}
+          >
+            <path
+              d="M 0 450 L 0 120 L 600 450 Z"
+              fill="rgba(156, 163, 175, 0.18)"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 2.0s cubic-bezier(0.4, 0.0, 0.2, 1) 1.6s',
+              }}
+            />
+          </g>
+        </svg>
+
+        {/* CSS 애니메이션 정의 */}
+        <style>{`
+          @keyframes waveFloat {
+            0%, 100% {
+              transform: scale(1) rotate(0deg);
+            }
+            25% {
+              transform: scale(1.02) rotate(0.5deg);
+            }
+            50% {
+              transform: scale(0.98) rotate(-0.3deg);
+            }
+            75% {
+              transform: scale(1.01) rotate(0.2deg);
+            }
+          }
+          
+          @keyframes waveFloat2 {
+            0%, 100% {
+              transform: scale(1) rotate(0deg);
+            }
+            30% {
+              transform: scale(1.01) rotate(-0.4deg);
+            }
+            60% {
+              transform: scale(0.99) rotate(0.6deg);
+            }
+            80% {
+              transform: scale(1.02) rotate(-0.2deg);
+            }
+          }
+          
+          @keyframes waveFloat3 {
+            0%, 100% {
+              transform: scale(1) rotate(0deg);
+            }
+            20% {
+              transform: scale(0.99) rotate(0.3deg);
+            }
+            40% {
+              transform: scale(1.01) rotate(-0.5deg);
+            }
+            70% {
+              transform: scale(0.98) rotate(0.4deg);
+            }
+            90% {
+              transform: scale(1.02) rotate(-0.1deg);
+            }
+          }
+        `}</style>
+      </div>
 
       <div
         className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container"
         style={{
           background: 'transparent',
           paddingLeft: windowWidth < 768 ? '0%' : '50%',
+          scrollBehavior: 'auto',
+          overscrollBehavior: 'none',
+          WebkitOverflowScrolling: 'auto',
         }}
       >
         <style>{`
@@ -235,11 +361,9 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         .custom-scrollbar::-webkit-scrollbar-thumb {
           background: rgba(0, 0, 0, 0.15);
           border-radius: 10px;
-          transition: all 0.3s ease;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: rgba(0, 0, 0, 0.3);
-          transform: scale(1.1);
         }
       `}</style>
         {/* 스크롤 진행률 표시기 */}
@@ -252,49 +376,43 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           <ScrollProgress color="#8B5CF6" height={6} />
         </div>
 
-        {/* 고정 연도 헤더 */}
+        {/* 고정 연도 헤더 - FadeIn 애니메이션 */}
         <div
-          className="fixed top-8 z-50"
+          className="fixed top-4 z-50"
           style={{
-            right: windowWidth < 768 ? '20px' : '65px',
+            right: '40px',
           }}
         >
-          <h1
-            className={
-              windowWidth < 768
-                ? 'text-5xl cursor-pointer'
-                : 'text-8xl cursor-pointer'
-            }
-            style={{
-              color: 'transparent',
-              WebkitTextStroke:
-                windowWidth < 768 ? '1.5px #000000' : '2px #000000',
-              fontFamily: 'Arial, sans-serif',
-              fontWeight: '900',
-              opacity: isVisible ? 1 : 0,
-              transition:
-                'opacity 0.8s ease-out 0.2s, color 0.3s ease, -webkit-text-stroke 0.3s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.color = '#000000';
-              e.currentTarget.style.webkitTextStroke =
-                windowWidth < 768 ? '1.5px #000000' : '2px #000000';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.color = 'transparent';
-              e.currentTarget.style.webkitTextStroke =
-                windowWidth < 768 ? '1.5px #000000' : '2px #000000';
-            }}
-          >
-            {year}
-          </h1>
+          <div className="relative cursor-pointer group">
+            <div
+              style={{
+                fontSize: windowWidth < 768 ? '72px' : '128px',
+                fontFamily: 'Arial, sans-serif',
+                fontWeight: '900',
+                color: 'transparent',
+                WebkitTextStroke: '2px #000000',
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 0.8s ease-out 0.6s, color 0.3s ease',
+                lineHeight: '1',
+                userSelect: 'none',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = '#000000';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = 'transparent';
+              }}
+            >
+              {year}
+            </div>
+          </div>
         </div>
 
         {/* 상단 마스킹 오버레이 */}
         <div
           className="fixed top-0 left-0 w-full z-40"
           style={{
-            height: windowWidth < 768 ? '120px' : '180px',
+            height: windowWidth < 768 ? '160px' : '170px',
             background:
               'linear-gradient(to bottom, white 0%, white 70%, rgba(255,255,255,0) 100%)',
             pointerEvents: 'none',
@@ -309,9 +427,9 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           style={{
             transform: `translateY(${scrollY * 0.3}px)`,
             transition: 'transform 0.1s ease-out',
-            paddingRight: windowWidth < 768 ? '20px' : '65px',
+            paddingRight: windowWidth < 768 ? '20px' : '50px',
             paddingLeft: windowWidth < 768 ? '20px' : '0px',
-            paddingTop: windowWidth < 768 ? '120px' : '180px',
+            paddingTop: windowWidth < 768 ? '160px' : '170px',
           }}
         >
           <div className={windowWidth < 768 ? 'text-center' : 'text-right'}>

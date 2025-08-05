@@ -63,8 +63,14 @@ function MenuItem({
 
   // 사라지는 애니메이션 로직 (참고 코드 방식)
   const shouldDisappear = isAnySelected && !isSelected;
+  const selectedShouldFadeOut = isAnySelected && isSelected;
   const disappearDelay = 700; // 선택 후 700ms 대기
-  const delay = disappearDelay + index * 100; // 순차 애니메이션 딜레이
+  const selectedFadeDelay = 300; // 선택된 아이템 Fade Out 지연
+  const delay = shouldDisappear
+    ? disappearDelay + index * 100 // 순차 애니메이션 딜레이
+    : selectedShouldFadeOut
+    ? selectedFadeDelay
+    : 0;
 
   // 색상 그라데이션 계산 (위로 갈수록 진해짐, 상단 진하기 증가)
   const colorIntensity = Math.floor(
@@ -76,9 +82,16 @@ function MenuItem({
     <div
       className="menu-item"
       style={{
-        opacity: shouldDisappear ? 0 : isInitialAppearing ? 0 : opacity,
+        opacity:
+          shouldDisappear || selectedShouldFadeOut
+            ? 0
+            : isInitialAppearing
+            ? 0
+            : opacity,
         transform: shouldDisappear
           ? 'perspective(1000px) rotateY(90deg) translateX(100px)'
+          : selectedShouldFadeOut
+          ? 'perspective(1000px) rotateY(0deg) scale(0.95) translateY(10px)'
           : `perspective(1000px) rotateX(${
               isInitialAppearing ? -30 : 0
             }deg) rotateY(${
@@ -88,16 +101,19 @@ function MenuItem({
             }) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
         transition: shouldDisappear
           ? 'opacity 600ms ease-out 400ms, transform 1000ms ease-out'
+          : selectedShouldFadeOut
+          ? 'opacity 500ms ease-out, transform 500ms ease-out'
           : isInitialAppearing
           ? 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           : isHovered
           ? 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        transitionDelay: shouldDisappear
-          ? `${delay}ms`
-          : isInitialAppearing
-          ? `${initialDelay}ms`
-          : '0ms',
+        transitionDelay:
+          shouldDisappear || selectedShouldFadeOut
+            ? `${delay}ms`
+            : isInitialAppearing
+            ? `${initialDelay}ms`
+            : '0ms',
         marginBottom: '-10px',
         margin: '0px',
         padding: '0px',

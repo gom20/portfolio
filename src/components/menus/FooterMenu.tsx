@@ -52,7 +52,7 @@ export default function SideMenu({
       return '32px';
     } else {
       // 데스크톱
-      return '64px';
+      return '50px';
     }
   };
 
