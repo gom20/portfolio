@@ -20,6 +20,9 @@ interface YearPageProps {
 export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
 
   // 년도에 따른 컨텐츠 컴포넌트 렌더링
   const renderYearContent = () => {
@@ -41,8 +44,8 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
       default:
         return (
           <div className="text-lg text-gray-500 mb-12">
-            <div className="max-w-4xl mx-auto text-left bg-white p-8 rounded-lg shadow-sm">
-              <div className="space-y-6">
+            <div className="text-left bg-white py-8 rounded-lg shadow-sm">
+              <div className="space-y-6 px-8">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">
                     {year}년 프로젝트
@@ -67,6 +70,16 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
     }, 100); // 짧은 지연으로 애니메이션 트리거
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // 화면 크기 변화 감지
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -104,8 +117,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
       style={{
         background: 'white',
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateX(0)' : 'translateX(100px)',
-        transition: 'all 0.2s ease-in-out',
+        transition: 'opacity 0.2s ease-in-out',
       }}
     >
       {/* 뒤로가기 버튼 - 스크롤 영역 완전 밖에 고정 */}
@@ -189,10 +201,26 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         </svg>
       </button>
 
+      {/* 좌측 하단 사선 회색 배경 - 고정 크기 */}
       <div
-        className="w-full h-full bouncy-scroll overflow-y-auto custom-scrollbar year-page-scroll-container"
+        className="fixed z-40"
+        style={{
+          bottom: 0,
+          left: 0,
+          width: '600px',
+          height: '450px',
+          background: 'rgba(156, 163, 175, 0.4)',
+          clipPath: 'polygon(0 100%, 0 35%, 100% 100%)',
+          transition: 'opacity 0.8s ease-in-out',
+          opacity: isVisible && windowWidth >= 768 ? 1 : 0,
+        }}
+      />
+
+      <div
+        className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container"
         style={{
           background: 'transparent',
+          paddingLeft: '50%',
         }}
       >
         <style>{`
@@ -201,16 +229,16 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           height: 8px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(15, 23, 42, 0.3);
+          background: rgba(0, 0, 0, 0.05);
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(226, 232, 240, 0.3);
+          background: rgba(0, 0, 0, 0.15);
           border-radius: 10px;
           transition: all 0.3s ease;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(226, 232, 240, 0.6);
+          background: rgba(0, 0, 0, 0.3);
           transform: scale(1.1);
         }
       `}</style>
@@ -224,42 +252,59 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           <ScrollProgress color="#8B5CF6" height={6} />
         </div>
 
+        {/* 고정 연도 헤더 */}
+        <div
+          className="fixed top-8 z-50"
+          style={{
+            right: '65px',
+          }}
+        >
+          <h1
+            className="text-8xl cursor-pointer"
+            style={{
+              color: 'transparent',
+              WebkitTextStroke: '2px #000000',
+              fontFamily: 'Arial, sans-serif',
+              fontWeight: '900',
+              opacity: isVisible ? 1 : 0,
+              transition:
+                'opacity 0.8s ease-out 0.2s, color 0.3s ease, -webkit-text-stroke 0.3s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#000000';
+              e.currentTarget.style.webkitTextStroke = '2px #000000';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = 'transparent';
+              e.currentTarget.style.webkitTextStroke = '2px #000000';
+            }}
+          >
+            {year}
+          </h1>
+        </div>
+
+        {/* 상단 마스킹 오버레이 */}
+        <div
+          className="fixed top-0 left-0 w-full z-40"
+          style={{
+            height: '180px',
+            background:
+              'linear-gradient(to bottom, white 0%, white 70%, rgba(255,255,255,0) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+
         {/* 헤더 섹션 */}
         <div
-          className="min-h-screen flex items-center justify-center relative"
+          className="min-h-screen flex items-start justify-end relative"
           style={{
             transform: `translateY(${scrollY * 0.3}px)`,
             transition: 'transform 0.1s ease-out',
+            paddingRight: '65px',
+            paddingTop: '180px',
           }}
         >
-          <div className="text-center">
-            <h1
-              className="text-8xl font-bold mb-8"
-              style={{
-                color: '#000000',
-                WebkitTextStroke: '1px #000000',
-                fontFamily: 'Arial, sans-serif',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible
-                  ? `scale(${1 + scrollY * 0.00005}) translateY(0)`
-                  : `scale(1) translateY(30px)`,
-                transition:
-                  'opacity 0.8s ease-out 0.2s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s',
-              }}
-            >
-              {year}
-            </h1>
-            <p
-              className="text-2xl text-gray-600 mb-8"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition:
-                  'opacity 0.8s ease-out 0.4s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s',
-              }}
-            >
-              {year}년의 포트폴리오
-            </p>
+          <div className="text-right">
             {/* 년도별 컨텐츠 렌더링 - 다른 애니메이션 완료 후 fade in */}
             <div
               style={{

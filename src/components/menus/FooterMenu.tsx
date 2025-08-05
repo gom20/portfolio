@@ -25,26 +25,12 @@ export default function SideMenu({
   );
 
   // YearPage에서 스크롤했을 때 fade out 여부 결정
-  const shouldFadeOut = selectedYear && isYearPageScrolled;
+  const shouldFadeOut = false; // 스크롤해도 메뉴 계속 표시
 
   const menuItems = [
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
     { id: 'experience', number: '02', label: 'Experience', type: 'overlay' },
     { id: 'skills', number: '03', label: 'Skills', type: 'overlay' },
-    {
-      id: 'github',
-      number: '04',
-      label: 'Github',
-      type: 'link',
-      url: 'https://github.com/gom20',
-    },
-    {
-      id: 'blog',
-      number: '05',
-      label: 'Blog',
-      type: 'link',
-      url: 'https://gom20.tistory.com/',
-    },
   ];
 
   useEffect(() => {

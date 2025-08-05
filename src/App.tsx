@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <div
-      className="flex h-screen w-full relative overflow-x-hidden bouncy-scroll"
+      className="flex h-screen w-full relative overflow-x-hidden"
       style={{
         background: backgroundWhite ? 'white' : 'black',
         transition:
