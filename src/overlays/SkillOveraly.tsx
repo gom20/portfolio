@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 
 interface SkillsContentProps {
   isActive: boolean;
+  onClose: () => void;
 }
 
-export default function SkillsContent({ isActive }: SkillsContentProps) {
+export default function SkillsContent({
+  isActive,
+  onClose,
+}: SkillsContentProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
@@ -88,8 +92,86 @@ export default function SkillsContent({ isActive }: SkillsContentProps) {
         paddingTop: '170px',
       }}
     >
+      {/* X 버튼 - 스크롤 영역 밖에 고정 */}
+      <button
+        onClick={onClose}
+        className="fixed top-8 right-8 w-14 h-14 flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 group"
+        style={{
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        }}
+        title="닫기"
+        onMouseEnter={e => {
+          const circle = e.currentTarget.querySelector(
+            '.draw-circle'
+          ) as SVGCircleElement;
+          if (circle) {
+            circle.style.strokeDashoffset = '0';
+          }
+        }}
+        onMouseLeave={e => {
+          const circle = e.currentTarget.querySelector(
+            '.draw-circle'
+          ) as SVGCircleElement;
+          if (circle) {
+            circle.style.strokeDashoffset = '163.36';
+          }
+        }}
+      >
+        {/* 동그라미 애니메이션 */}
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 56 56"
+          style={{
+            transform: 'rotate(-90deg)',
+          }}
+        >
+          <circle
+            cx="28"
+            cy="28"
+            r="26"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.1)"
+            strokeWidth="1"
+          />
+          <circle
+            cx="28"
+            cy="28"
+            r="26"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeDasharray="163.36"
+            strokeDashoffset="163.36"
+            className="draw-circle"
+            style={{
+              transition:
+                'stroke-dashoffset 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            }}
+          />
+        </svg>
+
+        {/* X 아이콘 - 크기 증가 */}
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="relative z-10 transition-transform duration-300 group-hover:scale-110"
+        >
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
       <div
-        className="max-w-7xl text-white overflow-y-auto w-full"
+        className="max-w-7xl text-white overflow-y-auto w-full custom-scrollbar"
         style={{
           paddingLeft: responsivePadding,
           paddingRight: responsivePadding,
@@ -104,6 +186,25 @@ export default function SkillsContent({ isActive }: SkillsContentProps) {
           visibility: isActive ? 'visible' : 'hidden',
         }}
       >
+        <style>{`
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 10px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(226, 232, 240, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(226, 232, 240, 0.6);
+            transform: scale(1.1);
+          }
+        `}</style>
         <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-6">
           Skills & Technologies
         </h2>

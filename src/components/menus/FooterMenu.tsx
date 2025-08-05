@@ -159,18 +159,6 @@ export default function SideMenu({
     setIsSkillsActive(true);
   };
 
-  const handleCloseAbout = () => {
-    setIsAboutActive(false);
-  };
-
-  const handleCloseExperience = () => {
-    setIsExperienceActive(false);
-  };
-
-  const handleCloseSkills = () => {
-    setIsSkillsActive(false);
-  };
-
   return (
     <>
       {/* About 레이어 */}
@@ -182,33 +170,10 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          {/* X 버튼 */}
-          <div
-            className="fixed top-8 right-8 z-50 cursor-pointer"
-            onClick={handleCloseAbout}
-            style={{
-              width: '40px',
-              height: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '24px',
-              fontWeight: 'bold',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.color = 'white';
-            }}
-          >
-            ✕
-          </div>
-          <AboutOverlay isActive={isAboutActive} />
+          <AboutOverlay
+            isActive={isAboutActive}
+            onClose={() => setIsAboutActive(false)}
+          />
         </div>
       )}
 
@@ -221,33 +186,10 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          {/* X 버튼 */}
-          <div
-            className="fixed top-8 right-8 z-50 cursor-pointer"
-            onClick={handleCloseExperience}
-            style={{
-              width: '40px',
-              height: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '24px',
-              fontWeight: 'bold',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.color = 'white';
-            }}
-          >
-            ✕
-          </div>
-          <ExperienceOverlay isActive={isExperienceActive} />
+          <ExperienceOverlay
+            isActive={isExperienceActive}
+            onClose={() => setIsExperienceActive(false)}
+          />
         </div>
       )}
 
@@ -260,33 +202,10 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          {/* X 버튼 */}
-          <div
-            className="fixed top-8 right-8 z-50 cursor-pointer"
-            onClick={handleCloseSkills}
-            style={{
-              width: '40px',
-              height: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '24px',
-              fontWeight: 'bold',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.color = 'white';
-            }}
-          >
-            ✕
-          </div>
-          <SkillsContent isActive={isSkillsActive} />
+          <SkillsContent
+            isActive={isSkillsActive}
+            onClose={() => setIsSkillsActive(false)}
+          />
         </div>
       )}
 
