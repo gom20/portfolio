@@ -6,11 +6,15 @@ import SkillsContent from '../../overlays/SkillOveraly';
 interface SideMenuProps {
   nameAnimation: boolean;
   backgroundWhite: boolean;
+  isYearPageScrolled?: boolean;
+  selectedYear?: string | null;
 }
 
 export default function SideMenu({
   nameAnimation,
   backgroundWhite,
+  isYearPageScrolled = false,
+  selectedYear,
 }: SideMenuProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isAboutActive, setIsAboutActive] = useState(false);
@@ -19,6 +23,9 @@ export default function SideMenu({
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
+
+  // YearPage에서 스크롤했을 때 fade out 여부 결정
+  const shouldFadeOut = selectedYear && isYearPageScrolled;
 
   const menuItems = [
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
@@ -216,8 +223,12 @@ export default function SideMenu({
           left: responsiveMargin,
           maxWidth: '300px',
           bottom: windowWidth < 768 ? '95px' : '110px',
-          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
-          transition: 'opacity 1.2s ease-in-out',
+          opacity: shouldFadeOut
+            ? 0
+            : windowWidth < 768 && backgroundWhite
+            ? 0
+            : 1,
+          transition: 'opacity 0.5s ease-in-out',
         }}
       >
         <div
@@ -301,8 +312,12 @@ export default function SideMenu({
           left: responsiveMargin,
           bottom: windowWidth < 768 ? '65px' : '80px',
           maxWidth: '300px',
-          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
-          transition: 'opacity 1.2s ease-in-out',
+          opacity: shouldFadeOut
+            ? 0
+            : windowWidth < 768 && backgroundWhite
+            ? 0
+            : 1,
+          transition: 'opacity 0.5s ease-in-out',
         }}
       >
         <div style={{ overflow: 'hidden', bottom: '110px' }}>
@@ -339,8 +354,12 @@ export default function SideMenu({
           bottom: menuStyles.bottom,
           maxWidth: '300px',
           marginTop: '180px',
-          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
-          transition: 'opacity 1.2s ease-in-out',
+          opacity: shouldFadeOut
+            ? 0
+            : windowWidth < 768 && backgroundWhite
+            ? 0
+            : 1,
+          transition: 'opacity 0.5s ease-in-out',
         }}
       >
         <div style={{ display: 'flex', gap: menuStyles.gap }}>

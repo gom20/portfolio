@@ -10,6 +10,7 @@ export default function App() {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [backgroundWhite, setBackgroundWhite] = useState(false);
+  const [isYearPageScrolled, setIsYearPageScrolled] = useState(false);
   const nameAnimation = useNameAnimation();
 
   const handleMenuClick = (index: number) => {
@@ -27,9 +28,14 @@ export default function App() {
   const handleBackToMenu = () => {
     setBackgroundWhite(false); // 배경을 다시 검은색으로
     setSelectedYear(null);
+    setIsYearPageScrolled(false); // 스크롤 상태 초기화
     setTimeout(() => {
       setIsMenuVisible(true);
     }, 100);
+  };
+
+  const handleYearPageScroll = (scrollTop: number) => {
+    setIsYearPageScrolled(scrollTop > 0);
   };
 
   return (
@@ -61,17 +67,23 @@ export default function App() {
           className="absolute inset-0 z-20"
           style={{
             opacity: selectedYear ? 1 : 0,
-            transform: selectedYear ? 'translateX(0)' : 'translateX(100%)',
+            transform: selectedYear ? 'translateY(0)' : 'translateY(-100%)',
             transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          <YearPage year={selectedYear} onBack={handleBackToMenu} />
+          <YearPage
+            year={selectedYear}
+            onBack={handleBackToMenu}
+            onScroll={handleYearPageScroll}
+          />
         </div>
       )}
 
       <SideMenu
         nameAnimation={nameAnimation}
         backgroundWhite={backgroundWhite}
+        isYearPageScrolled={isYearPageScrolled}
+        selectedYear={selectedYear}
       />
     </div>
   );
