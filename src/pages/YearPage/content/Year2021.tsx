@@ -7,7 +7,7 @@ interface Year2021Props {
 export default function Year2021({}: Year2021Props) {
   return (
     <div className="text-lg text-gray-500 mb-12 ml-2 md:ml-12 year-page-content">
-      <div className="text-left bg-white py-8 rounded-lg shadow-sm">
+      <div className="text-left py-8 rounded-lg">
         <div>
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-4 text-left">

@@ -44,7 +44,7 @@ export default function App() {
         selectedYear ? 'overflow-hidden' : 'overflow-x-hidden'
       }`}
       style={{
-        background: backgroundWhite ? 'white' : 'black',
+        background: backgroundWhite ? 'white' : '#0f0f0f',
         transition:
           'background-color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}

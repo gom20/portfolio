@@ -47,7 +47,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
       default:
         return (
           <div className="text-lg text-gray-500 mb-12">
-            <div className="text-left bg-white py-8 rounded-lg shadow-sm">
+            <div className="text-left py-8 rounded-lg">
               <div>
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -117,7 +117,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
     <div
       className="w-full h-full relative"
       style={{
-        background: 'white',
+        background: 'transparent',
         opacity: isVisible ? 1 : 0,
         transition: 'opacity 0.2s ease-in-out',
       }}
@@ -223,13 +223,14 @@ export default function YearPage({ year, onBack }: YearPageProps) {
       />
 
       <div
-        className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container"
+        className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container relative"
         style={{
           background: 'transparent',
           paddingLeft: windowWidth < 768 ? '0%' : '415px',
           scrollBehavior: 'auto',
           overscrollBehavior: 'none',
           WebkitOverflowScrolling: 'auto',
+          zIndex: 35,
         }}
       >
         <style>{`
