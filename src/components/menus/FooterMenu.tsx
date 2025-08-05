@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AboutOverlay from '../../overlays/AboutOverlay';
 import ExperienceOverlay from '../../overlays/ExperienceOverlay';
 import SkillsContent from '../../overlays/SkillOveraly';
 
 interface SideMenuProps {
   nameAnimation: boolean;
+  backgroundWhite: boolean;
 }
 
-export default function SideMenu({ nameAnimation }: SideMenuProps) {
+export default function SideMenu({
+  nameAnimation,
+  backgroundWhite,
+}: SideMenuProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isAboutActive, setIsAboutActive] = useState(false);
   const [isExperienceActive, setIsExperienceActive] = useState(false);
@@ -42,21 +46,49 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
       '.miyoung-text'
     ) as HTMLElement;
 
+    // 오버레이 활성화 상태 확인
+    const isOverlayActive =
+      isAboutActive || isExperienceActive || isSkillsActive;
+
+    // 오버레이가 활성화되어 있으면 흰색, 그렇지 않으면 배경에 따라 결정
+    const strokeColor = isOverlayActive
+      ? 'white'
+      : backgroundWhite
+      ? 'black'
+      : 'white';
+    const baseColor = isOverlayActive
+      ? 'white'
+      : backgroundWhite
+      ? 'black'
+      : 'white';
+
     if (goElement) {
-      goElement.style.color = isEnter ? 'transparent' : 'white';
-      (goElement.style as any).webkitTextStroke = isEnter
-        ? '0.8px white'
-        : '0.5px white';
-      goElement.style.transition =
-        'color 0.3s ease, webkit-text-stroke 0.3s ease';
+      if (isEnter) {
+        goElement.style.color = 'transparent';
+        (goElement.style as any).webkitTextStroke = `0.8px ${strokeColor}`;
+        goElement.style.transition =
+          'color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      } else {
+        // hover 해제 시 배경에 맞는 기본 색상으로 복원
+        goElement.style.color = baseColor;
+        (goElement.style as any).webkitTextStroke = `0.5px ${strokeColor}`;
+        goElement.style.transition =
+          'color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }
     }
     if (miyoungElement) {
-      miyoungElement.style.color = isEnter ? 'transparent' : 'white';
-      (miyoungElement.style as any).webkitTextStroke = isEnter
-        ? '0.8px white'
-        : '0.5px white';
-      miyoungElement.style.transition =
-        'color 0.3s ease, webkit-text-stroke 0.3s ease';
+      if (isEnter) {
+        miyoungElement.style.color = 'transparent';
+        (miyoungElement.style as any).webkitTextStroke = `0.8px ${strokeColor}`;
+        miyoungElement.style.transition =
+          'color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      } else {
+        // hover 해제 시 배경에 맞는 기본 색상으로 복원
+        miyoungElement.style.color = baseColor;
+        (miyoungElement.style as any).webkitTextStroke = `0.5px ${strokeColor}`;
+        miyoungElement.style.transition =
+          'color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }
     }
   };
 
@@ -236,9 +268,20 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
                   transform: nameAnimation
                     ? 'translateY(0)'
                     : 'translateY(100%)',
-                  transition: 'transform 0.8s ease-out 0.2s',
-                  color: 'white',
-                  WebkitTextStroke: '0.5px white',
+                  transition:
+                    'transform 0.8s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  color:
+                    isAboutActive || isExperienceActive || isSkillsActive
+                      ? 'white'
+                      : backgroundWhite
+                      ? 'black'
+                      : 'white',
+                  WebkitTextStroke:
+                    isAboutActive || isExperienceActive || isSkillsActive
+                      ? '0.5px white'
+                      : backgroundWhite
+                      ? '0.5px black'
+                      : '0.5px white',
                 }}
               >
                 GO.
@@ -251,9 +294,20 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
                   transform: nameAnimation
                     ? 'translateY(0)'
                     : 'translateY(100%)',
-                  transition: 'transform 0.8s ease-out 0.4s',
-                  color: 'white',
-                  WebkitTextStroke: '0.5px white',
+                  transition:
+                    'transform 0.8s ease-out 0.4s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  color:
+                    isAboutActive || isExperienceActive || isSkillsActive
+                      ? 'white'
+                      : backgroundWhite
+                      ? 'black'
+                      : 'white',
+                  WebkitTextStroke:
+                    isAboutActive || isExperienceActive || isSkillsActive
+                      ? '0.5px white'
+                      : backgroundWhite
+                      ? '0.5px black'
+                      : '0.5px white',
                 }}
               >
                 MIYOUNG
@@ -281,8 +335,11 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
                   ? 1
                   : 0,
               transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s',
-              color: 'rgba(255, 255, 255, 0.7)',
+              transition:
+                'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              color: backgroundWhite
+                ? 'rgba(0, 0, 0, 0.7)'
+                : 'rgba(255, 255, 255, 0.7)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -297,7 +354,7 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
         style={{ maxWidth: '300px', marginTop: '180px' }}
       >
         <div style={{ display: 'flex', gap: '32px' }}>
-          {menuItems.map((item, index) => (
+          {menuItems.map(item => (
             <div
               key={item.id}
               className="menu-item"
@@ -307,7 +364,11 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
                 marginBottom: '8px',
                 color:
                   hoveredItem === item.id
-                    ? 'rgba(255, 255, 255, 1)'
+                    ? backgroundWhite
+                      ? 'rgba(0, 0, 0, 1)'
+                      : 'rgba(255, 255, 255, 1)'
+                    : backgroundWhite
+                    ? 'rgba(0, 0, 0, 0.7)'
                     : 'rgba(255, 255, 255, 0.7)',
                 cursor: 'pointer',
                 display: 'flex',
@@ -320,8 +381,8 @@ export default function SideMenu({ nameAnimation }: SideMenuProps) {
                     ? 1
                     : 0,
                 transition: nameAnimation
-                  ? 'opacity 0.2s ease-out 0.2s, color 0.3s, transform 0.3s ease'
-                  : 'opacity 0.2s ease-out, color 0.3s, transform 0.3s ease',
+                  ? 'opacity 0.2s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease'
+                  : 'opacity 0.2s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease',
                 transform: hoveredItem === item.id ? 'scale(1.05)' : 'scale(1)',
               }}
               onMouseEnter={() => setHoveredItem(item.id)}

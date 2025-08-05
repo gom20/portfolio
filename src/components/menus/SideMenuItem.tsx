@@ -6,21 +6,21 @@ interface MenuItemProps {
   onItemClick?: (index: number) => void;
 }
 
-function MenuItem({ 
-  text, 
-  index, 
+function MenuItem({
+  text,
+  index,
   totalItems,
-  isHovered, 
+  isHovered,
   isSelected,
   isAnySelected,
   onClick,
   onHover,
-  onUnhover
-}: { 
-  text: string; 
-  index: number; 
+  onUnhover,
+}: {
+  text: string;
+  index: number;
   totalItems: number;
-  isHovered: boolean; 
+  isHovered: boolean;
   isSelected: boolean;
   isAnySelected: boolean;
   onClick: () => void;
@@ -61,41 +61,53 @@ function MenuItem({
 
   // 사라지는 애니메이션 로직 (참고 코드 방식)
   const shouldDisappear = isAnySelected && !isSelected;
-  const disappearDelay = 700; // 선택 후 800ms 대기
-  const delay = disappearDelay + (index * 100); // 순차 애니메이션 딜레이
+  const disappearDelay = 700; // 선택 후 700ms 대기
+  const delay = disappearDelay + index * 100; // 순차 애니메이션 딜레이
 
   // 색상 그라데이션 계산 (위로 갈수록 진해짐, 상단 진하기 증가)
-  const colorIntensity = Math.floor(((totalItems - 1 - index) / (totalItems - 1)) * 120 + 120); // 120~240 범위로 조정 (전체적으로 밝게)
+  const colorIntensity = Math.floor(
+    ((totalItems - 1 - index) / (totalItems - 1)) * 120 + 120
+  ); // 120~240 범위로 조정 (전체적으로 밝게)
   const textColor = `rgb(${colorIntensity} ${colorIntensity} ${colorIntensity})`;
 
   return (
     <div
       className="menu-item"
       style={{
-        opacity: shouldDisappear ? 0 : (isInitialAppearing ? 0 : opacity),
+        opacity: shouldDisappear ? 0 : isInitialAppearing ? 0 : opacity,
         transform: shouldDisappear
           ? 'perspective(1000px) rotateY(90deg) translateX(100px)'
-          : `perspective(1000px) rotateX(${isInitialAppearing ? -30 : 0}deg) rotateY(${isInitialAppearing ? -90 : rotationDegrees}deg) scale(${scale}) translateZ(${isInitialAppearing ? '-200px' : '0px'}) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
-        transition: shouldDisappear 
+          : `perspective(1000px) rotateX(${
+              isInitialAppearing ? -30 : 0
+            }deg) rotateY(${
+              isInitialAppearing ? -90 : rotationDegrees
+            }deg) scale(${scale}) translateZ(${
+              isInitialAppearing ? '-200px' : '0px'
+            }) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
+        transition: shouldDisappear
           ? 'opacity 600ms ease-out 400ms, transform 1000ms ease-out'
           : isInitialAppearing
           ? 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           : isHovered
           ? 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        transitionDelay: shouldDisappear ? `${delay}ms` : isInitialAppearing ? `${initialDelay}ms` : '0ms',
+        transitionDelay: shouldDisappear
+          ? `${delay}ms`
+          : isInitialAppearing
+          ? `${initialDelay}ms`
+          : '0ms',
         marginBottom: '-10px',
         margin: '0px',
         padding: '0px',
         lineHeight: '0.9',
         transformOrigin: 'right center',
-        color: (isHovered || isSelected) ? 'transparent' : textColor,
-                 WebkitTextStroke: `1.5px ${textColor}`,
+        color: isHovered || isSelected ? 'transparent' : textColor,
+        WebkitTextStroke: `1.5px ${textColor}`,
         fontSize: '9rem',
         fontWeight: '900',
         fontFamily: 'Arial, sans-serif',
         userSelect: 'none',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
       onClick={onClick}
       onMouseEnter={onHover}
@@ -116,21 +128,21 @@ export default function Menu3D({ items, onItemClick }: MenuItemProps) {
   };
 
   return (
-    <div 
+    <div
       className="w-full h-full flex items-start justify-end"
       style={{
         perspective: '1000px',
         paddingTop: '20px',
         paddingLeft: '20px',
-        paddingRight: '20px'
+        paddingRight: '20px',
       }}
     >
-      <div 
+      <div
         className="menu-container"
         style={{
           transformStyle: 'preserve-3d',
           padding: '40px',
-          paddingTop: '40px'
+          paddingTop: '40px',
         }}
       >
         {items.map((item, index) => (

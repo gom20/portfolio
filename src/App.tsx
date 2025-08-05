@@ -9,6 +9,7 @@ import { menuItems } from './data/menuData';
 export default function App() {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(true);
+  const [backgroundWhite, setBackgroundWhite] = useState(false);
   const nameAnimation = useNameAnimation();
 
   const handleMenuClick = (index: number) => {
@@ -16,6 +17,7 @@ export default function App() {
     // Menu3D 내부 애니메이션이 완료된 후 화면 전환
     setTimeout(() => {
       setIsMenuVisible(false);
+      setBackgroundWhite(true);
       setTimeout(() => {
         setSelectedYear(year);
       }, 800); // 메뉴 사라지는 애니메이션 완료 후 페이지 전환
@@ -23,6 +25,7 @@ export default function App() {
   };
 
   const handleBackToMenu = () => {
+    setBackgroundWhite(false); // 배경을 다시 검은색으로
     setSelectedYear(null);
     setTimeout(() => {
       setIsMenuVisible(true);
@@ -30,36 +33,46 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen w-full relative overflow-x-hidden bouncy-scroll" style={{ background: 'black' }}>
+    <div
+      className="flex h-screen w-full relative overflow-x-hidden bouncy-scroll"
+      style={{
+        background: backgroundWhite ? 'white' : 'black',
+        transition:
+          'background-color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      }}
+    >
       <MouseLight />
-      
+
       {isMenuVisible && (
-        <div 
+        <div
           className="absolute inset-0 z-10"
           style={{
             opacity: isMenuVisible ? 1 : 0,
             transform: isMenuVisible ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+            transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
           <MenuItem items={menuItems} onItemClick={handleMenuClick} />
         </div>
       )}
-      
+
       {selectedYear && (
-        <div 
+        <div
           className="absolute inset-0 z-20"
           style={{
             opacity: selectedYear ? 1 : 0,
             transform: selectedYear ? 'translateX(0)' : 'translateX(100%)',
-            transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
           <YearPage year={selectedYear} onBack={handleBackToMenu} />
         </div>
       )}
 
-      <SideMenu nameAnimation={nameAnimation} />
+      <SideMenu
+        nameAnimation={nameAnimation}
+        backgroundWhite={backgroundWhite}
+      />
     </div>
   );
 }
