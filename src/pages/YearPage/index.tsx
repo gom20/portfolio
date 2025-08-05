@@ -1,6 +1,6 @@
 // src/components/YearPage.tsx
 import { useState, useEffect } from 'react';
-import ScrollProgress from '../../components/common/ScrollProgress';
+// import ScrollProgress from '../../components/common/ScrollProgress';
 
 // 년도별 컨텐츠 컴포넌트들
 import Year2013 from './content/Year2013';
@@ -14,12 +14,15 @@ import Year2025 from './content/Year2025';
 interface YearPageProps {
   year: string;
   onBack: () => void;
-  onScroll?: (scrollTop: number) => void;
+  // onScroll?: (scrollTop: number) => void;
 }
 
-export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
+export default function YearPage({ year, onBack }: YearPageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isYearHovered, setIsYearHovered] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
@@ -82,6 +85,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // 스크롤 이벤트 리스너 - 연도 텍스트 크기 조정용
   useEffect(() => {
     const scrollContainer = document.querySelector(
       '.year-page-scroll-container'
@@ -91,10 +95,8 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
       const target = e.target as HTMLElement;
       const scrollTop = target.scrollTop;
       setScrollY(scrollTop);
-
-      // App.tsx로 스크롤 상태 전달
-      if (onScroll) {
-        onScroll(scrollTop);
+      if (scrollTop > 0) {
+        setHasScrolled(true);
       }
     };
 
@@ -102,7 +104,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
       scrollContainer.addEventListener('scroll', handleScroll);
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }
-  }, [onScroll]);
+  }, []);
 
   const handleBack = () => {
     setIsVisible(false);
@@ -123,8 +125,10 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
       {/* 뒤로가기 버튼 - 스크롤 영역 완전 밖에 고정 */}
       <button
         onClick={handleBack}
-        className="fixed top-8 left-8 w-14 h-14 flex items-center justify-center text-black hover:text-gray-500 transition-all duration-500 z-50 group"
+        className="fixed w-14 h-14 flex items-center justify-center text-black hover:text-gray-500 transition-all duration-500 z-50 group"
         style={{
+          top: '32px',
+          left: '65px',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',
@@ -201,149 +205,27 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         </svg>
       </button>
 
-      {/* 좌측 하단 곡선 도형 - 물결 애니메이션 */}
+      {/* 좌측 영역 회색 배경 - 위에서 내려오는 애니메이션 */}
       <div
-        className="fixed z-40"
+        className="fixed z-41"
         style={{
-          bottom: 0,
+          top: 0,
           left: 0,
-          width: '600px',
-          height: '450px',
+          width: windowWidth < 768 ? '0' : '415px',
+          height: '100vh',
+          background: 'rgba(156, 163, 175, 0.18)',
           opacity: windowWidth >= 768 ? 1 : 0,
-          transition: 'opacity 0.8s ease-out',
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+          transition:
+            'transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) 0.8s, opacity 0.8s ease-out',
         }}
-      >
-        <svg
-          width="600"
-          height="450"
-          viewBox="0 0 600 450"
-          className="absolute bottom-0 left-0"
-        >
-          {/* 고정된 하단 직선 삼각형 베이스 */}
-          <path
-            d="M 0 450 L 0 200 L 600 450 Z"
-            fill="rgba(156, 163, 175, 0.15)"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transition: 'opacity 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) 0.6s',
-            }}
-          />
-
-          {/* 물결치는 사선 삼각형 레이어 1 - 하단 고정 */}
-          <g
-            style={{
-              transformOrigin: '300px 450px',
-              animation: isVisible
-                ? 'waveFloat 6s ease-in-out infinite'
-                : 'none',
-            }}
-          >
-            <path
-              d="M 0 450 L 0 160 L 600 450 Z"
-              fill="rgba(156, 163, 175, 0.25)"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) 0.8s',
-              }}
-            />
-          </g>
-
-          {/* 물결치는 사선 삼각형 레이어 2 - 하단 고정 */}
-          <g
-            style={{
-              transformOrigin: '300px 450px',
-              animation: isVisible
-                ? 'waveFloat2 8s ease-in-out infinite'
-                : 'none',
-            }}
-          >
-            <path
-              d="M 0 450 L 0 140 L 600 450 Z"
-              fill="rgba(156, 163, 175, 0.2)"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) 1.2s',
-              }}
-            />
-          </g>
-
-          {/* 물결치는 사선 삼각형 레이어 3 - 가장 작은 곡선 */}
-          <g
-            style={{
-              transformOrigin: '300px 450px',
-              animation: isVisible
-                ? 'waveFloat3 10s ease-in-out infinite'
-                : 'none',
-            }}
-          >
-            <path
-              d="M 0 450 L 0 120 L 600 450 Z"
-              fill="rgba(156, 163, 175, 0.18)"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 2.0s cubic-bezier(0.4, 0.0, 0.2, 1) 1.6s',
-              }}
-            />
-          </g>
-        </svg>
-
-        {/* CSS 애니메이션 정의 */}
-        <style>{`
-          @keyframes waveFloat {
-            0%, 100% {
-              transform: scale(1) rotate(0deg);
-            }
-            25% {
-              transform: scale(1.02) rotate(0.5deg);
-            }
-            50% {
-              transform: scale(0.98) rotate(-0.3deg);
-            }
-            75% {
-              transform: scale(1.01) rotate(0.2deg);
-            }
-          }
-          
-          @keyframes waveFloat2 {
-            0%, 100% {
-              transform: scale(1) rotate(0deg);
-            }
-            30% {
-              transform: scale(1.01) rotate(-0.4deg);
-            }
-            60% {
-              transform: scale(0.99) rotate(0.6deg);
-            }
-            80% {
-              transform: scale(1.02) rotate(-0.2deg);
-            }
-          }
-          
-          @keyframes waveFloat3 {
-            0%, 100% {
-              transform: scale(1) rotate(0deg);
-            }
-            20% {
-              transform: scale(0.99) rotate(0.3deg);
-            }
-            40% {
-              transform: scale(1.01) rotate(-0.5deg);
-            }
-            70% {
-              transform: scale(0.98) rotate(0.4deg);
-            }
-            90% {
-              transform: scale(1.02) rotate(-0.1deg);
-            }
-          }
-        `}</style>
-      </div>
+      />
 
       <div
         className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container"
         style={{
           background: 'transparent',
-          paddingLeft: windowWidth < 768 ? '0%' : '50%',
+          paddingLeft: windowWidth < 768 ? '0%' : '415px',
           scrollBehavior: 'auto',
           overscrollBehavior: 'none',
           WebkitOverflowScrolling: 'auto',
@@ -366,21 +248,21 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           background: rgba(0, 0, 0, 0.3);
         }
       `}</style>
-        {/* 스크롤 진행률 표시기 */}
-        <div
+        {/* 스크롤 진행률 표시기 제거 */}
+        {/* <div
           style={{
             opacity: isVisible ? 1 : 0,
             transition: 'opacity 0.5s ease-out',
           }}
         >
           <ScrollProgress color="#8B5CF6" height={6} />
-        </div>
+        </div> */}
 
         {/* 고정 연도 헤더 - FadeIn 애니메이션 */}
         <div
           className="fixed top-4 z-50"
           style={{
-            right: '40px',
+            right: windowWidth < 768 ? '8px' : '65px',
           }}
         >
           <div className="relative cursor-pointer group">
@@ -389,35 +271,26 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
                 fontSize: windowWidth < 768 ? '72px' : '128px',
                 fontFamily: 'Arial, sans-serif',
                 fontWeight: '900',
-                color: 'transparent',
+                color: isYearHovered ? '#000000' : 'transparent',
                 WebkitTextStroke: '2px #000000',
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 0.8s ease-out 0.6s, color 0.3s ease',
+                opacity: isVisible ? (scrollY > 50 ? 0 : 1) : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition:
+                  scrollY > 50
+                    ? 'opacity 0.2s ease-out, color 0.3s ease'
+                    : hasScrolled
+                    ? 'opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s ease'
+                    : 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, color 0.3s ease',
                 lineHeight: '1',
                 userSelect: 'none',
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = '#000000';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = 'transparent';
-              }}
+              onMouseEnter={() => setIsYearHovered(true)}
+              onMouseLeave={() => setIsYearHovered(false)}
             >
               {year}
             </div>
           </div>
         </div>
-
-        {/* 상단 마스킹 오버레이 */}
-        <div
-          className="fixed top-0 left-0 w-full z-40"
-          style={{
-            height: windowWidth < 768 ? '160px' : '170px',
-            background:
-              'linear-gradient(to bottom, white 0%, white 70%, rgba(255,255,255,0) 100%)',
-            pointerEvents: 'none',
-          }}
-        />
 
         {/* 헤더 섹션 */}
         <div
@@ -425,11 +298,11 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
             windowWidth < 768 ? 'justify-center' : 'justify-end'
           }`}
           style={{
-            transform: `translateY(${scrollY * 0.3}px)`,
-            transition: 'transform 0.1s ease-out',
-            paddingRight: windowWidth < 768 ? '20px' : '50px',
-            paddingLeft: windowWidth < 768 ? '20px' : '0px',
-            paddingTop: windowWidth < 768 ? '160px' : '170px',
+            // transform: `translateY(${scrollY * 0.3}px)`,
+            // transition: 'transform 0.1s ease-out',
+            paddingRight: windowWidth < 768 ? '8px' : '65px',
+            paddingLeft: windowWidth < 768 ? '8px' : '0px',
+            paddingTop: windowWidth < 768 ? '120px' : '140px',
           }}
         >
           <div className={windowWidth < 768 ? 'text-center' : 'text-right'}>

@@ -10,7 +10,7 @@ export default function App() {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [backgroundWhite, setBackgroundWhite] = useState(false);
-  const [isYearPageScrolled, setIsYearPageScrolled] = useState(false);
+  // const [isYearPageScrolled, setIsYearPageScrolled] = useState(false);
   const nameAnimation = useNameAnimation();
 
   const handleMenuClick = (index: number) => {
@@ -28,19 +28,21 @@ export default function App() {
   const handleBackToMenu = () => {
     setBackgroundWhite(false); // 배경을 다시 검은색으로
     setSelectedYear(null);
-    setIsYearPageScrolled(false); // 스크롤 상태 초기화
+    // setIsYearPageScrolled(false); // 스크롤 상태 초기화
     setTimeout(() => {
       setIsMenuVisible(true);
     }, 100);
   };
 
-  const handleYearPageScroll = (scrollTop: number) => {
-    setIsYearPageScrolled(scrollTop > 0);
-  };
+  // const handleYearPageScroll = (scrollTop: number) => {
+  //   setIsYearPageScrolled(scrollTop > 0);
+  // };
 
   return (
     <div
-      className="flex h-screen w-full relative overflow-x-hidden"
+      className={`flex h-screen w-full relative ${
+        selectedYear ? 'overflow-hidden' : 'overflow-x-hidden'
+      }`}
       style={{
         background: backgroundWhite ? 'white' : 'black',
         transition:
@@ -74,7 +76,7 @@ export default function App() {
           <YearPage
             year={selectedYear}
             onBack={handleBackToMenu}
-            onScroll={handleYearPageScroll}
+            // onScroll={handleYearPageScroll}
           />
         </div>
       )}
@@ -82,7 +84,7 @@ export default function App() {
       <SideMenu
         nameAnimation={nameAnimation}
         backgroundWhite={backgroundWhite}
-        isYearPageScrolled={isYearPageScrolled}
+        // isYearPageScrolled={isYearPageScrolled}
         selectedYear={selectedYear}
       />
     </div>

@@ -1,28 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AboutOverlay from '../../overlays/AboutOverlay';
 import ExperienceOverlay from '../../overlays/ExperienceOverlay';
 import SkillsContent from '../../overlays/SkillOveraly';
+import {
+  useResponsivePadding,
+  useIsMobile,
+  useWindowWidth,
+} from '../../hooks/useResponsive';
+import { TRANSITIONS } from '../../constants/animations';
 
 interface SideMenuProps {
   nameAnimation: boolean;
   backgroundWhite: boolean;
-  isYearPageScrolled?: boolean;
+  // isYearPageScrolled?: boolean;
   selectedYear?: string | null;
 }
 
 export default function SideMenu({
   nameAnimation,
   backgroundWhite,
-  isYearPageScrolled = false,
-  selectedYear,
 }: SideMenuProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isAboutActive, setIsAboutActive] = useState(false);
   const [isExperienceActive, setIsExperienceActive] = useState(false);
   const [isSkillsActive, setIsSkillsActive] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 1200
-  );
+
+  // 리팩토링된 반응형 훅 사용
+  const windowWidth = useWindowWidth();
+  const responsiveMargin = useResponsivePadding();
+  const isMobile = useIsMobile();
 
   // YearPage에서 스크롤했을 때 fade out 여부 결정
   const shouldFadeOut = false; // 스크롤해도 메뉴 계속 표시
@@ -33,57 +39,14 @@ export default function SideMenu({
     { id: 'skills', number: '03', label: 'Skills', type: 'overlay' },
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // 반응형 여백 계산
-  const getResponsiveMargin = () => {
-    if (windowWidth < 768) {
-      // 모바일
-      return '16px';
-    } else if (windowWidth < 1024) {
-      // 태블릿
-      return '32px';
-    } else {
-      // 데스크톱
-      return '50px';
-    }
-  };
-
-  // 반응형 메뉴 스타일 계산
-  const getResponsiveMenuStyles = () => {
-    if (windowWidth < 768) {
-      // 모바일
-      return {
-        gap: '16px',
-        bottom: '16px',
-        showAllItems: false,
-      };
-    } else if (windowWidth < 1024) {
-      // 태블릿
-      return {
-        gap: '24px',
+  // 반응형 메뉴 스타일 계산 (간소화됨)
+  const menuStyles = isMobile
+    ? { gap: '12px', bottom: '16px', showAllItems: false }
+    : {
+        gap: windowWidth < 1024 ? '18px' : '24px',
         bottom: '32px',
         showAllItems: true,
       };
-    } else {
-      // 데스크톱
-      return {
-        gap: '32px',
-        bottom: '32px',
-        showAllItems: true,
-      };
-    }
-  };
-
-  const responsiveMargin = getResponsiveMargin();
-  const menuStyles = getResponsiveMenuStyles();
 
   const handleNameHover = (
     e: React.MouseEvent<HTMLDivElement>,
@@ -114,28 +77,24 @@ export default function SideMenu({
       if (isEnter) {
         goElement.style.color = 'transparent';
         (goElement.style as any).webkitTextStroke = `0.8px ${strokeColor}`;
-        goElement.style.transition =
-          'color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        goElement.style.transition = TRANSITIONS.textStroke;
       } else {
         // hover 해제 시 배경에 맞는 기본 색상으로 복원
         goElement.style.color = baseColor;
         (goElement.style as any).webkitTextStroke = `0.5px ${strokeColor}`;
-        goElement.style.transition =
-          'color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        goElement.style.transition = TRANSITIONS.textStroke;
       }
     }
     if (miyoungElement) {
       if (isEnter) {
         miyoungElement.style.color = 'transparent';
         (miyoungElement.style as any).webkitTextStroke = `0.8px ${strokeColor}`;
-        miyoungElement.style.transition =
-          'color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        miyoungElement.style.transition = TRANSITIONS.textStroke;
       } else {
         // hover 해제 시 배경에 맞는 기본 색상으로 복원
         miyoungElement.style.color = baseColor;
         (miyoungElement.style as any).webkitTextStroke = `0.5px ${strokeColor}`;
-        miyoungElement.style.transition =
-          'color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), webkit-text-stroke 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        miyoungElement.style.transition = TRANSITIONS.textStroke;
       }
     }
   };
@@ -206,19 +165,15 @@ export default function SideMenu({
       <div
         className="fixed z-50"
         style={{
-          left: responsiveMargin,
+          left: responsiveMargin as string,
           maxWidth: '300px',
-          bottom: windowWidth < 768 ? '95px' : '110px',
-          opacity: shouldFadeOut
-            ? 0
-            : windowWidth < 768 && backgroundWhite
-            ? 0
-            : 1,
+          bottom: isMobile ? '95px' : '110px',
+          opacity: shouldFadeOut ? 0 : isMobile && backgroundWhite ? 0 : 1,
           transition: 'opacity 0.5s ease-in-out',
         }}
       >
         <div
-          className={`font-bold ${windowWidth < 768 ? 'text-3xl' : 'text-4xl'}`}
+          className={`font-bold ${isMobile ? 'text-3xl' : 'text-4xl'}`}
           style={{
             fontFamily: 'Arial, sans-serif',
             fontWeight: '900',
@@ -295,21 +250,17 @@ export default function SideMenu({
       <div
         className="fixed z-50"
         style={{
-          left: responsiveMargin,
-          bottom: windowWidth < 768 ? '65px' : '80px',
+          left: responsiveMargin as string,
+          bottom: isMobile ? '65px' : '80px',
           maxWidth: '300px',
-          opacity: shouldFadeOut
-            ? 0
-            : windowWidth < 768 && backgroundWhite
-            ? 0
-            : 1,
+          opacity: shouldFadeOut ? 0 : isMobile && backgroundWhite ? 0 : 1,
           transition: 'opacity 0.5s ease-in-out',
         }}
       >
         <div style={{ overflow: 'hidden', bottom: '110px' }}>
           <div
             style={{
-              fontSize: windowWidth < 768 ? '0.9rem' : '1rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               fontWeight: '400',
               opacity:
                 nameAnimation &&
@@ -336,15 +287,11 @@ export default function SideMenu({
       <div
         className="fixed z-50"
         style={{
-          left: responsiveMargin,
+          left: responsiveMargin as string,
+          right: responsiveMargin as string,
           bottom: menuStyles.bottom,
-          maxWidth: '300px',
           marginTop: '180px',
-          opacity: shouldFadeOut
-            ? 0
-            : windowWidth < 768 && backgroundWhite
-            ? 0
-            : 1,
+          opacity: shouldFadeOut ? 0 : isMobile && backgroundWhite ? 0 : 1,
           transition: 'opacity 0.5s ease-in-out',
         }}
       >
@@ -356,7 +303,7 @@ export default function SideMenu({
                 key={item.id}
                 className="menu-item"
                 style={{
-                  fontSize: windowWidth < 768 ? '0.8rem' : '0.9rem',
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: '700',
                   marginBottom: '8px',
                   color:
@@ -386,13 +333,9 @@ export default function SideMenu({
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
                 onClick={() => {
-                  if (item.type === 'overlay') {
-                    if (item.id === 'about') handleAboutClick();
-                    if (item.id === 'experience') handleExperienceClick();
-                    if (item.id === 'skills') handleSkillsClick();
-                  } else if (item.type === 'link') {
-                    window.open(item.url, '_blank');
-                  }
+                  if (item.id === 'about') handleAboutClick();
+                  if (item.id === 'experience') handleExperienceClick();
+                  if (item.id === 'skills') handleSkillsClick();
                 }}
               >
                 <span style={{ fontWeight: '400', marginRight: '8px' }}>

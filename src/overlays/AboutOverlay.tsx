@@ -48,14 +48,16 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
     <div
       className="fixed inset-0 z-45 flex items-start justify-center"
       style={{
-        paddingTop: '170px',
+        paddingTop: windowWidth < 768 ? '140px' : '190px',
       }}
     >
       {/* X 버튼 - 스크롤 영역 밖에 고정 */}
       <button
         onClick={onClose}
-        className="fixed top-8 right-8 w-14 h-14 flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 group"
+        className="fixed w-14 h-14 flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 group"
         style={{
+          top: '32px',
+          right: '65px',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',
@@ -135,7 +137,10 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
           paddingLeft: responsivePadding,
           paddingRight: responsivePadding,
           fontFamily: "'Noto Sans KR', sans-serif",
-          maxHeight: 'calc(100vh - 170px - 50px)',
+          maxHeight:
+            windowWidth < 768
+              ? 'calc(100vh - 140px - 50px)'
+              : 'calc(100vh - 190px - 50px)',
           paddingBottom: '50px',
           transform: shouldAnimate ? 'translateY(0)' : 'translateY(80px)',
           opacity: shouldAnimate ? 1 : 0,

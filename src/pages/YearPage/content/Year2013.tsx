@@ -1,17 +1,17 @@
-import React from 'react';
-
 interface Year2013Props {
   // 필요한 props가 있다면 여기에 추가
 }
 
 export default function Year2013({}: Year2013Props) {
   return (
-    <div className="text-lg text-gray-500 mb-12">
+    <div className="text-lg text-gray-500 mb-12 ml-2 md:ml-12 year-page-content">
       <div className="text-left bg-white py-8 rounded-lg shadow-sm">
         <div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              삼성전자 Smart TV Application 개발
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 text-left">
+              삼성전자
+              <br />
+              Smart TV Application 개발
             </h2>
             <p className="text-gray-600 mb-2">2013.05 - 2014.11 (1년 6개월)</p>
             <p className="text-gray-700">

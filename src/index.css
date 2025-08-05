@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -14,6 +14,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, Arial, sans-serif;
   overscroll-behavior: none;
   overscroll-behavior-y: none;
 }
@@ -85,4 +86,29 @@ html {
 .menu-item {
   font-family: Arial, sans-serif;
   font-weight: 900;
+}
+
+/* FooterMenu의 GO. MIYOUNG 텍스트는 Arial 폰트 유지 */
+.go-text,
+.miyoung-text {
+  font-family: Arial, sans-serif !important;
+  font-weight: 900 !important;
+}
+
+/* 한글 텍스트 전용 폰트 클래스 */
+.korean-text {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+/* 한글 콘텐츠 영역에만 Noto Sans KR 적용 */
+.year-page-content h1,
+.year-page-content h2,
+.year-page-content h3,
+.year-page-content h4,
+.year-page-content h5,
+.year-page-content h6,
+.year-page-content p,
+.year-page-content span,
+.year-page-content div {
+  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
