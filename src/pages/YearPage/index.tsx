@@ -45,7 +45,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         return (
           <div className="text-lg text-gray-500 mb-12">
             <div className="text-left bg-white py-8 rounded-lg shadow-sm">
-              <div className="space-y-6 px-8">
+              <div>
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">
                     {year}년 프로젝트
@@ -220,7 +220,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         className="w-full h-full overflow-y-auto custom-scrollbar year-page-scroll-container"
         style={{
           background: 'transparent',
-          paddingLeft: '50%',
+          paddingLeft: windowWidth < 768 ? '0%' : '50%',
         }}
       >
         <style>{`
@@ -256,14 +256,19 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         <div
           className="fixed top-8 z-50"
           style={{
-            right: '65px',
+            right: windowWidth < 768 ? '20px' : '65px',
           }}
         >
           <h1
-            className="text-8xl cursor-pointer"
+            className={
+              windowWidth < 768
+                ? 'text-5xl cursor-pointer'
+                : 'text-8xl cursor-pointer'
+            }
             style={{
               color: 'transparent',
-              WebkitTextStroke: '2px #000000',
+              WebkitTextStroke:
+                windowWidth < 768 ? '1.5px #000000' : '2px #000000',
               fontFamily: 'Arial, sans-serif',
               fontWeight: '900',
               opacity: isVisible ? 1 : 0,
@@ -272,11 +277,13 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
             }}
             onMouseEnter={e => {
               e.currentTarget.style.color = '#000000';
-              e.currentTarget.style.webkitTextStroke = '2px #000000';
+              e.currentTarget.style.webkitTextStroke =
+                windowWidth < 768 ? '1.5px #000000' : '2px #000000';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.color = 'transparent';
-              e.currentTarget.style.webkitTextStroke = '2px #000000';
+              e.currentTarget.style.webkitTextStroke =
+                windowWidth < 768 ? '1.5px #000000' : '2px #000000';
             }}
           >
             {year}
@@ -287,7 +294,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
         <div
           className="fixed top-0 left-0 w-full z-40"
           style={{
-            height: '180px',
+            height: windowWidth < 768 ? '120px' : '180px',
             background:
               'linear-gradient(to bottom, white 0%, white 70%, rgba(255,255,255,0) 100%)',
             pointerEvents: 'none',
@@ -296,15 +303,18 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
 
         {/* 헤더 섹션 */}
         <div
-          className="min-h-screen flex items-start justify-end relative"
+          className={`min-h-screen flex items-start relative ${
+            windowWidth < 768 ? 'justify-center' : 'justify-end'
+          }`}
           style={{
             transform: `translateY(${scrollY * 0.3}px)`,
             transition: 'transform 0.1s ease-out',
-            paddingRight: '65px',
-            paddingTop: '180px',
+            paddingRight: windowWidth < 768 ? '20px' : '65px',
+            paddingLeft: windowWidth < 768 ? '20px' : '0px',
+            paddingTop: windowWidth < 768 ? '120px' : '180px',
           }}
         >
-          <div className="text-right">
+          <div className={windowWidth < 768 ? 'text-center' : 'text-right'}>
             {/* 년도별 컨텐츠 렌더링 - 다른 애니메이션 완료 후 fade in */}
             <div
               style={{

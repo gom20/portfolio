@@ -8,7 +8,7 @@ export default function Year2013({}: Year2013Props) {
   return (
     <div className="text-lg text-gray-500 mb-12">
       <div className="text-left bg-white py-8 rounded-lg shadow-sm">
-        <div className="space-y-6 px-8">
+        <div>
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               삼성전자 Smart TV Application 개발
