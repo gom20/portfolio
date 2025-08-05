@@ -2,6 +2,15 @@
 import { useState, useEffect } from 'react';
 import ScrollProgress from '../../components/common/ScrollProgress';
 
+// 년도별 컨텐츠 컴포넌트들
+import Year2013 from './content/Year2013';
+import Year2014 from './content/Year2014';
+import Year2017 from './content/Year2017';
+import Year2021 from './content/Year2021';
+import Year2023 from './content/Year2023';
+import Year2024 from './content/Year2024';
+import Year2025 from './content/Year2025';
+
 interface YearPageProps {
   year: string;
   onBack: () => void;
@@ -9,8 +18,56 @@ interface YearPageProps {
 }
 
 export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+
+  // 년도에 따른 컨텐츠 컴포넌트 렌더링
+  const renderYearContent = () => {
+    switch (year) {
+      case '2013':
+        return <Year2013 />;
+      case '2014':
+        return <Year2014 />;
+      case '2017':
+        return <Year2017 />;
+      case '2021':
+        return <Year2021 />;
+      case '2023':
+        return <Year2023 />;
+      case '2024':
+        return <Year2024 />;
+      case '2025':
+        return <Year2025 />;
+      default:
+        return (
+          <div className="text-lg text-gray-500 mb-12">
+            <div className="max-w-4xl mx-auto text-left bg-white p-8 rounded-lg shadow-sm">
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    {year}년 프로젝트
+                  </h2>
+                  <p className="text-gray-600 mb-2">업데이트 예정</p>
+                  <p className="text-gray-700">
+                    {year}년에 진행한 프로젝트들의 상세 내용이 곧 업데이트될
+                    예정입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
+
+  // 페이지 전환 애니메이션 트리거
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // 짧은 지연으로 애니메이션 트리거
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const scrollContainer = document.querySelector(
@@ -41,14 +98,6 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
     }, 300);
   };
 
-  const handleProjectClick = (projectIndex: number) => {
-    const targetY = (projectIndex + 1) * window.innerHeight;
-    window.scrollTo({
-      top: targetY,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <div
       className="w-full h-full relative"
@@ -70,7 +119,7 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
           transition:
-            'opacity 1s ease-out 1.2s, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s',
+            'opacity 0.8s ease-out 0.4s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s',
         }}
         title="뒤로가기"
         onMouseEnter={e => {
@@ -211,177 +260,18 @@ export default function YearPage({ year, onBack, onScroll }: YearPageProps) {
             >
               {year}년의 포트폴리오
             </p>
-            <div className="text-lg text-gray-500 mb-12">
-              {year === '2013' ? (
-                <div className="max-w-4xl mx-auto text-left bg-white p-8 rounded-lg shadow-sm">
-                  <div className="space-y-6">
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                        삼성전자 Smart TV Application 개발
-                      </h2>
-                      <p className="text-gray-600 mb-2">
-                        2013.05 - 2014.11 (1년 6개월)
-                      </p>
-                      <p className="text-gray-700">
-                        Facebook, Twitter 앱 개발 및 Backbone.js 프레임워크 적용
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                        프로젝트 개요
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        삼성전자 Smart TV Facebook, Twitter 앱 담당자로
-                        근무하였습니다. 하이브리드 웹앱으로 미디어(사진, 동영상)
-                        플레이는 TV 플랫폼 라이브러리가 사용되었고 이 외의
-                        화면은 표준 웹 기술로 구현되었습니다.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                        주요 업무
-                      </h3>
-                      <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>양산 테스트 Defect 대응</li>
-                        <li>고객 VOC 대응</li>
-                        <li>로직 변경 및 신규 로직 추가</li>
-                        <li>
-                          Backbone.js 프레임워크를 적용하여 MVC 패턴으로 재개발
-                        </li>
-                        <li>대우증권 App GUI 리뉴얼</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                        사용 기술
-                      </h3>
-                      <p className="text-gray-700">
-                        JavaScript, HTML, CSS, jQuery, BackboneJS
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                        개발 도구
-                      </h3>
-                      <p className="text-gray-700">SublimeText, Redmine</p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <p>여기에 {year}년의 프로젝트들이 표시됩니다.</p>
-                  <p>곧 업데이트 예정입니다.</p>
-                </>
-              )}
+            {/* 년도별 컨텐츠 렌더링 - 다른 애니메이션 완료 후 fade in */}
+            <div
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition:
+                  'opacity 0.8s ease-out 1.2s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s',
+              }}
+            >
+              {renderYearContent()}
             </div>
-
-            {/* 2013년은 전체 내용을 바로 표시, 다른 년도는 프로젝트 네비게이션 */}
-            {year !== '2013' && (
-              <div
-                className="flex justify-center space-x-4"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                  transition:
-                    'opacity 0.8s ease-out 0.8s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s',
-                }}
-              >
-                {[1, 2, 3, 4, 5].map((project, index) => (
-                  <button
-                    key={project}
-                    onClick={() => handleProjectClick(project - 1)}
-                    className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105"
-                    style={{
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible
-                        ? 'translateY(0)'
-                        : 'translateY(20px)',
-                      transition: `opacity 0.6s ease-out ${
-                        0.9 + index * 0.1
-                      }s, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${
-                        0.9 + index * 0.1
-                      }s`,
-                    }}
-                  >
-                    프로젝트 {project}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
-        </div>
-
-        {/* 프로젝트 섹션들 */}
-        <div className={year === '2013' ? '' : 'scroll-snap-container'}>
-          {year === '2013' ? (
-            /* 2013년은 간단한 텍스트로만 표시 - 애니메이션 없음 */
-            <div></div>
-          ) : (
-            /* 다른 년도는 기존 스크롤 방식 유지 */
-            [1, 2, 3, 4, 5].map((project, index) => (
-              <div
-                key={project}
-                className="scroll-snap-item min-h-screen flex items-center justify-center bg-white relative"
-                style={{
-                  background: `linear-gradient(135deg, rgba(139, 92, 246, 0.${
-                    project * 0.08
-                  }), rgba(168, 85, 247, 0.${project * 0.08}))`,
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                  transition: `opacity 0.8s ease-out ${
-                    1.2 + index * 0.15
-                  }s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${
-                    1.2 + index * 0.15
-                  }s`,
-                }}
-              >
-                <div
-                  className="text-center p-8 transform transition-all duration-500"
-                  style={{
-                    transform: `translateY(${
-                      Math.max(0, scrollY - project * window.innerHeight) * 0.1
-                    }px)`,
-                    opacity: Math.max(
-                      0.3,
-                      1 -
-                        Math.abs(scrollY - project * window.innerHeight) * 0.001
-                    ),
-                  }}
-                >
-                  <h2 className="text-4xl font-bold mb-4 text-gray-800">
-                    프로젝트 {project}
-                  </h2>
-                  <p className="text-xl text-gray-600 mb-6">
-                    {year}년에 진행한 프로젝트 {project}입니다.
-                  </p>
-                  <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto transform transition-all duration-300 hover:scale-105">
-                    <h3 className="text-2xl font-semibold mb-3 text-purple-600">
-                      프로젝트 제목
-                    </h3>
-                    <p className="text-gray-700 mb-4">
-                      이 프로젝트는 혁신적인 기술을 활용하여 사용자 경험을
-                      향상시키는 것을 목표로 합니다.
-                    </p>
-                    <div className="flex justify-center space-x-4">
-                      <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
-                        React
-                      </span>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                        TypeScript
-                      </span>
-                      <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                        Tailwind
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
         </div>
       </div>
     </div>
