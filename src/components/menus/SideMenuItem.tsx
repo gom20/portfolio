@@ -16,6 +16,7 @@ function MenuItem({
   onClick,
   onHover,
   onUnhover,
+  responsiveStyles,
 }: {
   text: string;
   index: number;
@@ -26,6 +27,7 @@ function MenuItem({
   onClick: () => void;
   onHover: () => void;
   onUnhover: () => void;
+  responsiveStyles: { fontSize: string; padding: string; strokeWidth: string };
 }) {
   const [opacity, setOpacity] = useState(0);
 
@@ -102,8 +104,8 @@ function MenuItem({
         lineHeight: '0.9',
         transformOrigin: 'right center',
         color: isHovered || isSelected ? 'transparent' : textColor,
-        WebkitTextStroke: `1.5px ${textColor}`,
-        fontSize: '9rem',
+        WebkitTextStroke: `${responsiveStyles.strokeWidth} ${textColor}`,
+        fontSize: responsiveStyles.fontSize,
         fontWeight: '900',
         fontFamily: 'Arial, sans-serif',
         userSelect: 'none',
@@ -121,28 +123,68 @@ function MenuItem({
 export default function Menu3D({ items, onItemClick }: MenuItemProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleItemClick = (index: number) => {
     setSelectedIndex(index);
     onItemClick?.(index);
   };
 
+  // 반응형 스타일 계산
+  const getResponsiveStyles = () => {
+    if (windowWidth < 768) {
+      // 모바일
+      return {
+        fontSize: '6rem',
+        padding: '8px',
+        strokeWidth: '1px',
+      };
+    } else if (windowWidth < 1024) {
+      // 태블릿
+      return {
+        fontSize: '7rem',
+        padding: '15px',
+        strokeWidth: '1.2px',
+      };
+    } else {
+      // 데스크톱
+      return {
+        fontSize: '9rem',
+        padding: '20px',
+        strokeWidth: '1.5px',
+      };
+    }
+  };
+
+  const responsiveStyles = getResponsiveStyles();
+
   return (
     <div
       className="w-full h-full flex items-start justify-end"
       style={{
         perspective: '1000px',
-        paddingTop: '20px',
-        paddingLeft: '20px',
-        paddingRight: '20px',
+        paddingTop: responsiveStyles.padding,
+        paddingLeft: responsiveStyles.padding,
+        paddingRight: responsiveStyles.padding,
       }}
     >
       <div
         className="menu-container"
         style={{
           transformStyle: 'preserve-3d',
-          padding: '40px',
-          paddingTop: '40px',
+          padding: responsiveStyles.padding,
+          paddingTop: responsiveStyles.padding,
         }}
       >
         {items.map((item, index) => (
@@ -157,6 +199,7 @@ export default function Menu3D({ items, onItemClick }: MenuItemProps) {
             onClick={() => handleItemClick(index)}
             onHover={() => setHoveredIndex(index)}
             onUnhover={() => setHoveredIndex(null)}
+            responsiveStyles={responsiveStyles}
           />
         ))}
       </div>

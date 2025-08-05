@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AboutOverlay from '../../overlays/AboutOverlay';
 import ExperienceOverlay from '../../overlays/ExperienceOverlay';
 import SkillsContent from '../../overlays/SkillOveraly';
@@ -16,6 +16,9 @@ export default function SideMenu({
   const [isAboutActive, setIsAboutActive] = useState(false);
   const [isExperienceActive, setIsExperienceActive] = useState(false);
   const [isSkillsActive, setIsSkillsActive] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
 
   const menuItems = [
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
@@ -36,6 +39,58 @@ export default function SideMenu({
       url: 'https://gom20.tistory.com/',
     },
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 반응형 여백 계산
+  const getResponsiveMargin = () => {
+    if (windowWidth < 768) {
+      // 모바일
+      return '16px';
+    } else if (windowWidth < 1024) {
+      // 태블릿
+      return '32px';
+    } else {
+      // 데스크톱
+      return '64px';
+    }
+  };
+
+  // 반응형 메뉴 스타일 계산
+  const getResponsiveMenuStyles = () => {
+    if (windowWidth < 768) {
+      // 모바일
+      return {
+        gap: '16px',
+        bottom: '16px',
+        showAllItems: false,
+      };
+    } else if (windowWidth < 1024) {
+      // 태블릿
+      return {
+        gap: '24px',
+        bottom: '32px',
+        showAllItems: true,
+      };
+    } else {
+      // 데스크톱
+      return {
+        gap: '32px',
+        bottom: '32px',
+        showAllItems: true,
+      };
+    }
+  };
+
+  const responsiveMargin = getResponsiveMargin();
+  const menuStyles = getResponsiveMenuStyles();
 
   const handleNameHover = (
     e: React.MouseEvent<HTMLDivElement>,
@@ -237,14 +292,17 @@ export default function SideMenu({
 
       {/* 이름 부분 - 이동하는 애니메이션 */}
       <div
-        className="fixed left-16 z-50"
+        className="fixed z-50"
         style={{
+          left: responsiveMargin,
           maxWidth: '300px',
-          bottom: '110px',
+          bottom: windowWidth < 768 ? '95px' : '110px',
+          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
+          transition: 'opacity 1.2s ease-in-out',
         }}
       >
         <div
-          className="font-bold text-4xl"
+          className={`font-bold ${windowWidth < 768 ? 'text-3xl' : 'text-4xl'}`}
           style={{
             fontFamily: 'Arial, sans-serif',
             fontWeight: '900',
@@ -319,13 +377,19 @@ export default function SideMenu({
 
       {/* Full-Stack Developer - 고정 위치 */}
       <div
-        className="fixed bottom-20 left-16 z-50"
-        style={{ maxWidth: '300px' }}
+        className="fixed z-50"
+        style={{
+          left: responsiveMargin,
+          bottom: windowWidth < 768 ? '65px' : '80px',
+          maxWidth: '300px',
+          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
+          transition: 'opacity 1.2s ease-in-out',
+        }}
       >
         <div style={{ overflow: 'hidden', bottom: '110px' }}>
           <div
             style={{
-              fontSize: '1rem',
+              fontSize: windowWidth < 768 ? '0.9rem' : '1rem',
               fontWeight: '400',
               opacity:
                 nameAnimation &&
@@ -350,59 +414,69 @@ export default function SideMenu({
 
       {/* 메뉴 아이템들 - 고정 위치 */}
       <div
-        className="fixed bottom-8 left-16 z-50"
-        style={{ maxWidth: '300px', marginTop: '180px' }}
+        className="fixed z-50"
+        style={{
+          left: responsiveMargin,
+          bottom: menuStyles.bottom,
+          maxWidth: '300px',
+          marginTop: '180px',
+          opacity: windowWidth < 768 && backgroundWhite ? 0 : 1,
+          transition: 'opacity 1.2s ease-in-out',
+        }}
       >
-        <div style={{ display: 'flex', gap: '32px' }}>
-          {menuItems.map(item => (
-            <div
-              key={item.id}
-              className="menu-item"
-              style={{
-                fontSize: '0.9rem',
-                fontWeight: '700',
-                marginBottom: '8px',
-                color:
-                  hoveredItem === item.id
-                    ? backgroundWhite
-                      ? 'rgba(0, 0, 0, 1)'
-                      : 'rgba(255, 255, 255, 1)'
-                    : backgroundWhite
-                    ? 'rgba(0, 0, 0, 0.7)'
-                    : 'rgba(255, 255, 255, 0.7)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                opacity:
-                  nameAnimation &&
-                  !isAboutActive &&
-                  !isExperienceActive &&
-                  !isSkillsActive
-                    ? 1
-                    : 0,
-                transition: nameAnimation
-                  ? 'opacity 0.2s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease'
-                  : 'opacity 0.2s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease',
-                transform: hoveredItem === item.id ? 'scale(1.05)' : 'scale(1)',
-              }}
-              onMouseEnter={() => setHoveredItem(item.id)}
-              onMouseLeave={() => setHoveredItem(null)}
-              onClick={() => {
-                if (item.type === 'overlay') {
-                  if (item.id === 'about') handleAboutClick();
-                  if (item.id === 'experience') handleExperienceClick();
-                  if (item.id === 'skills') handleSkillsClick();
-                } else if (item.type === 'link') {
-                  window.open(item.url, '_blank');
-                }
-              }}
-            >
-              <span style={{ fontWeight: '400', marginRight: '8px' }}>
-                {item.number}
-              </span>
-              {item.label}
-            </div>
-          ))}
+        <div style={{ display: 'flex', gap: menuStyles.gap }}>
+          {menuItems
+            .filter(item => menuStyles.showAllItems || item.type === 'overlay')
+            .map(item => (
+              <div
+                key={item.id}
+                className="menu-item"
+                style={{
+                  fontSize: windowWidth < 768 ? '0.8rem' : '0.9rem',
+                  fontWeight: '700',
+                  marginBottom: '8px',
+                  color:
+                    hoveredItem === item.id
+                      ? backgroundWhite
+                        ? 'rgba(0, 0, 0, 1)'
+                        : 'rgba(255, 255, 255, 1)'
+                      : backgroundWhite
+                      ? 'rgba(0, 0, 0, 0.7)'
+                      : 'rgba(255, 255, 255, 0.7)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  opacity:
+                    nameAnimation &&
+                    !isAboutActive &&
+                    !isExperienceActive &&
+                    !isSkillsActive
+                      ? 1
+                      : 0,
+                  transition: nameAnimation
+                    ? 'opacity 0.2s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease'
+                    : 'opacity 0.2s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease',
+                  transform:
+                    hoveredItem === item.id ? 'scale(1.05)' : 'scale(1)',
+                }}
+                onMouseEnter={() => setHoveredItem(item.id)}
+                onMouseLeave={() => setHoveredItem(null)}
+                onClick={() => {
+                  if (item.type === 'overlay') {
+                    if (item.id === 'about') handleAboutClick();
+                    if (item.id === 'experience') handleExperienceClick();
+                    if (item.id === 'skills') handleSkillsClick();
+                  } else if (item.type === 'link') {
+                    window.open(item.url, '_blank');
+                  }
+                }}
+              >
+                <span style={{ fontWeight: '400', marginRight: '8px' }}>
+                  {item.number}
+                </span>
+                {item.label}
+              </div>
+            ))}
         </div>
       </div>
     </>

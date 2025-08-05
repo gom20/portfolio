@@ -8,6 +8,9 @@ export default function ExperienceOverlay({
   isActive,
 }: ExperienceContentProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
 
   useEffect(() => {
     if (isActive) {
@@ -16,6 +19,31 @@ export default function ExperienceOverlay({
       setShouldAnimate(false);
     }
   }, [isActive]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 반응형 패딩 계산
+  const getResponsivePadding = () => {
+    if (windowWidth < 768) {
+      // 모바일
+      return '16px';
+    } else if (windowWidth < 1024) {
+      // 태블릿
+      return '32px';
+    } else {
+      // 데스크톱
+      return '65px';
+    }
+  };
+
+  const responsivePadding = getResponsivePadding();
 
   return (
     <div
@@ -27,8 +55,8 @@ export default function ExperienceOverlay({
       <div
         className="max-w-7xl text-white overflow-y-auto w-full"
         style={{
-          paddingLeft: '65px',
-          paddingRight: '65px',
+          paddingLeft: responsivePadding,
+          paddingRight: responsivePadding,
           fontFamily: "'Noto Sans KR', sans-serif",
           maxHeight: 'calc(100vh - 170px - 50px)',
           paddingBottom: '50px',
