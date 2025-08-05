@@ -128,7 +128,8 @@ export default function YearPage({ year, onBack }: YearPageProps) {
         className="fixed w-14 h-14 flex items-center justify-center text-black hover:text-gray-500 transition-all duration-500 z-50 group"
         style={{
           top: '32px',
-          left: '65px',
+          left:
+            windowWidth < 768 ? '16px' : windowWidth < 1024 ? '32px' : '65px',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',

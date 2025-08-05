@@ -51,7 +51,7 @@ export default function ExperienceOverlay({
     <div
       className="fixed inset-0 z-45 flex items-start justify-center"
       style={{
-        paddingTop: windowWidth < 768 ? '140px' : '190px',
+        paddingTop: '190px',
       }}
     >
       {/* X 버튼 - 스크롤 영역 밖에 고정 */}
@@ -60,7 +60,8 @@ export default function ExperienceOverlay({
         className="fixed w-14 h-14 flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 group"
         style={{
           top: '32px',
-          right: '65px',
+          right:
+            windowWidth < 768 ? '16px' : windowWidth < 1024 ? '32px' : '65px',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',
