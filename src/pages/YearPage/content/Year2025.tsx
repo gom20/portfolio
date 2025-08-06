@@ -73,25 +73,12 @@ export default function Year2025({}: Year2025Props) {
                 </span>
               </div>
             </div>
-            <h3 className="text-3xl font-medium text-[#0f172a] mb-6 tracking-wide">
+            <h3 className="text-3xl font-bold text-[rgb(19,78,74)] mb-2 tracking-wide">
               차량 위치 관리 시스템 구축
             </h3>
-            <div className="flex flex-wrap gap-4">
-              <span className="px-4 py-2 bg-[#0090FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#0090FF]/30 transition-colors duration-200">
-                기능 정의
-              </span>
-              <span className="px-4 py-2 bg-[#0090FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#0090FF]/30 transition-colors duration-200">
-                테이블 설계
-              </span>
-              <span className="px-4 py-2 bg-[#0090FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#0090FF]/30 transition-colors duration-200">
-                화면 설계
-              </span>
-              <span className="px-4 py-2 bg-[#0090FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#0090FF]/30 transition-colors duration-200">
-                I/F 설계 및 개발
-              </span>
-              <span className="px-4 py-2 bg-[#0090FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#0090FF]/30 transition-colors duration-200">
-                산출물 작성
-              </span>
+            <div className="text-sm text-gray-600 font-medium tracking-wide mb-6">
+              기능 정의 | 테이블 설계 | 화면 설계 | I/F 설계 및 개발 | 산출물
+              작성
             </div>
           </div>
 
@@ -128,7 +115,7 @@ export default function Year2025({}: Year2025Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[#0090FF] rounded-full"></div>
+                <div className="w-1 h-6 bg-[rgb(19,78,74)] rounded-full"></div>
                 <h3 className="text-xl font-medium text-gray-800 tracking-wide">
                   주요 업무 및 성과
                 </h3>
@@ -141,10 +128,10 @@ export default function Year2025({}: Year2025Props) {
                   차량태그 ↔ 서버 간 MQTT 통신 설계·개발
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 차량 이벤트 및 제어 메시지 토픽 설계</p>
-                  <p>• Paho Library 기반 MQTT 클라이언트 구현</p>
-                  <p>• FOTA (Firmware Over The Air) 기능 개발</p>
-                  <p>• 중앙 집중화된 인코딩/디코딩 로직으로 토픽 확장성 확보</p>
+                  <p>차량 이벤트 및 제어 메시지 토픽 설계</p>
+                  <p>Paho Library 기반 MQTT 클라이언트 구현</p>
+                  <p>FOTA (Firmware Over The Air) 기능 개발</p>
+                  <p>중앙 집중화된 인코딩/디코딩 로직으로 토픽 확장성 확보</p>
                 </div>
               </div>
 
@@ -153,21 +140,21 @@ export default function Year2025({}: Year2025Props) {
                   DB 설계 및 데이터 모델링
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• ERD 모델링 및 테이블 설계</p>
-                  <p>• 차량 기준 정보, 차량 태그 이벤트 테이블 등 정의</p>
-                  <p>• 인터페이스 이력 관리 구조 설계</p>
+                  <p>ERD 모델링 및 테이블 설계</p>
+                  <p>차량 기준 정보, 차량 태그 이벤트 테이블 등 정의</p>
+                  <p>인터페이스 이력 관리 구조 설계</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  장비/시스템 인터페이스
+                  장비/시스템 인터페이스 개발
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 기준국: NTRIP Client 개발</p>
-                  <p>• 중계기: SNMP 기반 상태 정보 수집 인터페이스 개발</p>
+                  <p>기준국: NTRIP Client 개발</p>
+                  <p>중계기: SNMP 기반 상태 정보 수집 인터페이스 개발</p>
                   <p>
-                    • 타 시스템: TCP Socket, REST API 기반 차량 기준 정보
+                    타 시스템: TCP Socket, REST API 기반 차량 기준 정보
                     인터페이스 개발
                   </p>
                 </div>
@@ -178,9 +165,9 @@ export default function Year2025({}: Year2025Props) {
                   문서화 및 품질관리
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 요구사항 정의서, 화면 설계서, 인터페이스 설계서 작성</p>
-                  <p>• 요구사항 추적 매트릭스, 단위테스트 명세서 작성</p>
-                  <p>• Fortify, AppScan 보안성 검토 수행</p>
+                  <p>요구사항 정의서, 화면 설계서, 인터페이스 설계서 작성</p>
+                  <p>요구사항 추적 매트릭스, 단위테스트 명세서 작성</p>
+                  <p>Fortify, AppScan 보안성 검토 수행</p>
                 </div>
               </div>
             </div>
@@ -190,11 +177,8 @@ export default function Year2025({}: Year2025Props) {
           <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[#0090FF] rounded-full"></div>
-                <h3
-                  className="text-xl font-medium tracking-wide"
-                  style={{ color: 'rgb(19 78 74)' }}
-                >
+                <div className="w-1 h-6 bg-[rgb(19,78,74)] rounded-full"></div>
+                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>
               </div>
