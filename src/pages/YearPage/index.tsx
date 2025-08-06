@@ -274,7 +274,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
                 fontFamily: 'Arial, sans-serif',
                 fontWeight: '900',
                 color: isYearHovered ? '#000000' : 'transparent',
-                WebkitTextStroke: '2px #000000',
+                WebkitTextStroke: '1px #000000',
                 opacity: isVisible ? (scrollY > 50 ? 0 : 1) : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition:
