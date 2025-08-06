@@ -138,17 +138,17 @@ html {
   font-family: 'GmarketSansBold' !important;
 }
 
-/* 연도 부분에만 Paperlogy-8ExtraBold 폰트 적용 */
+/* 연도 부분에만 TheJamsil5Bold 폰트 적용 */
 .year-text {
-  font-family: 'Paperlogy-8ExtraBold' !important;
-  font-weight: 900 !important;
+  font-family: 'TheJamsil5Bold' !important;
+  font-weight: 800 !important;
   font-style: normal !important;
 }
 
 /* 더 강력한 우선순위로 연도 폰트 적용 */
 div.year-text,
 .year-text {
-  font-family: 'Paperlogy-8ExtraBold' !important;
-  font-weight: 900 !important;
+  font-family: 'TheJamsil5Bold' !important;
+  font-weight: 800 !important;
   font-style: normal !important;
 }

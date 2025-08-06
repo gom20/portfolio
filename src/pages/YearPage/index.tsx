@@ -206,7 +206,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
         </svg>
       </button>
 
-      {/* 좌측 영역 회색 배경 - 좌측에서 우측으로 슬라이드 애니메이션 */}
+      {/* 좌측 영역 남색 배경 - 좌측에서 우측으로 슬라이드 애니메이션 */}
       <div
         className="fixed z-41"
         style={{
@@ -214,7 +214,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           left: 0,
           width: windowWidth < 768 ? '0' : '415px',
           height: '100vh',
-          background: 'rgba(156, 163, 175, 0.18)',
+          background: 'rgb(15 23 42)',
           opacity: windowWidth >= 768 ? 1 : 0,
           transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
           transition:
@@ -271,7 +271,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             <div
               style={{
                 fontSize: windowWidth < 768 ? '72px' : '128px',
-                fontFamily: 'Paperlogy-8ExtraBold',
+                fontFamily: 'TheJamsil5Bold',
                 fontWeight: '900',
                 color: isYearHovered ? '#000000' : 'transparent',
                 WebkitTextStroke: isYearHovered ? '0px #000000' : '1px #000000',

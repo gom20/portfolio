@@ -57,21 +57,9 @@ export default function SideMenu({
       '.miyoung-text'
     ) as HTMLElement;
 
-    // 오버레이 활성화 상태 확인
-    const isOverlayActive =
-      isAboutActive || isExperienceActive || isSkillsActive;
-
-    // 오버레이가 활성화되어 있으면 흰색, 그렇지 않으면 배경에 따라 결정
-    const strokeColor = isOverlayActive
-      ? 'white'
-      : backgroundWhite
-      ? 'black'
-      : 'rgb(226 232 240)';
-    const baseColor = isOverlayActive
-      ? 'white'
-      : backgroundWhite
-      ? 'black'
-      : 'rgb(226 232 240)';
+    // 항상 흰색으로 유지
+    const strokeColor = 'white';
+    const baseColor = 'white';
 
     if (goElement) {
       if (isEnter) {
@@ -201,18 +189,8 @@ export default function SideMenu({
                     : 'translateY(100%)',
                   transition:
                     'transform 0.8s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  color:
-                    isAboutActive || isExperienceActive || isSkillsActive
-                      ? 'white'
-                      : backgroundWhite
-                      ? 'black'
-                      : 'rgb(226 232 240)',
-                  WebkitTextStroke:
-                    isAboutActive || isExperienceActive || isSkillsActive
-                      ? '0.5px white'
-                      : backgroundWhite
-                      ? '0.5px black'
-                      : '0.5px rgb(226 232 240)',
+                  color: 'white',
+                  WebkitTextStroke: '0.5px white',
                 }}
               >
                 GO.
@@ -227,18 +205,8 @@ export default function SideMenu({
                     : 'translateY(100%)',
                   transition:
                     'transform 0.8s ease-out 0.4s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  color:
-                    isAboutActive || isExperienceActive || isSkillsActive
-                      ? 'white'
-                      : backgroundWhite
-                      ? 'black'
-                      : 'rgb(226 232 240)',
-                  WebkitTextStroke:
-                    isAboutActive || isExperienceActive || isSkillsActive
-                      ? '0.5px white'
-                      : backgroundWhite
-                      ? '0.5px black'
-                      : '0.5px rgb(226 232 240)',
+                  color: 'white',
+                  WebkitTextStroke: '0.5px white',
                 }}
               >
                 MIYOUNG
@@ -274,9 +242,7 @@ export default function SideMenu({
               transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
               transition:
                 'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              color: backgroundWhite
-                ? 'rgba(0, 0, 0, 0.7)'
-                : 'rgb(148 163 184)',
+              color: 'white',
               whiteSpace: 'nowrap',
             }}
           >
@@ -308,14 +274,7 @@ export default function SideMenu({
                   fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: '700',
                   marginBottom: '8px',
-                  color:
-                    hoveredItem === item.id
-                      ? backgroundWhite
-                        ? 'rgba(0, 0, 0, 1)'
-                        : 'rgb(94 234 212)'
-                      : backgroundWhite
-                      ? 'rgba(0, 0, 0, 0.7)'
-                      : 'rgb(148 163 184)',
+                  color: hoveredItem === item.id ? 'rgb(94 234 212)' : 'white',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',

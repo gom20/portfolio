@@ -73,12 +73,25 @@ export default function Year2025({}: Year2025Props) {
                 </span>
               </div>
             </div>
-            <h3 className="text-3xl font-bold text-[rgb(19,78,74)] mb-2 tracking-wide">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 tracking-wide">
               차량 위치 관리 시스템 구축
             </h3>
-            <div className="text-sm text-gray-600 font-medium tracking-wide mb-6">
-              기능 정의 | 테이블 설계 | 화면 설계 | I/F 설계 및 개발 | 산출물
-              작성
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                기능 정의
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                테이블 설계
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                화면 설계
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                I/F 설계 및 개발
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                산출물 작성
+              </span>
             </div>
           </div>
 
@@ -115,7 +128,7 @@ export default function Year2025({}: Year2025Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[rgb(19,78,74)] rounded-full"></div>
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
                 <h3 className="text-xl font-medium text-gray-800 tracking-wide">
                   주요 업무 및 성과
                 </h3>
@@ -177,7 +190,7 @@ export default function Year2025({}: Year2025Props) {
           <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[rgb(19,78,74)] rounded-full"></div>
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
                 <h3 className="text-xl font-medium text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>
