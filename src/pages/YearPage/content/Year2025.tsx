@@ -123,7 +123,7 @@ export default function Year2025({}: Year2025Props) {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   차량태그 ↔ 서버 간 MQTT 통신 설계·개발
                 </h4>
@@ -135,7 +135,7 @@ export default function Year2025({}: Year2025Props) {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   DB 설계 및 데이터 모델링
                 </h4>
@@ -146,7 +146,7 @@ export default function Year2025({}: Year2025Props) {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   장비/시스템 인터페이스 개발
                 </h4>
@@ -160,7 +160,7 @@ export default function Year2025({}: Year2025Props) {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   문서화 및 품질관리
                 </h4>
@@ -184,104 +184,69 @@ export default function Year2025({}: Year2025Props) {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   Backend
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Java
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Spring Boot
-                  </span>
-                </div>
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Java 17</li>
+                  <li>Spring Boot</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   Frontend
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    HTML/CSS
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    JavaScript
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    jQuery
-                  </span>
-                </div>
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>JavaScript</li>
+                  <li>VueJS</li>
+                  <li>HTML/CSS</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   Database
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    MariaDB
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    SQL
-                  </span>
-                </div>
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>MariaDB</li>
+                  <li>SQL</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  통신/프로토콜
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    MQTT
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    SNMP
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    TCP Socket
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    REST API
-                  </span>
-                </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Communication/Protocol
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>MQTT</li>
+                  <li>SNMP</li>
+                  <li>TCP Socket</li>
+                  <li>REST API</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   IDE
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    IntelliJ IDEA
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Eclipse
-                  </span>
-                </div>
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>IntelliJ</li>
+                  <li>VSCode</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  협업 도구
-                </h5>
-                <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Jira
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Confluence
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Figma
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    WBS
-                  </span>
-                </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Collaboration Tools
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Jira</li>
+                  <li>Confluence</li>
+                  <li>Figma</li>
+                </ul>
               </div>
             </div>
           </div>
