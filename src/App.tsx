@@ -10,11 +10,13 @@ export default function App() {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [backgroundWhite, setBackgroundWhite] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   // const [isYearPageScrolled, setIsYearPageScrolled] = useState(false);
   const nameAnimation = useNameAnimation();
 
   const handleMenuClick = (index: number) => {
     const year = menuItems[index];
+    setIsTransitioning(true); // 화면 전환 시작 시 커서 라이트 fade out 시작
     // Menu3D 내부 애니메이션이 완료된 후 화면 전환
     setTimeout(() => {
       setIsMenuVisible(false);
@@ -28,6 +30,7 @@ export default function App() {
   const handleBackToMenu = () => {
     setBackgroundWhite(false); // 배경을 다시 검은색으로
     setSelectedYear(null);
+    setIsTransitioning(false); // 메뉴로 돌아갈 때 커서 라이트 다시 표시
     // setIsYearPageScrolled(false); // 스크롤 상태 초기화
     setTimeout(() => {
       setIsMenuVisible(true);
@@ -44,12 +47,12 @@ export default function App() {
         selectedYear ? 'overflow-hidden' : 'overflow-x-hidden'
       }`}
       style={{
-        background: backgroundWhite ? 'white' : '#0f0f0f',
+        background: backgroundWhite ? 'white' : 'rgb(15 23 42)',
         transition:
           'background-color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}
     >
-      <MouseLight />
+      {!selectedYear && <MouseLight isTransitioning={isTransitioning} />}
 
       {isMenuVisible && (
         <div

@@ -206,7 +206,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
         </svg>
       </button>
 
-      {/* 좌측 영역 회색 배경 - 위에서 내려오는 애니메이션 */}
+      {/* 좌측 영역 회색 배경 - 좌측에서 우측으로 슬라이드 애니메이션 */}
       <div
         className="fixed z-41"
         style={{
@@ -216,7 +216,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           height: '100vh',
           background: 'rgba(156, 163, 175, 0.18)',
           opacity: windowWidth >= 768 ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+          transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
           transition:
             'transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) 0.8s, opacity 0.8s ease-out',
         }}
@@ -274,15 +274,15 @@ export default function YearPage({ year, onBack }: YearPageProps) {
                 fontFamily: 'Arial, sans-serif',
                 fontWeight: '900',
                 color: isYearHovered ? '#000000' : 'transparent',
-                WebkitTextStroke: '1px #000000',
+                WebkitTextStroke: isYearHovered ? '0px #000000' : '1px #000000',
                 opacity: isVisible ? (scrollY > 50 ? 0 : 1) : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition:
                   scrollY > 50
-                    ? 'opacity 0.2s ease-out, color 0.3s ease'
+                    ? 'opacity 0.2s ease-out, color 0.3s ease, -webkit-text-stroke 0.3s ease'
                     : hasScrolled
-                    ? 'opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s ease'
-                    : 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, color 0.3s ease',
+                    ? 'opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s ease, -webkit-text-stroke 0.3s ease'
+                    : 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, color 0.3s ease, -webkit-text-stroke 0.3s ease',
                 lineHeight: '1',
                 userSelect: 'none',
               }}

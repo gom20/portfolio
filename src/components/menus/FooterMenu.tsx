@@ -66,12 +66,12 @@ export default function SideMenu({
       ? 'white'
       : backgroundWhite
       ? 'black'
-      : 'white';
+      : 'rgb(226 232 240)';
     const baseColor = isOverlayActive
       ? 'white'
       : backgroundWhite
       ? 'black'
-      : 'white';
+      : 'rgb(226 232 240)';
 
     if (goElement) {
       if (isEnter) {
@@ -204,13 +204,13 @@ export default function SideMenu({
                       ? 'white'
                       : backgroundWhite
                       ? 'black'
-                      : 'white',
+                      : 'rgb(226 232 240)',
                   WebkitTextStroke:
                     isAboutActive || isExperienceActive || isSkillsActive
                       ? '0.5px white'
                       : backgroundWhite
                       ? '0.5px black'
-                      : '0.5px white',
+                      : '0.5px rgb(226 232 240)',
                 }}
               >
                 GO.
@@ -230,13 +230,13 @@ export default function SideMenu({
                       ? 'white'
                       : backgroundWhite
                       ? 'black'
-                      : 'white',
+                      : 'rgb(226 232 240)',
                   WebkitTextStroke:
                     isAboutActive || isExperienceActive || isSkillsActive
                       ? '0.5px white'
                       : backgroundWhite
                       ? '0.5px black'
-                      : '0.5px white',
+                      : '0.5px rgb(226 232 240)',
                 }}
               >
                 MIYOUNG
@@ -274,7 +274,7 @@ export default function SideMenu({
                 'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               color: backgroundWhite
                 ? 'rgba(0, 0, 0, 0.7)'
-                : 'rgba(255, 255, 255, 0.7)',
+                : 'rgb(148 163 184)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -310,10 +310,10 @@ export default function SideMenu({
                     hoveredItem === item.id
                       ? backgroundWhite
                         ? 'rgba(0, 0, 0, 1)'
-                        : 'rgba(255, 255, 255, 1)'
+                        : 'rgb(94 234 212)'
                       : backgroundWhite
                       ? 'rgba(0, 0, 0, 0.7)'
-                      : 'rgba(255, 255, 255, 0.7)',
+                      : 'rgb(148 163 184)',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',

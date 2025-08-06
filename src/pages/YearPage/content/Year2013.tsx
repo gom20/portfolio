@@ -73,7 +73,7 @@ export default function Year2013({}: Year2013Props) {
                 </span>
               </div>
             </div>
-            <h3 className="text-3xl font-medium text-[#B700FF] mb-6 tracking-wide">
+            <h3 className="text-3xl font-medium text-[#0f172a] mb-6 tracking-wide">
               Smart TV Application 개발
             </h3>
             <div className="flex flex-wrap gap-4">

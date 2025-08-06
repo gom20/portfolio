@@ -73,7 +73,7 @@ export default function Year2025({}: Year2025Props) {
                 </span>
               </div>
             </div>
-            <h3 className="text-3xl font-medium text-[#0090FF] mb-6 tracking-wide">
+            <h3 className="text-3xl font-medium text-[#0f172a] mb-6 tracking-wide">
               차량 위치 관리 시스템 구축
             </h3>
             <div className="flex flex-wrap gap-4">
@@ -191,7 +191,10 @@ export default function Year2025({}: Year2025Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-[#0090FF] rounded-full"></div>
-                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
+                <h3
+                  className="text-xl font-medium tracking-wide"
+                  style={{ color: 'rgb(19 78 74)' }}
+                >
                   사용 기술 및 환경
                 </h3>
               </div>
@@ -202,7 +205,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   Backend
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     Java
                   </span>
@@ -216,7 +219,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   Frontend
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     HTML/CSS
                   </span>
@@ -233,7 +236,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   Database
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     MariaDB
                   </span>
@@ -247,7 +250,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   통신/프로토콜
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     MQTT
                   </span>
@@ -267,7 +270,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   IDE
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     IntelliJ IDEA
                   </span>
@@ -281,7 +284,7 @@ export default function Year2025({}: Year2025Props) {
                 <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
                   협업 도구
                 </h5>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
                     Jira
                   </span>

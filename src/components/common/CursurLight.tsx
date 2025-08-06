@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 
-export default function MouseLight() {
+interface MouseLightProps {
+  isTransitioning?: boolean;
+}
+
+export default function MouseLight({
+  isTransitioning = false,
+}: MouseLightProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -22,8 +28,10 @@ export default function MouseLight() {
         height: '100%',
         pointerEvents: 'none',
         zIndex: 1,
-        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.15), transparent 40%)`
+        opacity: isTransitioning ? 0 : 1,
+        transition: 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.12), transparent 50%)`,
       }}
     />
   );
-} 
+}

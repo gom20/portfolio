@@ -67,11 +67,9 @@ function MenuItem({
   const disappearDelay = 700; // 선택 후 700ms 대기
   const delay = disappearDelay + index * 100; // 순차 애니메이션 딜레이
 
-  // 색상 그라데이션 계산 (위로 갈수록 진해짐, 상단 진하기 증가)
-  const colorIntensity = Math.floor(
-    ((totalItems - 1 - index) / (totalItems - 1)) * 120 + 120
-  ); // 120~240 범위로 조정 (전체적으로 밝게)
-  const textColor = `rgb(${colorIntensity} ${colorIntensity} ${colorIntensity})`;
+  // 색상 설정 - 2013으로 갈수록 투명도 감소
+  const textOpacity = Math.max(0.3, 1 - (index / (totalItems - 1)) * 0.7); // 1.0 ~ 0.3 범위
+  const textColor = `rgba(226, 232, 240, ${textOpacity})`;
 
   return (
     <div
@@ -105,7 +103,7 @@ function MenuItem({
         lineHeight: '0.9',
         transformOrigin: 'right center',
         color: isHovered || isSelected ? 'transparent' : textColor,
-        WebkitTextStroke: `${responsiveStyles.strokeWidth} ${textColor}`,
+        WebkitTextStroke: `${responsiveStyles.strokeWidth} rgba(226, 232, 240, ${textOpacity})`,
         fontSize: responsiveStyles.fontSize,
         fontWeight: '900',
         fontFamily: 'Arial, sans-serif',
