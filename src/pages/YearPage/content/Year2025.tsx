@@ -194,7 +194,6 @@ export default function Year2025({}: Year2025Props) {
                   <li>Spring Boot</li>
                 </ul>
               </div>
-
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   Frontend
