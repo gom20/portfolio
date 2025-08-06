@@ -173,9 +173,11 @@ export default function SideMenu({
         }}
       >
         <div
-          className={`font-bold ${isMobile ? 'text-3xl' : 'text-4xl'}`}
+          className={`font-bold name-text ${
+            isMobile ? 'text-3xl' : 'text-4xl'
+          }`}
           style={{
-            fontFamily: 'Arial, sans-serif',
+            fontFamily: 'GmarketSansBold, sans-serif',
             fontWeight: '900',
             color: 'white',
             transform:
