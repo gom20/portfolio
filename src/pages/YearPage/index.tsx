@@ -271,7 +271,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             <div
               style={{
                 fontSize: windowWidth < 768 ? '72px' : '128px',
-                fontFamily: 'Arial, sans-serif',
+                fontFamily: 'Paperlogy-8ExtraBold',
                 fontWeight: '900',
                 color: isYearHovered ? '#000000' : 'transparent',
                 WebkitTextStroke: isYearHovered ? '0px #000000' : '1px #000000',

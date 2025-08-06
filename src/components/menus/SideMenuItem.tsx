@@ -106,7 +106,7 @@ function MenuItem({
         WebkitTextStroke: `${responsiveStyles.strokeWidth} rgba(226, 232, 240, ${textOpacity})`,
         fontSize: responsiveStyles.fontSize,
         fontWeight: '900',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'sans-serif',
         userSelect: 'none',
         cursor: 'pointer',
       }}

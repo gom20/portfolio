@@ -1,10 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
 
 @font-face {
   font-family: 'GmarketSansBold';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
     format('woff');
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Paperlogy-8ExtraBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2')
+    format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2')
+    format('woff2');
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -91,8 +108,11 @@ html {
   }
 }
 
+/* 메뉴 아이템에 TheJamsil5Bold 폰트 적용 */
 .menu-item {
-  font-weight: 900;
+  font-family: 'TheJamsil5Bold' !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
 }
 
 /* 한글 텍스트 전용 폰트 클래스 */
@@ -115,5 +135,20 @@ html {
 
 /* 이름 부분에만 GmarketSansBold 폰트 적용 */
 .name-text {
-  font-family: 'GmarketSansBold', sans-serif !important;
+  font-family: 'GmarketSansBold' !important;
+}
+
+/* 연도 부분에만 Paperlogy-8ExtraBold 폰트 적용 */
+.year-text {
+  font-family: 'Paperlogy-8ExtraBold' !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
+
+/* 더 강력한 우선순위로 연도 폰트 적용 */
+div.year-text,
+.year-text {
+  font-family: 'Paperlogy-8ExtraBold' !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
 }
