@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface Year2024Props {
   // 필요한 props가 있다면 여기에 추가
 }
