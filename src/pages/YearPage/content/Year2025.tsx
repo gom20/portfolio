@@ -124,19 +124,19 @@ export default function Year2025({}: Year2025Props) {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
                   차량태그 ↔ 서버 간 MQTT 통신 설계·개발
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>차량 이벤트 및 제어 메시지 토픽 설계</p>
                   <p>Paho Library 기반 MQTT 클라이언트 구현</p>
                   <p>FOTA (Firmware Over The Air) 기능 개발</p>
-                  <p>중앙 집중화된 인코딩/디코딩 로직으로 토픽 확장성 확보</p>
+                  <p>공통 로직을 중앙 집중화 하여 유연한 확장성 확보</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
                   DB 설계 및 데이터 모델링
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
@@ -147,7 +147,7 @@ export default function Year2025({}: Year2025Props) {
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
                   장비/시스템 인터페이스 개발
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
