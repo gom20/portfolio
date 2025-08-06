@@ -161,7 +161,7 @@ export default function Year2025({}: Year2025Props) {
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
                   문서화 및 품질관리
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
