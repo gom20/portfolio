@@ -125,7 +125,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
       {/* 뒤로가기 버튼 - 스크롤 영역 완전 밖에 고정 */}
       <button
         onClick={handleBack}
-        className="fixed w-14 h-14 flex items-center justify-center text-black hover:text-gray-500 transition-all duration-500 z-50 group"
+        className="fixed w-14 h-14 flex items-center justify-center text-white hover:text-gray-200 transition-all duration-500 z-50 group"
         style={{
           top: '32px',
           left:
@@ -169,7 +169,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             cy="28"
             r="26"
             fill="none"
-            stroke="rgba(0, 0, 0, 0.1)"
+            stroke="rgba(255, 255, 255, 0.3)"
             strokeWidth="1"
           />
           <circle
@@ -177,7 +177,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             cy="28"
             r="26"
             fill="none"
-            stroke="currentColor"
+            stroke="rgba(255, 255, 255, 0.8)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeDasharray="163.36"
@@ -196,7 +196,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
+          stroke="rgba(255, 255, 255, 0.9)"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"

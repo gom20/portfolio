@@ -49,7 +49,7 @@ export default function App() {
       style={{
         background: backgroundWhite ? 'white' : 'rgb(15 23 42)',
         transition:
-          'background-color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          'background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}
     >
       {!selectedYear && <MouseLight isTransitioning={isTransitioning} />}
