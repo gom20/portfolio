@@ -163,8 +163,8 @@ export default function SideMenu({
             isMobile ? 'text-3xl' : 'text-4xl'
           }`}
           style={{
-            fontFamily: 'TheJamsil5Bold, sans-serif',
-            fontWeight: '900',
+            fontFamily: 'TheJamsil, sans-serif',
+            fontWeight: '800',
             color: 'rgb(255, 255, 255, 0.8)',
             transform:
               isAboutActive || isExperienceActive || isSkillsActive
@@ -229,7 +229,8 @@ export default function SideMenu({
           <div
             style={{
               fontSize: isMobile ? '0.9rem' : '1rem',
-              fontWeight: '400',
+              fontFamily: 'TheJamsil, sans-serif',
+              fontWeight: '300',
               opacity:
                 nameAnimation &&
                 !isAboutActive &&
@@ -240,7 +241,7 @@ export default function SideMenu({
               transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
               transition:
                 'opacity 0.3s ease-out, transform 0.8s ease-out 1.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              color: 'white',
+              color: 'rgba(255, 255, 255, 0.6)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -267,12 +268,14 @@ export default function SideMenu({
             .map(item => (
               <div
                 key={item.id}
-                className="menu-item"
+                className="menu-item thejamsil-medium"
                 style={{
                   fontSize: isMobile ? '0.8rem' : '0.9rem',
-                  fontWeight: '700',
                   marginBottom: '8px',
-                  color: hoveredItem === item.id ? 'rgb(94 234 212)' : 'white',
+                  color:
+                    hoveredItem === item.id
+                      ? 'rgb(94 234 212)'
+                      : 'rgba(255, 255, 255, 0.7)',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',

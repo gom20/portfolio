@@ -23,7 +23,47 @@
 }
 
 @font-face {
-  font-family: 'TheJamsil5Bold';
+  font-family: 'TheJamsil';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil1Thin.woff2')
+    format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil2Light.woff2')
+    format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil3Regular.woff2')
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil4Medium.woff2')
+    format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2')
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TheJamsil';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2')
     format('woff2');
   font-weight: 800;
@@ -113,10 +153,10 @@ html {
   }
 }
 
-/* 메뉴 아이템에 TheJamsil5Bold 폰트 적용 */
+/* 메뉴 아이템에 TheJamsil 폰트 적용 */
 .menu-item {
-  font-family: 'TheJamsil5Bold' !important;
-  font-weight: 800 !important;
+  font-family: 'TheJamsil' !important;
+  font-weight: 700 !important;
   font-style: normal !important;
 }
 
@@ -145,16 +185,16 @@ html {
   font-family: 'Pretendard-Regular', system-ui, Avenir, Helvetica, sans-serif !important;
 }
 
-/* 이름 부분에만 TheJamsil5Bold 폰트 적용 */
+/* 이름 부분에만 TheJamsil 폰트 적용 */
 .name-text {
-  font-family: 'TheJamsil5Bold' !important;
+  font-family: 'TheJamsil' !important;
   font-weight: 800 !important;
   font-style: normal !important;
 }
 
-/* 연도 부분에만 TheJamsil5Bold 폰트 적용 */
+/* 연도 부분에만 TheJamsil 폰트 적용 */
 .year-text {
-  font-family: 'TheJamsil5Bold' !important;
+  font-family: 'TheJamsil' !important;
   font-weight: 800 !important;
   font-style: normal !important;
 }
@@ -162,7 +202,44 @@ html {
 /* 더 강력한 우선순위로 연도 폰트 적용 */
 div.year-text,
 .year-text {
-  font-family: 'TheJamsil5Bold' !important;
+  font-family: 'TheJamsil' !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
+}
+
+/* TheJamsil 폰트 weight 유틸리티 클래스들 */
+.thejamsil-thin {
+  font-family: 'TheJamsil' !important;
+  font-weight: 100 !important;
+  font-style: normal !important;
+}
+
+.thejamsil-light {
+  font-family: 'TheJamsil' !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+}
+
+.thejamsil-regular {
+  font-family: 'TheJamsil' !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+.thejamsil-medium {
+  font-family: 'TheJamsil' !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+}
+
+.thejamsil-bold {
+  font-family: 'TheJamsil' !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+.thejamsil-extrabold {
+  font-family: 'TheJamsil' !important;
   font-weight: 800 !important;
   font-style: normal !important;
 }
