@@ -1,6 +1,5 @@
-// src/components/YearPage.tsx
 import { useState, useEffect } from 'react';
-// import ScrollProgress from '../../components/common/ScrollProgress';
+import { useWindowWidth } from '../../hooks/useResponsive';
 
 // 년도별 컨텐츠 컴포넌트들
 import Year2013 from './content/Year2013';
@@ -11,10 +10,24 @@ import Year2023 from './content/Year2023';
 import Year2024 from './content/Year2024';
 import Year2025 from './content/Year2025';
 
+// 애니메이션 상수
+const ANIMATION_DELAYS = {
+  VISIBILITY: 100,
+  BACK_BUTTON: 400,
+  YEAR_HEADER: 600,
+  CONTENT: 1200,
+} as const;
+
+const TRANSITION_DURATIONS = {
+  FAST: '0.2s',
+  NORMAL: '0.3s',
+  SLOW: '0.8s',
+  SLOWER: '1.2s',
+} as const;
+
 interface YearPageProps {
   year: string;
   onBack: () => void;
-  // onScroll?: (scrollTop: number) => void;
 }
 
 export default function YearPage({ year, onBack }: YearPageProps) {
@@ -23,9 +36,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
   const [isYearHovered, setIsYearHovered] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
 
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 1200
-  );
+  const windowWidth = useWindowWidth();
 
   // 년도에 따른 컨텐츠 컴포넌트 렌더링
   const renderYearContent = () => {
@@ -70,19 +81,9 @@ export default function YearPage({ year, onBack }: YearPageProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 100); // 짧은 지연으로 애니메이션 트리거
+    }, ANIMATION_DELAYS.VISIBILITY);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  // 화면 크기 변화 감지
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // 스크롤 이벤트 리스너 - 연도 텍스트 크기 조정용
@@ -119,7 +120,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
       style={{
         background: 'transparent',
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.2s ease-in-out',
+        transition: `opacity ${TRANSITION_DURATIONS.FAST} ease-in-out`,
       }}
     >
       {/* 뒤로가기 버튼 - 스크롤 영역 완전 밖에 고정 */}
@@ -135,8 +136,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           cursor: 'pointer',
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-          transition:
-            'opacity 0.8s ease-out 0.4s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s',
+          transition: `opacity ${TRANSITION_DURATIONS.SLOW} ease-out ${ANIMATION_DELAYS.BACK_BUTTON}ms, transform ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.BACK_BUTTON}ms`,
         }}
         title="뒤로가기"
         onMouseEnter={e => {
@@ -184,8 +184,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             strokeDashoffset="163.36"
             className="draw-circle"
             style={{
-              transition:
-                'stroke-dashoffset 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transition: `stroke-dashoffset ${TRANSITION_DURATIONS.NORMAL} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
             }}
           />
         </svg>
@@ -217,8 +216,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           background: 'rgb(15 23 42)',
           opacity: windowWidth >= 768 ? 1 : 0,
           transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
-          transition:
-            'transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) 0.8s, opacity 0.8s ease-out',
+          transition: `transform ${TRANSITION_DURATIONS.SLOWER} cubic-bezier(0.4, 0.0, 0.2, 1) ${ANIMATION_DELAYS.BACK_BUTTON}ms, opacity ${TRANSITION_DURATIONS.SLOW} ease-out`,
         }}
       />
 
@@ -250,15 +248,6 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           background: rgba(0, 0, 0, 0.3);
         }
       `}</style>
-        {/* 스크롤 진행률 표시기 제거 */}
-        {/* <div
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transition: 'opacity 0.5s ease-out',
-          }}
-        >
-          <ScrollProgress color="#8B5CF6" height={6} />
-        </div> */}
 
         {/* 고정 연도 헤더 - FadeIn 애니메이션 */}
         <div
@@ -279,10 +268,10 @@ export default function YearPage({ year, onBack }: YearPageProps) {
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition:
                   scrollY > 50
-                    ? 'opacity 0.2s ease-out, color 0.3s ease, -webkit-text-stroke 0.3s ease'
+                    ? `opacity ${TRANSITION_DURATIONS.FAST} ease-out, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`
                     : hasScrolled
-                    ? 'opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s ease, -webkit-text-stroke 0.3s ease'
-                    : 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s, color 0.3s ease, -webkit-text-stroke 0.3s ease',
+                    ? `opacity ${TRANSITION_DURATIONS.NORMAL} ease-out, transform ${TRANSITION_DURATIONS.NORMAL} ease-out, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`
+                    : `opacity ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms, transform ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`,
                 lineHeight: '1',
                 userSelect: 'none',
               }}
@@ -313,8 +302,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition:
-                  'opacity 0.8s ease-out 1.2s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s',
+                transition: `opacity ${TRANSITION_DURATIONS.SLOW} ease-out ${ANIMATION_DELAYS.CONTENT}ms, transform ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.CONTENT}ms`,
               }}
             >
               {renderYearContent()}

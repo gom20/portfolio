@@ -12,8 +12,6 @@ import { TRANSITIONS } from '../../constants/animations';
 interface SideMenuProps {
   nameAnimation: boolean;
   backgroundWhite: boolean;
-  // isYearPageScrolled?: boolean;
-  selectedYear?: string | null;
 }
 
 export default function SideMenu({

@@ -6,12 +6,18 @@ import SideMenu from './components/menus/FooterMenu';
 import { useNameAnimation } from './hooks/useNameAnimation';
 import { menuItems } from './data/menuData';
 
+// 애니메이션 상수
+const ANIMATION_DELAYS = {
+  MENU_DISAPPEAR: 2400,
+  BACKGROUND_CHANGE: 800,
+  MENU_REAPPEAR: 100,
+} as const;
+
 export default function App() {
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [backgroundWhite, setBackgroundWhite] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  // const [isYearPageScrolled, setIsYearPageScrolled] = useState(false);
   const nameAnimation = useNameAnimation();
 
   const handleMenuClick = (index: number) => {
@@ -23,23 +29,18 @@ export default function App() {
       setBackgroundWhite(true);
       setTimeout(() => {
         setSelectedYear(year);
-      }, 800); // 메뉴 사라지는 애니메이션 완료 후 페이지 전환
-    }, 2400); // Menu3D 내부 사라지는 애니메이션 완료 후
+      }, ANIMATION_DELAYS.BACKGROUND_CHANGE);
+    }, ANIMATION_DELAYS.MENU_DISAPPEAR);
   };
 
   const handleBackToMenu = () => {
     setBackgroundWhite(false); // 배경을 다시 검은색으로
     setSelectedYear(null);
     setIsTransitioning(false); // 메뉴로 돌아갈 때 커서 라이트 다시 표시
-    // setIsYearPageScrolled(false); // 스크롤 상태 초기화
     setTimeout(() => {
       setIsMenuVisible(true);
-    }, 100);
+    }, ANIMATION_DELAYS.MENU_REAPPEAR);
   };
-
-  // const handleYearPageScroll = (scrollTop: number) => {
-  //   setIsYearPageScrolled(scrollTop > 0);
-  // };
 
   return (
     <div
@@ -79,7 +80,6 @@ export default function App() {
           <YearPage
             year={selectedYear}
             onBack={handleBackToMenu}
-            // onScroll={handleYearPageScroll}
           />
         </div>
       )}
@@ -87,8 +87,6 @@ export default function App() {
       <SideMenu
         nameAnimation={nameAnimation}
         backgroundWhite={backgroundWhite}
-        // isYearPageScrolled={isYearPageScrolled}
-        selectedYear={selectedYear}
       />
     </div>
   );
