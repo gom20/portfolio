@@ -123,10 +123,12 @@ export default function YearPage({ year, onBack }: YearPageProps) {
         transition: `opacity ${TRANSITION_DURATIONS.FAST} ease-in-out`,
       }}
     >
-      {/* 뒤로가기 버튼 - 스크롤 영역 완전 밖에 고정 */}
+      {/* 뒤로가기 버튼 - 반응형 스타일 */}
       <button
         onClick={handleBack}
-        className="fixed w-14 h-14 flex items-center justify-center text-white hover:text-gray-200 transition-all duration-500 z-50 group"
+        className={`fixed flex items-center justify-center text-white hover:text-gray-200 transition-all duration-500 z-50 ${
+          windowWidth < 768 ? 'w-10 h-10' : 'w-14 h-14 group'
+        }`}
         style={{
           top: '32px',
           left:
@@ -140,23 +142,27 @@ export default function YearPage({ year, onBack }: YearPageProps) {
         }}
         title="뒤로가기"
         onMouseEnter={e => {
-          const circle = e.currentTarget.querySelector(
-            '.draw-circle'
-          ) as SVGCircleElement;
-          if (circle) {
-            circle.style.strokeDashoffset = '0';
+          if (windowWidth >= 768) {
+            const circle = e.currentTarget.querySelector(
+              '.draw-circle'
+            ) as SVGCircleElement;
+            if (circle) {
+              circle.style.strokeDashoffset = '0';
+            }
           }
         }}
         onMouseLeave={e => {
-          const circle = e.currentTarget.querySelector(
-            '.draw-circle'
-          ) as SVGCircleElement;
-          if (circle) {
-            circle.style.strokeDashoffset = '163.36';
+          if (windowWidth >= 768) {
+            const circle = e.currentTarget.querySelector(
+              '.draw-circle'
+            ) as SVGCircleElement;
+            if (circle) {
+              circle.style.strokeDashoffset = '163.36';
+            }
           }
         }}
       >
-        {/* 동그라미 애니메이션 */}
+        {/* 동그라미 - 반응형 스타일 */}
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 56 56"
@@ -169,37 +175,51 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             cy="28"
             r="26"
             fill="none"
-            stroke="rgba(255, 255, 255, 0.3)"
+            stroke={
+              windowWidth < 768
+                ? 'rgba(0, 0, 0, 0.2)'
+                : 'rgba(255, 255, 255, 0.3)'
+            }
             strokeWidth="1"
           />
-          <circle
-            cx="28"
-            cy="28"
-            r="26"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.8)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeDasharray="163.36"
-            strokeDashoffset="163.36"
-            className="draw-circle"
-            style={{
-              transition: `stroke-dashoffset ${TRANSITION_DURATIONS.NORMAL} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
-            }}
-          />
+          {windowWidth >= 768 && (
+            <circle
+              cx="28"
+              cy="28"
+              r="26"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.8)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray="163.36"
+              strokeDashoffset="163.36"
+              className="draw-circle"
+              style={{
+                transition: `stroke-dashoffset ${TRANSITION_DURATIONS.NORMAL} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+              }}
+            />
+          )}
         </svg>
 
-        {/* 화살표 아이콘 - 크기 증가 */}
+        {/* 화살표 아이콘 - 반응형 크기 */}
         <svg
-          width="24"
-          height="24"
+          width={windowWidth < 768 ? '20' : '24'}
+          height={windowWidth < 768 ? '20' : '24'}
           viewBox="0 0 24 24"
           fill="none"
-          stroke="rgba(255, 255, 255, 0.9)"
+          stroke={
+            windowWidth < 768
+              ? 'rgba(0, 0, 0, 0.8)'
+              : 'rgba(255, 255, 255, 0.9)'
+          }
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="relative z-10 transition-transform duration-300 group-hover:scale-110"
+          className={`${
+            windowWidth < 768
+              ? ''
+              : 'relative z-10 transition-transform duration-300 group-hover:scale-110'
+          }`}
         >
           <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>

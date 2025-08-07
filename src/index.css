@@ -1,5 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'GmarketSansBold';
@@ -30,7 +35,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, sans-serif;
+  font-family: 'Pretendard-Regular', system-ui, Avenir, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,7 +44,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, sans-serif;
+  font-family: 'Pretendard-Regular', system-ui, Avenir, Helvetica, sans-serif;
   overscroll-behavior: none;
   overscroll-behavior-y: none;
 }
@@ -117,10 +122,10 @@ html {
 
 /* 한글 텍스트 전용 폰트 클래스 */
 .korean-text {
-  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Pretendard-Regular', sans-serif !important;
 }
 
-/* 한글 콘텐츠 영역에만 Noto Sans KR 적용 */
+/* 한글 콘텐츠 영역에만 Pretendard-Regular 적용 */
 .year-page-content h1,
 .year-page-content h2,
 .year-page-content h3,
@@ -129,13 +134,22 @@ html {
 .year-page-content h6,
 .year-page-content p,
 .year-page-content span,
-.year-page-content div {
-  font-family: 'Noto Sans KR', system-ui, Avenir, Helvetica, sans-serif;
+.year-page-content div,
+.year-page-content li,
+.year-page-content ul {
+  font-family: 'Pretendard-Regular', system-ui, Avenir, Helvetica, sans-serif !important;
 }
 
-/* 이름 부분에만 GmarketSansBold 폰트 적용 */
+/* YearPage 전체에 Pretendard 폰트 강제 적용 */
+.year-page-content {
+  font-family: 'Pretendard-Regular', system-ui, Avenir, Helvetica, sans-serif !important;
+}
+
+/* 이름 부분에만 TheJamsil5Bold 폰트 적용 */
 .name-text {
-  font-family: 'GmarketSansBold' !important;
+  font-family: 'TheJamsil5Bold' !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
 }
 
 /* 연도 부분에만 TheJamsil5Bold 폰트 적용 */

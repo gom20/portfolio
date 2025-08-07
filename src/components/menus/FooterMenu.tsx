@@ -56,8 +56,8 @@ export default function SideMenu({
     ) as HTMLElement;
 
     // 항상 흰색으로 유지
-    const strokeColor = 'white';
-    const baseColor = 'white';
+    const strokeColor = 'rgb(255, 255, 255, 0.8)';
+    const baseColor = 'rgb(255, 255, 255, 0.8)';
 
     if (goElement) {
       if (isEnter) {
@@ -163,9 +163,9 @@ export default function SideMenu({
             isMobile ? 'text-3xl' : 'text-4xl'
           }`}
           style={{
-            fontFamily: 'GmarketSansBold, sans-serif',
+            fontFamily: 'TheJamsil5Bold, sans-serif',
             fontWeight: '900',
-            color: 'white',
+            color: 'rgb(255, 255, 255, 0.8)',
             transform:
               isAboutActive || isExperienceActive || isSkillsActive
                 ? `translateY(-${window.innerHeight - 250}px)`
@@ -187,8 +187,8 @@ export default function SideMenu({
                     : 'translateY(100%)',
                   transition:
                     'transform 0.8s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  color: 'white',
-                  WebkitTextStroke: '0.5px white',
+                  color: 'rgb(255, 255, 255, 0.8)',
+                  WebkitTextStroke: '0.5px rgb(255, 255, 255, 0.8)',
                 }}
               >
                 GO.
@@ -203,8 +203,8 @@ export default function SideMenu({
                     : 'translateY(100%)',
                   transition:
                     'transform 0.8s ease-out 0.4s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  color: 'white',
-                  WebkitTextStroke: '0.5px white',
+                  color: 'rgb(255, 255, 255, 0.8)',
+                  WebkitTextStroke: '0.5px rgb(255, 255, 255, 0.8)',
                 }}
               >
                 MIYOUNG

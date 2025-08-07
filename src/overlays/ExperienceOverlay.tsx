@@ -54,10 +54,12 @@ export default function ExperienceOverlay({
         paddingTop: '190px',
       }}
     >
-      {/* X 버튼 - 스크롤 영역 밖에 고정 */}
+      {/* X 버튼 - 반응형 스타일 */}
       <button
         onClick={onClose}
-        className="fixed w-14 h-14 flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 group"
+        className={`fixed flex items-center justify-center text-white hover:text-gray-300 transition-all duration-500 z-50 ${
+          windowWidth < 768 ? 'w-10 h-10' : 'w-14 h-14 group'
+        }`}
         style={{
           top: '32px',
           right:
@@ -69,23 +71,27 @@ export default function ExperienceOverlay({
         }}
         title="닫기"
         onMouseEnter={e => {
-          const circle = e.currentTarget.querySelector(
-            '.draw-circle'
-          ) as SVGCircleElement;
-          if (circle) {
-            circle.style.strokeDashoffset = '0';
+          if (windowWidth >= 768) {
+            const circle = e.currentTarget.querySelector(
+              '.draw-circle'
+            ) as SVGCircleElement;
+            if (circle) {
+              circle.style.strokeDashoffset = '0';
+            }
           }
         }}
         onMouseLeave={e => {
-          const circle = e.currentTarget.querySelector(
-            '.draw-circle'
-          ) as SVGCircleElement;
-          if (circle) {
-            circle.style.strokeDashoffset = '163.36';
+          if (windowWidth >= 768) {
+            const circle = e.currentTarget.querySelector(
+              '.draw-circle'
+            ) as SVGCircleElement;
+            if (circle) {
+              circle.style.strokeDashoffset = '163.36';
+            }
           }
         }}
       >
-        {/* 동그라미 애니메이션 */}
+        {/* 동그라미 - 반응형 스타일 */}
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 56 56"
@@ -98,38 +104,44 @@ export default function ExperienceOverlay({
             cy="28"
             r="26"
             fill="none"
-            stroke="rgba(255, 255, 255, 0.1)"
+            stroke={windowWidth < 768 ? '#d1d5db' : 'rgba(255, 255, 255, 0.1)'}
             strokeWidth="1"
           />
-          <circle
-            cx="28"
-            cy="28"
-            r="26"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeDasharray="163.36"
-            strokeDashoffset="163.36"
-            className="draw-circle"
-            style={{
-              transition:
-                'stroke-dashoffset 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            }}
-          />
+          {windowWidth >= 768 && (
+            <circle
+              cx="28"
+              cy="28"
+              r="26"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray="163.36"
+              strokeDashoffset="163.36"
+              className="draw-circle"
+              style={{
+                transition:
+                  'stroke-dashoffset 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              }}
+            />
+          )}
         </svg>
 
-        {/* X 아이콘 - 크기 증가 */}
+        {/* X 아이콘 - 반응형 크기 */}
         <svg
-          width="24"
-          height="24"
+          width={windowWidth < 768 ? '20' : '24'}
+          height={windowWidth < 768 ? '20' : '24'}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="relative z-10 transition-transform duration-300 group-hover:scale-110"
+          className={`${
+            windowWidth < 768
+              ? ''
+              : 'relative z-10 transition-transform duration-300 group-hover:scale-110'
+          }`}
         >
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
