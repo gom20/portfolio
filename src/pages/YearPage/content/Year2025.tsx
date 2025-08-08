@@ -288,7 +288,11 @@ export default function Year2025({}: Year2025Props) {
           </div>
 
           {/* Technology Stack with modern design */}
-          <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
+          <div
+            ref={techStackRef}
+            style={fadeInStyle(techStackVisible)}
+            className="mb-16"
+          >
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>

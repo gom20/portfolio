@@ -221,7 +221,11 @@ export default function Year2021({}: Year2021Props) {
           </div>
 
           {/* Technology Stack */}
-          <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
+          <div
+            ref={techStackRef}
+            style={fadeInStyle(techStackVisible)}
+            className="mb-16"
+          >
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>

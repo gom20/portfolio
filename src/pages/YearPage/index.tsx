@@ -42,8 +42,7 @@ export default function YearPage({
 
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
-  const [isPrevHovered, setIsPrevHovered] = useState(false);
-  const [isNextHovered, setIsNextHovered] = useState(false);
+  const [isYearTransitioning, setIsYearTransitioning] = useState(false);
 
   const windowWidth = useWindowWidth();
 
@@ -112,17 +111,23 @@ export default function YearPage({
       const atBottom =
         Math.ceil(target.scrollTop + target.clientHeight) >=
         target.scrollHeight - threshold;
-      setIsAtBottom(atBottom);
+
+      // 전환 중이 아닐 때만 바닥 상태 업데이트
+      if (!isYearTransitioning) {
+        setIsAtBottom(atBottom);
+      }
     };
 
     if (scrollContainer) {
-      // 초기 상태에서도 바닥 여부 계산
-      const target = scrollContainer as HTMLElement;
-      const threshold = 8;
-      const initialAtBottom =
-        Math.ceil(target.scrollTop + target.clientHeight) >=
-        target.scrollHeight - threshold;
-      setIsAtBottom(initialAtBottom);
+      // 초기 상태에서도 바닥 여부 계산 (전환 중이 아닐 때만)
+      if (!isYearTransitioning) {
+        const target = scrollContainer as HTMLElement;
+        const threshold = 8;
+        const initialAtBottom =
+          Math.ceil(target.scrollTop + target.clientHeight) >=
+          target.scrollHeight - threshold;
+        setIsAtBottom(initialAtBottom);
+      }
 
       scrollContainer.addEventListener('scroll', handleScroll);
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
@@ -131,15 +136,24 @@ export default function YearPage({
 
   // 연도 변경 시 스크롤 위치 초기화 및 상태 리셋
   useEffect(() => {
+    setIsYearTransitioning(true);
+    setIsAtBottom(false);
+    setHasScrolled(false);
+    setScrollY(0);
+
     const scrollContainer = document.querySelector(
       '.year-page-scroll-container'
     ) as HTMLElement | null;
     if (scrollContainer) {
       scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
     }
-    setIsAtBottom(false);
-    setHasScrolled(false);
-    setScrollY(0);
+
+    // 스크롤 초기화 완료 후 전환 상태 해제 (더 긴 지연시간)
+    const timer = setTimeout(() => {
+      setIsYearTransitioning(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, [year]);
 
   const handleBack = () => {
@@ -363,89 +377,68 @@ export default function YearPage({
           </div>
         </div>
 
-        {/* 하단 Prev / Next - 2024 페이지 테스트용 (모바일 비표시) */}
-        {year === '2024' && windowWidth >= 768 && (
+        {/* 하단 Prev / Next - 모든 년도 페이지에서 작동 (모바일 비표시) */}
+        {windowWidth >= 768 && (
           <>
             {(() => {
               const currentIndex = menuItems.indexOf(year);
-              const prevYear =
-                currentIndex >= 0 && currentIndex + 1 < menuItems.length
-                  ? menuItems[currentIndex + 1]
-                  : null; // e.g., 2023
+              const prevYear = menuItems[(currentIndex + 1) % menuItems.length]; // 순환
               const nextYear =
-                currentIndex > 0 ? menuItems[currentIndex - 1] : null; // e.g., 2025
+                menuItems[
+                  (currentIndex - 1 + menuItems.length) % menuItems.length
+                ]; // 순환
 
               return (
                 <>
-                  {prevYear && (
-                    <button
-                      onClick={() => onChangeYear(prevYear)}
-                      className="fixed bottom-6 z-50 transition-opacity"
-                      style={{
-                        fontFamily: 'TheJamsil',
-                        fontWeight: 800,
-                        left: 415 + 44,
-                        color: '#1A1A1A',
-                        opacity: isAtBottom ? 1 : 0,
-                        pointerEvents: isAtBottom
+                  <button
+                    onClick={() => onChangeYear(prevYear)}
+                    className="fixed bottom-14 z-50 transition-opacity"
+                    style={{
+                      fontFamily: 'TheJamsil',
+                      fontWeight: 800,
+                      left: 415 + 44,
+                      color: '#1A1A1A',
+                      opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
+                      pointerEvents:
+                        isAtBottom && !isYearTransitioning
                           ? ('auto' as const)
                           : ('none' as const),
-                        transition:
-                          'opacity 0.3s ease, transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        backgroundColor: 'transparent',
-                        fontSize: windowWidth < 768 ? '18px' : '24px',
-                        lineHeight: 1,
-                        cursor: 'pointer',
-                        padding: 0,
-                        border: 'none',
-                        transform: `perspective(1000px) rotateY(${
-                          isPrevHovered ? 0 : -28
-                        }deg) rotateX(${
-                          isPrevHovered ? 0 : 10
-                        }deg) translateZ(${isPrevHovered ? 0 : -10}px)`,
-                        transformOrigin: 'right center',
-                      }}
-                      onMouseEnter={() => setIsPrevHovered(true)}
-                      onMouseLeave={() => setIsPrevHovered(false)}
-                    >
-                      PREV
-                    </button>
-                  )}
+                      transition: 'opacity 0.3s ease',
+                      backgroundColor: 'transparent',
+                      fontSize: windowWidth < 768 ? '18px' : '24px',
+                      lineHeight: 1,
+                      cursor: 'pointer',
+                      padding: 0,
+                      border: 'none',
+                    }}
+                  >
+                    PREV
+                  </button>
 
-                  {nextYear && (
-                    <button
-                      onClick={() => onChangeYear(nextYear)}
-                      className="fixed bottom-6 z-50 transition-opacity"
-                      style={{
-                        fontFamily: 'TheJamsil',
-                        fontWeight: 800,
-                        right: 72,
-                        color: '#1A1A1A',
-                        opacity: isAtBottom ? 1 : 0,
-                        pointerEvents: isAtBottom
+                  <button
+                    onClick={() => onChangeYear(nextYear)}
+                    className="fixed bottom-14 z-50 transition-opacity"
+                    style={{
+                      fontFamily: 'TheJamsil',
+                      fontWeight: 800,
+                      right: 72,
+                      color: '#1A1A1A',
+                      opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
+                      pointerEvents:
+                        isAtBottom && !isYearTransitioning
                           ? ('auto' as const)
                           : ('none' as const),
-                        transition:
-                          'opacity 0.3s ease, transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        backgroundColor: 'transparent',
-                        fontSize: windowWidth < 768 ? '18px' : '24px',
-                        lineHeight: 1,
-                        cursor: 'pointer',
-                        padding: 0,
-                        border: 'none',
-                        transform: `perspective(1000px) rotateY(${
-                          isNextHovered ? 0 : -28
-                        }deg) rotateX(${
-                          isNextHovered ? 0 : 10
-                        }deg) translateZ(${isNextHovered ? 0 : -10}px)`,
-                        transformOrigin: 'right center',
-                      }}
-                      onMouseEnter={() => setIsNextHovered(true)}
-                      onMouseLeave={() => setIsNextHovered(false)}
-                    >
-                      NEXT
-                    </button>
-                  )}
+                      transition: 'opacity 0.3s ease',
+                      backgroundColor: 'transparent',
+                      fontSize: windowWidth < 768 ? '18px' : '24px',
+                      lineHeight: 1,
+                      cursor: 'pointer',
+                      padding: 0,
+                      border: 'none',
+                    }}
+                  >
+                    NEXT
+                  </button>
                 </>
               );
             })()}

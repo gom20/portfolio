@@ -108,6 +108,12 @@ export default function Year2023({}: Year2023Props) {
               대시보드를 구축했습니다. 두 개발 업무 모두 단독 개발자로 참여하여
               주도적으로 개발을 수행했습니다.
             </p>
+            <img
+              src="/2023.jpg"
+              alt="넥슨 사내 설문 시스템"
+              className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
+              style={{ objectPosition: 'center 65%' }}
+            />
           </div>
 
           {/* Key Achievements */}
@@ -199,7 +205,11 @@ export default function Year2023({}: Year2023Props) {
           </div>
 
           {/* Technology Stack */}
-          <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
+          <div
+            ref={techStackRef}
+            style={fadeInStyle(techStackVisible)}
+            className="mb-16"
+          >
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>

@@ -84,10 +84,10 @@ export default function Year2013({}: Year2013Props) {
                 프레임워크 적용
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                 GUI 리뉴얼
+                GUI 리뉴얼
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                 VOC 대응
+                VOC 대응
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 테스트 대응
@@ -123,7 +123,10 @@ export default function Year2013({}: Year2013Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-bold text-gray-800 tracking-wide" style={{ fontFamily: 'Pretendard', fontWeight: '700' }}>
+                <h3
+                  className="text-xl font-bold text-gray-800 tracking-wide"
+                  style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
+                >
                   주요 업무 및 성과
                 </h3>
               </div>
@@ -181,7 +184,11 @@ export default function Year2013({}: Year2013Props) {
           </div>
 
           {/* Technology Stack with modern design */}
-          <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
+          <div
+            ref={techStackRef}
+            style={fadeInStyle(techStackVisible)}
+            className="mb-16"
+          >
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
@@ -192,7 +199,9 @@ export default function Year2013({}: Year2013Props) {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Frontend</h4>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Frontend
+                </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>JavaScript</li>
                   <li>HTML</li>
@@ -201,7 +210,9 @@ export default function Year2013({}: Year2013Props) {
               </div>
 
               <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Framework</h4>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Framework
+                </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>BackboneJS</li>
                   <li>jQuery</li>
@@ -209,7 +220,9 @@ export default function Year2013({}: Year2013Props) {
               </div>
 
               <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Platform</h4>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Platform
+                </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Smart TV</li>
                   <li>Hybrid App</li>
@@ -217,7 +230,9 @@ export default function Year2013({}: Year2013Props) {
               </div>
 
               <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Tools</h4>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Tools
+                </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Sublime Text</li>
                   <li>SVN</li>
