@@ -69,7 +69,7 @@ export default function Year2024({}: Year2024Props) {
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                 <span className="text-sm text-gray-500 font-medium tracking-wide">
-                  2024.08 - 2025.08
+                  2024.01 - 2024.08
                 </span>
               </div>
             </div>
@@ -113,6 +113,12 @@ export default function Year2024({}: Year2024Props) {
               마련했습니다. 이를 통해 협력사 의존도를 줄이고 자체 기술력을
               확보하여 시스템 운영의 자립성을 강화하는 성과를 달성했습니다.
             </p>
+            <img
+              src="/2024.png"
+              alt="의장 라인 스마트태그 시스템"
+              className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
+              style={{ objectPosition: 'center 65%' }}
+            />
           </div>
 
           {/* Key Achievements with modern cards */}
@@ -124,34 +130,71 @@ export default function Year2024({}: Year2024Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
-                  Key Achievements & Contributions
+                <h3
+                  className="text-xl font-bold text-gray-800 tracking-wide"
+                  style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
+                >
+                  주요 업무 및 성과
                 </h3>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  1. 인터페이스 설계 및 개발
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    인터페이스 설계 및 개발
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>
-                    • MES 서열정보 TCP Socket 인터페이스: 자사 솔루션 기반의 TCP
-                    Socket 통신을 통한 차량 서열 데이터 실시간 수신 구현
+                    • 자사 솔루션 기반의 TCP Socket 통신을 통해 MES로부터 차량
+                    서열 데이터 실시간 수신 구현
                   </p>
                   <p>
-                    • 체결설비 PLC 인터페이스: 액 주입기, 타이어 장착기, 배터리
-                    장착기 등 핵심 체결설비와의 PLC 데이터 연계 구현
+                    • 액 주입기, 타이어 장착기, 배터리 장착기 등 핵심
+                    체결설비와의 PLC 데이터 연계 구현
                   </p>
                   <p>• 안정적인 실시간 데이터 처리 및 통신 환경 구축</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  2. 핵심 로직 분석 및 기술 내재화
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    핵심 로직 분석 및 기술 내재화
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>
                     • 기존 공구 체결 로직, 차량 매핑 로직, 의장라인 트래킹
@@ -168,11 +211,28 @@ export default function Year2024({}: Year2024Props) {
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  3. 기술문서화 및 운영 기반 구축
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-orange-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    기술문서화 및 운영 기반 구축
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 로직 분석 결과 및 인터페이스 설계서의 체계적 문서화</p>
+                  <p>• 로직 분석 결과 및 인터페이스 설계서의 문서화</p>
                   <p>
                     • 데이터 흐름도 및 처리 절차서 작성을 통한 시스템 운영
                     가이드 제공

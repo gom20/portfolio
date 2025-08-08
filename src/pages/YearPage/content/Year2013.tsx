@@ -73,24 +73,27 @@ export default function Year2013({}: Year2013Props) {
                 </span>
               </div>
             </div>
-            <h3 className="text-3xl font-medium text-[#0f172a] mb-6 tracking-wide">
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 tracking-wide">
               Smart TV Application 개발
             </h3>
-            <div className="flex flex-wrap gap-4">
-              <span className="px-4 py-2 bg-[#B700FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#B700FF]/30 transition-colors duration-200">
-                앱 개발
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                유지보수 · 리팩토링
               </span>
-              <span className="px-4 py-2 bg-[#B700FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#B700FF]/30 transition-colors duration-200">
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 프레임워크 적용
               </span>
-              <span className="px-4 py-2 bg-[#B700FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#B700FF]/30 transition-colors duration-200">
-                GUI 리뉴얼
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                 GUI 리뉴얼
               </span>
-              <span className="px-4 py-2 bg-[#B700FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#B700FF]/30 transition-colors duration-200">
-                VOC 대응
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                 VOC 대응
               </span>
-              <span className="px-4 py-2 bg-[#B700FF]/20 text-gray-700 rounded-full text-sm font-medium tracking-wide hover:bg-[#B700FF]/30 transition-colors duration-200">
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 테스트 대응
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                12명
               </span>
             </div>
           </div>
@@ -102,12 +105,12 @@ export default function Year2013({}: Year2013Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              삼성전자 Smart TV Facebook, Twitter 앱 담당자로 근무하였습니다.
-              하이브리드 웹앱으로 미디어(사진, 동영상) 플레이는 TV 플랫폼
-              라이브러리가 사용되었고 이 외의 화면은 표준 웹 기술로
-              구현되었습니다. Backbone.js 프레임워크를 적용하여 MVC 패턴으로
-              재개발을 진행하였으며, 양산 테스트 Defect 대응 및 고객 VOC 대응을
-              담당하였습니다.
+              삼성전자 Smart TV Application 개발 프로젝트에 참여하여 Facebook,
+              Twitter, 대우증권 WebApp의 유지보수 및 리팩토링을 담당했습니다.
+              양산 테스트 Defect 및 VOC 대응, 로직 변경 요청에 신속히
+              대응했으며, BackboneJS 프레임워크 적용을 통해 MVC 패턴으로
+              재개발을 수행했습니다. 또한 대우증권 App GUI 리뉴얼을 통해 사용자
+              경험을 개선했습니다.
             </p>
           </div>
 
@@ -119,27 +122,27 @@ export default function Year2013({}: Year2013Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[#B700FF] rounded-full"></div>
-                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide" style={{ fontFamily: 'Pretendard', fontWeight: '700' }}>
                   주요 업무 및 성과
                 </h3>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  Facebook & Twitter 앱 개발
+                  Smart TV WebApp 유지보수 · 리팩토링
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 하이브리드 웹앱 구조 설계 및 구현</p>
-                  <p>• TV 플랫폼 라이브러리 연동</p>
-                  <p>• 미디어(사진, 동영상) 플레이 기능 개발</p>
-                  <p>• 표준 웹 기술 기반 UI/UX 구현</p>
+                  <p>• 양산 테스트 Defect, VOC, 로직 변경 요청 대응</p>
+                  <p>• 기존 코드 리팩토링 및 안정성/성능 개선</p>
+                  <p>• 대우증권 App GUI 리뉴얼 지원</p>
+                  <p>• 표준 웹 기술 기반 구조 정리</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   Backbone.js 프레임워크 적용
                 </h4>
@@ -151,7 +154,7 @@ export default function Year2013({}: Year2013Props) {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   품질 관리 및 고객 대응
                 </h4>
@@ -163,7 +166,7 @@ export default function Year2013({}: Year2013Props) {
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-lg font-medium text-gray-800 mb-4">
                   대우증권 App GUI 리뉴얼
                 </h4>
@@ -181,71 +184,45 @@ export default function Year2013({}: Year2013Props) {
           <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-[#B700FF] rounded-full"></div>
-                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>
               </div>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  Frontend
-                </h5>
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    JavaScript
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    HTML
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    CSS
-                  </span>
-                </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Frontend</h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>JavaScript</li>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  Framework
-                </h5>
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Backbone.js
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    jQuery
-                  </span>
-                </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Framework</h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>BackboneJS</li>
+                  <li>jQuery</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  Platform
-                </h5>
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Smart TV
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    하이브리드 앱
-                  </span>
-                </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Platform</h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Smart TV</li>
+                  <li>Hybrid App</li>
+                </ul>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg">
-                <h5 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wider">
-                  Tools
-                </h5>
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    SublimeText
-                  </span>
-                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
-                    Redmine
-                  </span>
-                </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">Tools</h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Sublime Text</li>
+                  <li>SVN</li>
+                  <li>Redmine</li>
+                </ul>
               </div>
             </div>
           </div>

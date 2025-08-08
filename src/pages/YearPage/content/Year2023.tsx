@@ -1,63 +1,269 @@
+import { useEffect, useRef, useState } from 'react';
+
 interface Year2023Props {
   // 필요한 props가 있다면 여기에 추가
 }
 
 export default function Year2023({}: Year2023Props) {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const overviewRef = useRef<HTMLDivElement>(null);
+  const achievementsRef = useRef<HTMLDivElement>(null);
+  const techStackRef = useRef<HTMLDivElement>(null);
+
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [overviewVisible, setOverviewVisible] = useState(false);
+  const [achievementsVisible, setAchievementsVisible] = useState(false);
+  const [techStackVisible, setTechStackVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.target === headerRef.current) {
+              setHeaderVisible(true);
+            } else if (entry.target === overviewRef.current) {
+              setOverviewVisible(true);
+            } else if (entry.target === achievementsRef.current) {
+              setAchievementsVisible(true);
+            } else if (entry.target === techStackRef.current) {
+              setTechStackVisible(true);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (overviewRef.current) observer.observe(overviewRef.current);
+    if (achievementsRef.current) observer.observe(achievementsRef.current);
+    if (techStackRef.current) observer.observe(techStackRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const fadeInStyle = (isVisible: boolean) => ({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+    transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+  });
+
   return (
     <div className="text-lg text-gray-500 mb-12 ml-2 md:ml-12 year-page-content">
       <div className="text-left py-8 rounded-lg">
         <div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4 text-left">
-              삼성전자
-              <br />
-              Smart TV Application 개발
-            </h2>
-            <p className="text-gray-600 mb-2">2013.05 - 2014.11 (1년 6개월)</p>
-            <p className="text-gray-700">
-              Facebook, Twitter 앱 개발 및 Backbone.js 프레임워크 적용
+          {/* Header Section */}
+          <div
+            ref={headerRef}
+            style={fadeInStyle(headerVisible)}
+            className="mb-8"
+          >
+            <div className="flex items-center gap-6 mb-1">
+              <h2 className="text-2xl font-light text-gray-900 tracking-tight">
+                NEXON
+              </h2>
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                <span className="text-sm text-gray-500 font-medium tracking-wide">
+                  2023.04 - 2023.12
+                </span>
+              </div>
+            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 tracking-wide">
+              사내 설문 시스템 신규 기능 및 백오피스 대시보드 개발
+            </h3>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                NPTI 설문 유형
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                백오피스 대시보드
+              </span>
+              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+                풀스택 개발
+              </span>
+            </div>
+          </div>
+
+          {/* Project Overview */}
+          <div
+            ref={overviewRef}
+            style={fadeInStyle(overviewVisible)}
+            className="mb-16"
+          >
+            <p className="text-gray-700 leading-relaxed text-base mb-8">
+              넥슨 사내 설문 시스템 신규 기능 개발 및 유지보수 업무를
+              수행했습니다. 먼저 기존 넥슨 사내 설문 시스템에 NPTI 설문 유형을
+              시스템에 등록하고 배포할 수 있는 새로운 기능을 Spring Boot와
+              Vue.js를 활용한 개발을 통해 구현했습니다. 개발 완료 후 넥슨
+              빌딩앤파이터의 '나의 리더십 유형' 이벤트에 성공적으로 적용되어
+              실제 서비스에 활용되는 성과를 달성했습니다. 이후 넥슨퍼스트
+              백오피스 설문 대시보드 개발을 진행하여 Parse, Node.js, Express
+              기반의 서버 개발과 JavaScript, jQuery를 활용한 프론트엔드 개발을
+              담당했으며, 설문 데이터의 효율적인 관리와 시각화 기능을 제공하는
+              대시보드를 구축했습니다. 두 개발 업무 모두 단독 개발자로 참여하여
+              주도적으로 개발을 수행했습니다.
             </p>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">
-              프로젝트 개요
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              삼성전자 Smart TV Facebook, Twitter 앱 담당자로 근무하였습니다.
-              하이브리드 웹앱으로 미디어(사진, 동영상) 플레이는 TV 플랫폼
-              라이브러리가 사용되었고 이 외의 화면은 표준 웹 기술로
-              구현되었습니다.
-            </p>
+          {/* Key Achievements */}
+          <div
+            ref={achievementsRef}
+            style={fadeInStyle(achievementsVisible)}
+            className="mb-16"
+          >
+            <div className="mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <h3
+                  className="text-xl font-bold text-gray-800 tracking-wide"
+                  style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
+                >
+                  주요 업무 및 성과
+                </h3>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+              {/* NPTI 신규 기능 */}
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-indigo-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 5v14M5 12h14"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    사내 설문 시스템 NPTI 설문 유형 기능 개발
+                  </h4>
+                </div>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p>
+                    • NPTI 설문 유형 등록/배포 기능 풀스택 구현 (Spring Boot +
+                    Vue.js)
+                  </p>
+                  <p>
+                    • 이벤트 적용: ‘나의 리더십 유형’(넥슨 빌딩앤파이터)
+                    실서비스 적용
+                  </p>
+                  <p>
+                    • 백오피스/API 서버, 프론트 연계 개발 및 배포 파이프라인
+                    반영
+                  </p>
+                </div>
+              </div>
+
+              {/* 백오피스 대시보드 */}
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-emerald-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 17V9m4 8v-4m4 4V7M4 19h16"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    넥슨퍼스트 백오피스 설문 대시보드 개발
+                  </h4>
+                </div>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p>• Parse, Node.js, Express 기반 서버 개발</p>
+                  <p>• JavaScript, jQuery 기반 화면 구현 및 데이터 시각화</p>
+                  <p>• 설문 데이터 관리/조회 편의성 향상 및 운영 효율 증대</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">
-              주요 업무
-            </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>양산 테스트 Defect 대응</li>
-              <li>고객 VOC 대응</li>
-              <li>로직 변경 및 신규 로직 추가</li>
-              <li>Backbone.js 프레임워크를 적용하여 MVC 패턴으로 재개발</li>
-              <li>대우증권 App GUI 리뉴얼</li>
-            </ul>
-          </div>
+          {/* Technology Stack */}
+          <div ref={techStackRef} style={fadeInStyle(techStackVisible)}>
+            <div className="mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
+                  사용 기술 및 환경
+                </h3>
+              </div>
+            </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">
-              사용 기술
-            </h3>
-            <p className="text-gray-700">
-              JavaScript, HTML, CSS, jQuery, BackboneJS
-            </p>
-          </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Backend
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Java</li>
+                  <li>Spring Boot</li>
+                  <li>Node.js</li>
+                  <li>Express</li>
+                </ul>
+              </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-3">
-              개발 도구
-            </h3>
-            <p className="text-gray-700">SublimeText, Redmine</p>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Frontend
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Vue.js</li>
+                  <li>JavaScript</li>
+                  <li>jQuery</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Database
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>MongoDB</li>
+                  <li>ParseQuery</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  IDE
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>IntelliJ</li>
+                  <li>WebStorm</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Tools
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Git</li>
+                  <li>JIRA</li>
+                  <li>Confluence</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

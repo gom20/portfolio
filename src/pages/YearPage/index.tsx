@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useWindowWidth } from '../../hooks/useResponsive';
+import { menuItems } from '../../data/menuData';
 
 // 년도별 컨텐츠 컴포넌트들
 import Year2013 from './content/Year2013';
@@ -28,13 +29,21 @@ const TRANSITION_DURATIONS = {
 interface YearPageProps {
   year: string;
   onBack: () => void;
+  onChangeYear: (year: string) => void;
 }
 
-export default function YearPage({ year, onBack }: YearPageProps) {
+export default function YearPage({
+  year,
+  onBack,
+  onChangeYear,
+}: YearPageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const [isPrevHovered, setIsPrevHovered] = useState(false);
+  const [isNextHovered, setIsNextHovered] = useState(false);
 
   const windowWidth = useWindowWidth();
 
@@ -99,13 +108,39 @@ export default function YearPage({ year, onBack }: YearPageProps) {
       if (scrollTop > 0) {
         setHasScrolled(true);
       }
+      const threshold = 8; // px
+      const atBottom =
+        Math.ceil(target.scrollTop + target.clientHeight) >=
+        target.scrollHeight - threshold;
+      setIsAtBottom(atBottom);
     };
 
     if (scrollContainer) {
+      // 초기 상태에서도 바닥 여부 계산
+      const target = scrollContainer as HTMLElement;
+      const threshold = 8;
+      const initialAtBottom =
+        Math.ceil(target.scrollTop + target.clientHeight) >=
+        target.scrollHeight - threshold;
+      setIsAtBottom(initialAtBottom);
+
       scrollContainer.addEventListener('scroll', handleScroll);
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }
   }, []);
+
+  // 연도 변경 시 스크롤 위치 초기화 및 상태 리셋
+  useEffect(() => {
+    const scrollContainer = document.querySelector(
+      '.year-page-scroll-container'
+    ) as HTMLElement | null;
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+    }
+    setIsAtBottom(false);
+    setHasScrolled(false);
+    setScrollY(0);
+  }, [year]);
 
   const handleBack = () => {
     setIsVisible(false);
@@ -327,6 +362,95 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             </div>
           </div>
         </div>
+
+        {/* 하단 Prev / Next - 2024 페이지 테스트용 (모바일 비표시) */}
+        {year === '2024' && windowWidth >= 768 && (
+          <>
+            {(() => {
+              const currentIndex = menuItems.indexOf(year);
+              const prevYear =
+                currentIndex >= 0 && currentIndex + 1 < menuItems.length
+                  ? menuItems[currentIndex + 1]
+                  : null; // e.g., 2023
+              const nextYear =
+                currentIndex > 0 ? menuItems[currentIndex - 1] : null; // e.g., 2025
+
+              return (
+                <>
+                  {prevYear && (
+                    <button
+                      onClick={() => onChangeYear(prevYear)}
+                      className="fixed bottom-6 z-50 transition-opacity"
+                      style={{
+                        fontFamily: 'TheJamsil',
+                        fontWeight: 800,
+                        left: 415 + 44,
+                        color: '#1A1A1A',
+                        opacity: isAtBottom ? 1 : 0,
+                        pointerEvents: isAtBottom
+                          ? ('auto' as const)
+                          : ('none' as const),
+                        transition:
+                          'opacity 0.3s ease, transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        backgroundColor: 'transparent',
+                        fontSize: windowWidth < 768 ? '18px' : '24px',
+                        lineHeight: 1,
+                        cursor: 'pointer',
+                        padding: 0,
+                        border: 'none',
+                        transform: `perspective(1000px) rotateY(${
+                          isPrevHovered ? 0 : -28
+                        }deg) rotateX(${
+                          isPrevHovered ? 0 : 10
+                        }deg) translateZ(${isPrevHovered ? 0 : -10}px)`,
+                        transformOrigin: 'right center',
+                      }}
+                      onMouseEnter={() => setIsPrevHovered(true)}
+                      onMouseLeave={() => setIsPrevHovered(false)}
+                    >
+                      PREV
+                    </button>
+                  )}
+
+                  {nextYear && (
+                    <button
+                      onClick={() => onChangeYear(nextYear)}
+                      className="fixed bottom-6 z-50 transition-opacity"
+                      style={{
+                        fontFamily: 'TheJamsil',
+                        fontWeight: 800,
+                        right: 72,
+                        color: '#1A1A1A',
+                        opacity: isAtBottom ? 1 : 0,
+                        pointerEvents: isAtBottom
+                          ? ('auto' as const)
+                          : ('none' as const),
+                        transition:
+                          'opacity 0.3s ease, transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        backgroundColor: 'transparent',
+                        fontSize: windowWidth < 768 ? '18px' : '24px',
+                        lineHeight: 1,
+                        cursor: 'pointer',
+                        padding: 0,
+                        border: 'none',
+                        transform: `perspective(1000px) rotateY(${
+                          isNextHovered ? 0 : -28
+                        }deg) rotateX(${
+                          isNextHovered ? 0 : 10
+                        }deg) translateZ(${isNextHovered ? 0 : -10}px)`,
+                        transformOrigin: 'right center',
+                      }}
+                      onMouseEnter={() => setIsNextHovered(true)}
+                      onMouseLeave={() => setIsNextHovered(false)}
+                    >
+                      NEXT
+                    </button>
+                  )}
+                </>
+              );
+            })()}
+          </>
+        )}
       </div>
     </div>
   );

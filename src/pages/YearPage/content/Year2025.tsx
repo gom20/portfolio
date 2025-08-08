@@ -130,7 +130,10 @@ export default function Year2025({}: Year2025Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
+                <h3
+                  className="text-xl font-bold text-gray-800 tracking-wide"
+                  style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
+                >
                   주요 업무 및 성과
                 </h3>
               </div>
@@ -138,9 +141,26 @@ export default function Year2025({}: Year2025Props) {
 
             <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  1. 차량태그 ↔ 서버 간 MQTT 통신 설계·개발
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    차량태그 ↔ 서버 간 MQTT 통신 설계·개발
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 차량 이벤트 및 제어 메시지 토픽 체계 설계 및 구현</p>
                   <p>
@@ -159,33 +179,70 @@ export default function Year2025({}: Year2025Props) {
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  2. 데이터베이스 설계 및 데이터 모델링
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    데이터베이스 설계 및 데이터 모델링
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>
                     • 차량 기준 정보, 차량 태그 이벤트 등 핵심 엔티티 테이블
                     설계
                   </p>
                   <p>• 인터페이스 이력 관리를 위한 데이터 구조 설계</p>
-                  <p>
-                    • 효율적인 데이터 처리 및 조회 성능을 고려한 테이블 구조
-                    최적화
-                  </p>
+                  <p>• 효율적인 데이터 처리를 고려한 테이블 설계 최적화</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  3. 장비 및 외부 시스템 인터페이스 개발
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-6 h-6 text-cyan-600 mt-px"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 3v4M15 3v4"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 7h10v4a5 5 0 01-5 5h0a5 5 0 01-5-5V7z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    장비 및 외부 시스템 인터페이스 개발
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>
                     • 기준국 연동: NTRIP Client 개발을 통한 RTK 보정 데이터 수신
                   </p>
                   <p>
-                    • 중계기 모니터링: SNMP 기반 장비 상태 정보 실시간 수집
-                    인터페이스 개발
+                    • 중계기 연동: SNMP 기반 중계기 상태 정보 수집 인터페이스
+                    개발
                   </p>
                   <p>
                     • 외부 시스템 연동: TCP Socket 및 REST API 기반 차량 기준
@@ -195,9 +252,26 @@ export default function Year2025({}: Year2025Props) {
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  4. 문서화 및 품질 관리
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-orange-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    문서화 및 품질 관리
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>
                     • 요구사항 정의서, 화면 설계서, 인터페이스 설계서 등 핵심
@@ -279,7 +353,7 @@ export default function Year2025({}: Year2025Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Collaboration Tools
+                  Tools
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Git</li>
