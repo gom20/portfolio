@@ -210,7 +210,7 @@ export default function SkillsContent({
             height: 8px;
           }
           .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.3);
+            background: rgba(26, 26, 26, 0.3);
             border-radius: 10px;
           }
           .custom-scrollbar::-webkit-scrollbar-thumb {

@@ -48,7 +48,7 @@ export default function App() {
         selectedYear ? 'overflow-hidden' : 'overflow-x-hidden'
       }`}
       style={{
-        background: backgroundWhite ? 'white' : 'rgb(15 23 42)',
+        background: backgroundWhite ? 'white' : '#1A1A1A',
         transition:
           'background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}
@@ -77,10 +77,7 @@ export default function App() {
             transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          <YearPage
-            year={selectedYear}
-            onBack={handleBackToMenu}
-          />
+          <YearPage year={selectedYear} onBack={handleBackToMenu} />
         </div>
       )}
 

@@ -30,7 +30,7 @@ export default function MouseLight({
         zIndex: 1,
         opacity: isTransitioning ? 0 : 1,
         transition: 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.12), transparent 50%)`,
+        background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(156, 163, 175, 0.15), transparent 50%)`,
       }}
     />
   );

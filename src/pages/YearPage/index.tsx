@@ -33,7 +33,7 @@ interface YearPageProps {
 export default function YearPage({ year, onBack }: YearPageProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [isYearHovered, setIsYearHovered] = useState(false);
+
   const [hasScrolled, setHasScrolled] = useState(false);
 
   const windowWidth = useWindowWidth();
@@ -233,7 +233,7 @@ export default function YearPage({ year, onBack }: YearPageProps) {
           left: 0,
           width: windowWidth < 768 ? '0' : '415px',
           height: '100vh',
-          background: 'rgb(15 23 42)',
+          background: '#1A1A1A',
           opacity: windowWidth >= 768 ? 1 : 0,
           transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
           transition: `transform ${TRANSITION_DURATIONS.SLOWER} cubic-bezier(0.4, 0.0, 0.2, 1) ${ANIMATION_DELAYS.BACK_BUTTON}ms, opacity ${TRANSITION_DURATIONS.SLOW} ease-out`,
@@ -280,23 +280,21 @@ export default function YearPage({ year, onBack }: YearPageProps) {
             <div
               style={{
                 fontSize: windowWidth < 768 ? '72px' : '128px',
-                fontFamily: 'TheJamsil5Bold',
-                fontWeight: '900',
-                color: isYearHovered ? '#000000' : 'transparent',
-                WebkitTextStroke: isYearHovered ? '0px #000000' : '1px #000000',
-                opacity: isVisible ? (scrollY > 50 ? 0 : 1) : 0,
+                fontFamily: 'TheJamsil',
+                fontWeight: '800',
+                color: 'transparent',
+                WebkitTextStroke: '1px #1A1A1A',
+                opacity: isVisible ? (scrollY > 50 ? 0 : 0.7) : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition:
                   scrollY > 50
-                    ? `opacity ${TRANSITION_DURATIONS.FAST} ease-out, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`
+                    ? `opacity ${TRANSITION_DURATIONS.FAST} ease-out`
                     : hasScrolled
-                    ? `opacity ${TRANSITION_DURATIONS.NORMAL} ease-out, transform ${TRANSITION_DURATIONS.NORMAL} ease-out, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`
-                    : `opacity ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms, transform ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms, color ${TRANSITION_DURATIONS.NORMAL} ease, -webkit-text-stroke ${TRANSITION_DURATIONS.NORMAL} ease`,
+                    ? `opacity ${TRANSITION_DURATIONS.NORMAL} ease-out, transform ${TRANSITION_DURATIONS.NORMAL} ease-out`
+                    : `opacity ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms, transform ${TRANSITION_DURATIONS.SLOW} cubic-bezier(0.25, 0.46, 0.45, 0.94) ${ANIMATION_DELAYS.YEAR_HEADER}ms`,
                 lineHeight: '1',
                 userSelect: 'none',
               }}
-              onMouseEnter={() => setIsYearHovered(true)}
-              onMouseLeave={() => setIsYearHovered(false)}
             >
               {year}
             </div>
