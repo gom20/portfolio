@@ -102,15 +102,16 @@ export default function Year2025({}: Year2025Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              글로비스 차량 위치 관리 시스템 구축 프로젝트에 참여했습니다. 이
-              시스템은 GPS RTK 모듈이 탑재된 차량 태그를 차량에 거치하여, 주차
-              시점의 위치 데이터를 수집하고 정확한 차량 위치를 관리하는 기능을
-              제공합니다. 프로젝트에서 저는 인터페이스 설계 및 개발을
-              담당하였으며, 차량 태그 MQTT 통신, 기준국 NTRIP Client 개발, SNMP
-              기반 중계기 상태 수집, TCP 소켓·REST API 기반 타 시스템 연동
-              인터페이스를 구현했습니다. 또한 ERD 설계, 화면 설계, 데이터 플로우
-              및 단위 테스트 명세서 작성 등 설계부터 개발, 테스트까지 전과정을
-              진행했습니다.
+              글로비스 차량 위치 관리 시스템 구축 프로젝트에 참여하여 GPS RTK
+              모듈이 탑재된 차량 태그를 활용한 정밀 차량 위치 관리 시스템을
+              개발했습니다. 이 시스템은 차량에 거치된 태그를 통해 주차 시점의
+              위치 데이터를 실시간으로 수집하고 정확한 차량 위치 정보를 제공하는
+              솔루션입니다. 프로젝트에서 인터페이스 설계 및 개발을 담당하여 차량
+              태그 MQTT 통신 구현, 기준국 NTRIP Client 개발, SNMP 기반 중계기
+              상태 수집 기능, TCP 소켓 및 REST API 기반의 외부 시스템 연동
+              인터페이스를 구현했습니다. 또한 테이블 설계, 화면 설계, 데이터
+              플로우 정의, 단위 테스트 명세서 작성 등 시스템 설계부터 개발,
+              테스트까지 전체 개발 생명주기를 주도적으로 수행했습니다.
             </p>
             <img
               src="/2025.png"
@@ -129,58 +130,84 @@ export default function Year2025({}: Year2025Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   주요 업무 및 성과
                 </h3>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-base font-medium text-gray-800 mb-4">
-                  차량태그 ↔ 서버 간 MQTT 통신 설계·개발
+                  1. 차량태그 ↔ 서버 간 MQTT 통신 설계·개발
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>차량 이벤트 및 제어 메시지 토픽 설계</p>
-                  <p>Paho Library 기반 MQTT 클라이언트 구현</p>
-                  <p>FOTA (Firmware Over The Air) 기능 개발</p>
-                  <p>공통 로직을 중앙 집중화 하여 유연한 확장성 확보</p>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  DB 설계 및 데이터 모델링
-                </h4>
-                <div className="space-y-2 text-sm text-gray-700">
-                  <p>ERD 모델링 및 테이블 설계</p>
-                  <p>차량 기준 정보, 차량 태그 이벤트 테이블 등 정의</p>
-                  <p>인터페이스 이력 관리 구조 설계</p>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-base font-medium text-gray-800 mb-4">
-                  장비/시스템 인터페이스 개발
-                </h4>
-                <div className="space-y-2 text-sm text-gray-700">
-                  <p>기준국: NTRIP Client 개발</p>
-                  <p>중계기: SNMP 기반 상태 정보 수집 인터페이스 개발</p>
+                  <p>• 차량 이벤트 및 제어 메시지 토픽 체계 설계 및 구현</p>
                   <p>
-                    타 시스템: TCP Socket, REST API 기반 차량 기준 정보
-                    인터페이스 개발
+                    • Paho Library 기반 MQTT 클라이언트 개발을 통한 안정적인
+                    양방향 통신 구현
+                  </p>
+                  <p>
+                    • FOTA(Firmware Over The Air) 기능 개발로 원격 펌웨어
+                    업데이트 지원
+                  </p>
+                  <p>
+                    • 공통 로직 중앙 집중화를 통한 시스템 확장성 및 유지보수성
+                    향상
                   </p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <h4 className="text-base font-medium text-gray-800 mb-4">
-                  문서화 및 품질관리
+                  2. 데이터베이스 설계 및 데이터 모델링
                 </h4>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>요구사항 정의서, 화면 설계서, 인터페이스 설계서 작성</p>
-                  <p>요구사항 추적 매트릭스, 단위테스트 명세서 작성</p>
-                  <p>Fortify, AppScan 보안성 검토 수행</p>
+                  <p>
+                    • 차량 기준 정보, 차량 태그 이벤트 등 핵심 엔티티 테이블
+                    설계
+                  </p>
+                  <p>• 인터페이스 이력 관리를 위한 데이터 구조 설계</p>
+                  <p>
+                    • 효율적인 데이터 처리 및 조회 성능을 고려한 테이블 구조
+                    최적화
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
+                  3. 장비 및 외부 시스템 인터페이스 개발
+                </h4>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p>
+                    • 기준국 연동: NTRIP Client 개발을 통한 RTK 보정 데이터 수신
+                  </p>
+                  <p>
+                    • 중계기 모니터링: SNMP 기반 장비 상태 정보 실시간 수집
+                    인터페이스 개발
+                  </p>
+                  <p>
+                    • 외부 시스템 연동: TCP Socket 및 REST API 기반 차량 기준
+                    정보 연계 인터페이스 구현
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h4 className="text-base font-medium text-gray-800 mb-4">
+                  4. 문서화 및 품질 관리
+                </h4>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p>
+                    • 요구사항 정의서, 화면 설계서, 인터페이스 설계서 등 핵심
+                    설계 문서 작성
+                  </p>
+                  <p>
+                    • 요구사항 추적 매트릭스 및 단위 테스트 명세서 작성을 통한
+                    품질 관리 체계 구축
+                  </p>
+                  <p>• Fortify, AppScan을 활용한 보안 취약점 분석</p>
                 </div>
               </div>
             </div>
@@ -191,7 +218,7 @@ export default function Year2025({}: Year2025Props) {
             <div className="mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-medium text-gray-800 tracking-wide">
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>
               </div>
@@ -255,6 +282,7 @@ export default function Year2025({}: Year2025Props) {
                   Collaboration Tools
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Git</li>
                   <li>Jira</li>
                   <li>Confluence</li>
                   <li>Figma</li>
