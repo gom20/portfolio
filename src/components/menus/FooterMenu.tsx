@@ -34,8 +34,9 @@ export default function SideMenu({
 
   const menuItems = [
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
-    { id: 'experience', number: '02', label: 'Experience', type: 'overlay' },
+    { id: 'experience', number: '02', label: 'Work', type: 'overlay' },
     { id: 'skills', number: '03', label: 'Skills', type: 'overlay' },
+    { id: 'toy', number: '04', label: 'Toy', type: 'overlay' },
   ];
 
   // 반응형 메뉴 스타일 계산 (간소화됨)
