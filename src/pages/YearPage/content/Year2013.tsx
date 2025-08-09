@@ -81,19 +81,13 @@ export default function Year2013({}: Year2013Props) {
                 유지보수 · 리팩토링
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                프레임워크 적용
-              </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 GUI 리뉴얼
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 VOC 대응
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                테스트 대응
-              </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                12명
+                양산 테스트 대응
               </span>
             </div>
           </div>
@@ -105,13 +99,21 @@ export default function Year2013({}: Year2013Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              삼성전자 Smart TV Application 개발 프로젝트에 참여하여 Facebook,
-              Twitter, 대우증권 WebApp의 유지보수 및 리팩토링을 담당했습니다.
-              양산 테스트 Defect 및 VOC 대응, 로직 변경 요청에 신속히
-              대응했으며, BackboneJS 프레임워크 적용을 통해 MVC 패턴으로
-              재개발을 수행했습니다. 또한 대우증권 App GUI 리뉴얼을 통해 사용자
-              경험을 개선했습니다.
+              삼성전자 Smart TV 웹 애플리케이션 개발 업무를 담당하였습니다.
+              JavaScript, jQuery, HTML/CSS 등의 웹 기술을 활용하여 Facebook,
+              Twitter, 대우 증권 앱의 유지보수 및 개선 작업을 수행했습니다. 주요
+              성과로는 기존 애플리케이션에 BackboneJS 프레임워크를 도입하여 MVC
+              패턴 기반의 구조적이고 유지보수성이 높은 코드로 재개발하였고,
+              대우증권 애플리케이션의 GUI를 전면 리뉴얼하여 사용자 경험을
+              개선하였습니다. 또한 양산 환경에서 발생하는 다양한 이슈들에 대한
+              신속한 대응을 통해 서비스 품질 향상에 기여했습니다.
             </p>
+            <img
+              src="/2013.png"
+              alt="삼성전자 Smart TV Application"
+              className="hidden md:block w-full max-h-64 object-cover shadow-lg object-center"
+              style={{ objectPosition: 'center 44%' }}
+            />
           </div>
 
           {/* Key Achievements with modern cards */}
@@ -134,50 +136,92 @@ export default function Year2013({}: Year2013Props) {
 
             <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  Smart TV WebApp 유지보수 · 리팩토링
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-amber-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 17V9m4 8v-4m4 4V7M4 19h16"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    Smart TV WebApp 유지보수 · 리팩토링
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 양산 테스트 Defect, VOC, 로직 변경 요청 대응</p>
                   <p>• 기존 코드 리팩토링 및 안정성/성능 개선</p>
-                  <p>• 대우증권 App GUI 리뉴얼 지원</p>
-                  <p>• 표준 웹 기술 기반 구조 정리</p>
+                  <p>• 대우증권 App GUI 리뉴얼</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  Backbone.js 프레임워크 적용
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-indigo-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 5v14M5 12h14"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    Backbone.js 프레임워크 적용
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• MVC 패턴 기반 재개발</p>
                   <p>• 코드 구조 개선 및 유지보수성 향상</p>
                   <p>• 컴포넌트 기반 아키텍처 설계</p>
-                  <p>• 데이터 바인딩 및 이벤트 처리 최적화</p>
                 </div>
               </div>
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  품질 관리 및 고객 대응
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-5 h-5 text-emerald-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 2a10 10 0 100 20 10 10 0 000-20z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-medium text-gray-800">
+                    품질 관리 및 고객 대응
+                  </h4>
+                </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 양산 테스트 Defect 대응</p>
                   <p>• 고객 VOC 분석 및 해결</p>
                   <p>• 로직 변경 및 신규 기능 추가</p>
-                  <p>• 안정성 및 성능 최적화</p>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  대우증권 App GUI 리뉴얼
-                </h4>
-                <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 사용자 인터페이스 개선</p>
-                  <p>• 사용자 경험(UX) 최적화</p>
-                  <p>• 반응형 디자인 적용</p>
-                  <p>• 시각적 일관성 확보</p>
                 </div>
               </div>
             </div>
@@ -206,26 +250,8 @@ export default function Year2013({}: Year2013Props) {
                   <li>JavaScript</li>
                   <li>HTML</li>
                   <li>CSS</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Framework
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>BackboneJS</li>
                   <li>jQuery</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Platform
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Smart TV</li>
-                  <li>Hybrid App</li>
+                  <li>BackboneJS</li>
                 </ul>
               </div>
 
@@ -235,8 +261,8 @@ export default function Year2013({}: Year2013Props) {
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Sublime Text</li>
-                  <li>SVN</li>
                   <li>Redmine</li>
+                  <li>SVN</li>
                 </ul>
               </div>
             </div>

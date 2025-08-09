@@ -78,7 +78,7 @@ export default function Year2017({}: Year2017Props) {
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                운영
+                시스템 운영
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 배치 작업
@@ -104,7 +104,7 @@ export default function Year2017({}: Year2017Props) {
             <p className="text-gray-700 leading-relaxed text-base mb-8">
               삼성전자 반도체 자재 사용량 분석 시스템 운영 담당자로
               근무했습니다. 이 시스템은 Oracle SQL, Java, PeakPerformance
-              Framework 기반의 배치성 작업을 통해 외부 시스템으로부터 RawData를
+              Framework 기반의 배치성 작업을 통해 외부 시스템으로부터 Raw Data를
               인터페이스로 수신하여 의미 있는 분석 데이터로 가공하는 데이터 처리
               시스템입니다. 시스템 서버 운영 업무를 전담하며 배치 작업 모니터링,
               데이터 처리 성능 개선, 고객 지원, 해외 법인 확산까지 전방위적인
@@ -362,7 +362,8 @@ export default function Year2017({}: Year2017Props) {
                   Database
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Oracle SQL</li>
+                  <li>OracleDB</li>
+                  <li>SQL</li>
                 </ul>
               </div>
 
@@ -377,21 +378,13 @@ export default function Year2017({}: Year2017Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Monitoring
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>onTuneViewer</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
                   Tools
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>SVN</li>
                   <li>JIRA</li>
                   <li>Confluence</li>
+                  <li>onTuneViewer</li>
                 </ul>
               </div>
             </div>

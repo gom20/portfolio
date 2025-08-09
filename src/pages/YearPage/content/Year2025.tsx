@@ -69,7 +69,7 @@ export default function Year2025({}: Year2025Props) {
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                 <span className="text-sm text-gray-500 font-medium tracking-wide">
-                  2024.08 - 2025.08
+                  2024.09 - 2025.08
                 </span>
               </div>
             </div>

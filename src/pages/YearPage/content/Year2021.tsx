@@ -69,7 +69,7 @@ export default function Year2021({}: Year2021Props) {
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                 <span className="text-sm text-gray-500 font-medium tracking-wide">
-                  2021
+                  2021.04 - 2021.07
                 </span>
               </div>
             </div>
@@ -81,16 +81,10 @@ export default function Year2021({}: Year2021Props) {
                 영향도 분석
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                환경 셋업
+                개발 지원
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
                 테스트 지원
-              </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                로직 문의 대응
-              </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                개발 지원
               </span>
             </div>
           </div>
@@ -102,12 +96,21 @@ export default function Year2021({}: Year2021Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              삼성전자 반도체 자재 사용량 분석 시스템 개발 프로젝트에 참여하여,
-              재직 중 운영하던 시스템 내 실측 사용량 생성 Application 재개발을
-              지원했습니다. 개발 인원 4명으로 구성된 팀에서 영향도 분석 및 수정,
-              개발 환경 셋팅과 테스트 지원, 비즈니스 로직 문의 대응 등을
-              수행하며 프로젝트 품질과 개발 효율을 높이는 데 기여했습니다.
+              삼성전자 반도체 자재 사용량 분석 시스템 개발 프로젝트에 프리랜서로
+              참여하였습니다. 재직 중 운영하던 시스템 내 실측 사용량 생성
+              애플리케이션의 재개발 프로젝트를 지원하는 역할을 담당했으며, 주요
+              업무로는 실측 사용량 생성 애플리케이션 재개발에 따른 타
+              애플리케이션 영향도 분석 및 필요한 수정 작업을 진행했습니다. 또한
+              개발팀 구성원들의 개발 환경 셋팅과 테스트 업무를 지원했으며,
+              시스템 운영 경험을 바탕으로 비즈니스 로직 관련 문의사항에 대응하는
+              업무를 수행했습니다.
             </p>
+            <img
+              src="/2021.png"
+              alt="반도체 자재 사용량 분석 시스템 개발 프로젝트"
+              className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
+              style={{ objectPosition: 'center 39%' }}
+            />
           </div>
 
           {/* Key Achievements */}
@@ -186,37 +189,11 @@ export default function Year2021({}: Year2021Props) {
                   <p>
                     • 개발자 환경 셋팅 가이드 제공 및 빌드/실행 환경 구성 지원
                   </p>
-                  <p>• 기능/통합 테스트 수행 및 이슈 리포팅으로 품질 확보</p>
+                  <p>• 기능 테스트 수행 및 이슈 리포팅으로 품질확보</p>
                 </div>
               </div>
 
               {/* 비즈니스 로직 문의 대응 */}
-              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 text-orange-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                  </div>
-                  <h4 className="text-base font-medium text-gray-800">
-                    비즈니스 로직 문의 대응
-                  </h4>
-                </div>
-                <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 로직 이해도 기반 질의응답 대응 및 연동 이슈 컨설팅</p>
-                  <p>• 업무 요구사항 정제 및 개발 반영 커뮤니케이션 지원</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -251,7 +228,8 @@ export default function Year2021({}: Year2021Props) {
                   Database
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Oracle SQL</li>
+                  <li>Oracle DB</li>
+                  <li>SQL</li>
                 </ul>
               </div>
 

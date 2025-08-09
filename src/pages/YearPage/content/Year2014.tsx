@@ -69,7 +69,7 @@ export default function Year2014({}: Year2014Props) {
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                 <span className="text-sm text-gray-500 font-medium tracking-wide">
-                  2014
+                  2014.12 - 2017.10
                 </span>
               </div>
             </div>
@@ -78,13 +78,13 @@ export default function Year2014({}: Year2014Props) {
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                Web 서버
+                Customer 모듈 개발
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                Web UI
+                Admin 모듈 유지보수
               </span>
               <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
-                약 20명
+                SOAP 클라이언트 개발
               </span>
             </div>
           </div>
@@ -96,11 +96,24 @@ export default function Year2014({}: Year2014Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              삼성 SDS Nexshop Sales 솔루션 개발 프로젝트에 참여하여 Web 서버 및
-              Web UI 개발을 담당했습니다. 약 20명 규모의 개발팀에서 고객 및
-              관리자 기능을 중심으로 API 개발과 화면 구현을 수행하며, 안정적인
-              서비스 운영을 위한 유지보수와 신규 기능 추가를 함께 진행했습니다.
+              삼성 SDS Nexshop Sales 리테일 솔루션의 웹 서버 및 프론트엔드
+              개발을 담당했습니다. Spring Framework 기반의 API 서버와
+              JSP/JavaScript/jQuery를 활용한 UI 구현을 통해 일반적인 웹 개발
+              경험을 쌓았습니다. 주요 업무로는 고객 관리를 위한 Customer 모듈의
+              RESTful API 설계 및 구현, 시스템 관리자를 위한 Admin 모듈의
+              지속적인 유지보수 및 개선 작업을 수행했습니다. 또한 휴대폰 개통
+              서비스와의 연동을 위해 통신사 웹서비스와의 SOAP 기반 통신
+              클라이언트를 구현하여 외부 시스템 연동 경험을 확보했습니다. 약
+              20명 규모의 개발팀에서 Git을 활용한 버전 관리와 JIRA/Confluence를
+              통한 이슈 트래킹 및 문서화 경험을 통해 체계적인 기업용 솔루션 개발
+              프로세스를 습득하였습니다.
             </p>
+            <img
+              src="/2014.png"
+              alt="삼성 SDS Nexshop Sales 솔루션"
+              className="hidden md:block w-full max-h-64 object-cover shadow-lg object-center"
+              style={{ objectPosition: 'center 50%' }}
+            />
           </div>
 
           {/* Key Achievements */}
@@ -141,7 +154,7 @@ export default function Year2014({}: Year2014Props) {
                     </svg>
                   </div>
                   <h4 className="text-base font-medium text-gray-800">
-                    Customer 모듈 RESTful API 개발
+                    Customer 모듈 개발
                   </h4>
                 </div>
                 <div className="space-y-2 text-sm text-gray-700">
@@ -202,7 +215,6 @@ export default function Year2014({}: Year2014Props) {
                 </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 통신사 웹서비스 연동을 위한 SOAP 기반 클라이언트 구현</p>
-                  <p>• 연동 인터페이스 예외 처리 및 안정성 보강</p>
                 </div>
               </div>
             </div>
@@ -231,7 +243,6 @@ export default function Year2014({}: Year2014Props) {
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Java</li>
                   <li>Spring Framework</li>
-                  <li>ANSI SQL</li>
                 </ul>
               </div>
 
@@ -240,8 +251,19 @@ export default function Year2014({}: Year2014Props) {
                   Frontend
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
+                  <li>JSP</li>
                   <li>JavaScript</li>
                   <li>jQuery</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Database
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>MariaDB</li>
+                  <li>SQL</li>
                 </ul>
               </div>
 
@@ -250,6 +272,7 @@ export default function Year2014({}: Year2014Props) {
                   IDE
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Eclipse</li>
                   <li>IntelliJ</li>
                 </ul>
               </div>

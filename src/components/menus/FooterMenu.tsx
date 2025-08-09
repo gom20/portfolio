@@ -27,6 +27,7 @@ export default function SideMenu({
   const windowWidth = useWindowWidth();
   const responsiveMargin = useResponsivePadding();
   const isMobile = useIsMobile();
+  const leftPanelWidth = windowWidth < 768 ? 0 : 415; // YearPage 좌측 배경 너비와 동일
 
   // YearPage에서 스크롤했을 때 fade out 여부 결정
   const shouldFadeOut = false; // 스크롤해도 메뉴 계속 표시
@@ -254,8 +255,11 @@ export default function SideMenu({
       <div
         className="fixed z-50"
         style={{
-          left: responsiveMargin as string,
-          right: responsiveMargin as string,
+          left: windowWidth < 768 ? (responsiveMargin as string) : '0px',
+          right: windowWidth < 768 ? (responsiveMargin as string) : 'auto',
+          width: windowWidth < 768 ? 'auto' : `${leftPanelWidth}px`,
+          paddingLeft:
+            windowWidth < 768 ? undefined : (responsiveMargin as string),
           bottom: menuStyles.bottom,
           marginTop: '180px',
           opacity: shouldFadeOut ? 0 : isMobile && backgroundWhite ? 0 : 1,
@@ -270,7 +274,7 @@ export default function SideMenu({
                 key={item.id}
                 className="menu-item thejamsil-medium"
                 style={{
-                  fontSize: isMobile ? '0.8rem' : '0.9rem',
+                  fontSize: isMobile ? '0.75rem' : '0.82rem',
                   marginBottom: '8px',
                   color:
                     hoveredItem === item.id
@@ -287,8 +291,8 @@ export default function SideMenu({
                       ? 1
                       : 0,
                   transition: nameAnimation
-                    ? 'opacity 0.2s ease-out 0.2s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease'
-                    : 'opacity 0.2s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease',
+                    ? 'opacity 0.15s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s ease'
+                    : 'opacity 0.15s ease-out, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s ease',
                   transform:
                     hoveredItem === item.id ? 'scale(1.05)' : 'scale(1)',
                 }}

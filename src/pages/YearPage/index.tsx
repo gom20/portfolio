@@ -172,7 +172,7 @@ export default function YearPage({
         transition: `opacity ${TRANSITION_DURATIONS.FAST} ease-in-out`,
       }}
     >
-      {/* 뒤로가기 버튼 - 반응형 스타일 */}
+      {/* 뒤로가기 버튼 - 원형 테두리 + 호버 시 선 채움 애니메이션 복원 */}
       <button
         onClick={handleBack}
         className={`fixed flex items-center justify-center text-white hover:text-gray-200 transition-all duration-500 z-50 ${
@@ -376,75 +376,131 @@ export default function YearPage({
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 하단 Prev / Next - 모든 년도 페이지에서 작동 (모바일 비표시) */}
-        {windowWidth >= 768 && (
-          <>
-            {(() => {
-              const currentIndex = menuItems.indexOf(year);
-              const prevYear = menuItems[(currentIndex + 1) % menuItems.length]; // 순환
-              const nextYear =
-                menuItems[
-                  (currentIndex - 1 + menuItems.length) % menuItems.length
-                ]; // 순환
+      {/* 하단 Prev / Next - 모든 년도 페이지에서 작동 (모바일 비표시) */}
+      {windowWidth >= 768 && (
+        <>
+          {(() => {
+            const currentIndex = menuItems.indexOf(year);
+            const prevYear = menuItems[(currentIndex + 1) % menuItems.length]; // 순환
+            const nextYear =
+              menuItems[
+                (currentIndex - 1 + menuItems.length) % menuItems.length
+              ]; // 순환
 
-              return (
-                <>
-                  <button
-                    onClick={() => onChangeYear(prevYear)}
-                    className="fixed bottom-14 z-50 transition-opacity"
+            return (
+              <>
+                <button
+                  onClick={() => onChangeYear(prevYear)}
+                  className="fixed bottom-10 transition-opacity"
+                  style={{
+                    fontFamily: 'TheJamsil',
+                    fontWeight: 800,
+                    left: 415 + 44,
+                    color: '#1A1A1A',
+                    opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
+                    pointerEvents:
+                      isAtBottom && !isYearTransitioning
+                        ? ('auto' as const)
+                        : ('none' as const),
+                    transition:
+                      'opacity 0.3s ease, color 0.3s ease, -webkit-text-stroke 0.3s ease',
+                    backgroundColor: 'transparent',
+                    fontSize: windowWidth < 768 ? '16px' : '20px',
+                    lineHeight: 1,
+                    cursor: 'pointer',
+                    padding: 0,
+                    border: 'none',
+                    zIndex: 60,
+                  }}
+                  onMouseEnter={e => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    const icon = target.querySelector(
+                      '.nav-arrow-icon'
+                    ) as HTMLElement;
+                    if (icon) icon.style.transform = 'translateX(-3px)';
+                  }}
+                  onMouseLeave={e => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    const icon = target.querySelector(
+                      '.nav-arrow-icon'
+                    ) as HTMLElement;
+                    if (icon) icon.style.transform = 'translateX(0)';
+                  }}
+                  aria-label="이전 연도로 이동"
+                  title="이전 연도"
+                >
+                  <span
+                    className="nav-arrow-icon"
                     style={{
-                      fontFamily: 'TheJamsil',
-                      fontWeight: 800,
-                      left: 415 + 44,
-                      color: '#1A1A1A',
-                      opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
-                      pointerEvents:
-                        isAtBottom && !isYearTransitioning
-                          ? ('auto' as const)
-                          : ('none' as const),
-                      transition: 'opacity 0.3s ease',
-                      backgroundColor: 'transparent',
-                      fontSize: windowWidth < 768 ? '18px' : '24px',
-                      lineHeight: 1,
-                      cursor: 'pointer',
-                      padding: 0,
-                      border: 'none',
+                      display: 'inline-block',
+                      transition:
+                        'transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     }}
+                    aria-hidden="true"
                   >
                     PREV
-                  </button>
+                  </span>
+                </button>
 
-                  <button
-                    onClick={() => onChangeYear(nextYear)}
-                    className="fixed bottom-14 z-50 transition-opacity"
+                <button
+                  onClick={() => onChangeYear(nextYear)}
+                  className="fixed bottom-10 transition-opacity"
+                  style={{
+                    fontFamily: 'TheJamsil',
+                    fontWeight: 800,
+                    right: 72,
+                    color: '#1A1A1A',
+                    opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
+                    pointerEvents:
+                      isAtBottom && !isYearTransitioning
+                        ? ('auto' as const)
+                        : ('none' as const),
+                    transition:
+                      'opacity 0.3s ease, color 0.3s ease, -webkit-text-stroke 0.3s ease',
+                    backgroundColor: 'transparent',
+                    fontSize: windowWidth < 768 ? '16px' : '20px',
+                    lineHeight: 1,
+                    cursor: 'pointer',
+                    padding: 0,
+                    border: 'none',
+                    zIndex: 60,
+                  }}
+                  onMouseEnter={e => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    const icon = target.querySelector(
+                      '.nav-arrow-icon'
+                    ) as HTMLElement;
+                    if (icon) icon.style.transform = 'translateX(3px)';
+                  }}
+                  onMouseLeave={e => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    const icon = target.querySelector(
+                      '.nav-arrow-icon'
+                    ) as HTMLElement;
+                    if (icon) icon.style.transform = 'translateX(0)';
+                  }}
+                  aria-label="다음 연도로 이동"
+                  title="다음 연도"
+                >
+                  <span
+                    className="nav-arrow-icon"
                     style={{
-                      fontFamily: 'TheJamsil',
-                      fontWeight: 800,
-                      right: 72,
-                      color: '#1A1A1A',
-                      opacity: isAtBottom && !isYearTransitioning ? 1 : 0,
-                      pointerEvents:
-                        isAtBottom && !isYearTransitioning
-                          ? ('auto' as const)
-                          : ('none' as const),
-                      transition: 'opacity 0.3s ease',
-                      backgroundColor: 'transparent',
-                      fontSize: windowWidth < 768 ? '18px' : '24px',
-                      lineHeight: 1,
-                      cursor: 'pointer',
-                      padding: 0,
-                      border: 'none',
+                      display: 'inline-block',
+                      transition:
+                        'transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     }}
+                    aria-hidden="true"
                   >
                     NEXT
-                  </button>
-                </>
-              );
-            })()}
-          </>
-        )}
-      </div>
+                  </span>
+                </button>
+              </>
+            );
+          })()}
+        </>
+      )}
     </div>
   );
 }
