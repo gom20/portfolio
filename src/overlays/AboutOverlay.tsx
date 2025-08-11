@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FaGithub, FaBlog, FaEnvelope } from 'react-icons/fa';
 
 interface AboutContentProps {
   isActive: boolean;
@@ -234,6 +235,45 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
               더욱 지능적이고 개인화된 사용자 경험을 제공하는 서비스를 만들어
               가겠습니다.
             </p>
+
+            {/* 링크 섹션 */}
+            <div className="pt-8 border-t border-gray-600">
+              <h3
+                className="text-lg md:text-xl font-semibold mb-6 text-white"
+                style={{ fontFamily: 'TheJamsil' }}
+              >
+                Contact & Links
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://github.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                >
+                  <FaGithub className="text-xl" />
+                  <span>GitHub</span>
+                </a>
+
+                <a
+                  href="https://yourblog.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                >
+                  <FaBlog className="text-xl" />
+                  <span>Blog</span>
+                </a>
+
+                <a
+                  href="mailto:your.email@example.com"
+                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                >
+                  <FaEnvelope className="text-xl" />
+                  <span>Email</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
