@@ -307,3 +307,35 @@ div.year-text,
   font-weight: 800 !important;
   font-style: normal !important;
 }
+
+/* 통일된 아이콘 스타일 */
+.unified-icon-bg {
+  background-color: #f3f4f6 !important; /* gray-100 */
+}
+
+.unified-icon-text {
+  color: #4b5563 !important; /* gray-600 */
+}
+
+/* 년도 페이지 아이콘 강제 통일 */
+.year-page-content .w-8.h-8.bg-amber-100,
+.year-page-content .w-8.h-8.bg-indigo-100,
+.year-page-content .w-8.h-8.bg-emerald-100,
+.year-page-content .w-8.h-8.bg-blue-100,
+.year-page-content .w-8.h-8.bg-purple-100,
+.year-page-content .w-8.h-8.bg-orange-100,
+.year-page-content .w-8.h-8.bg-cyan-100,
+.year-page-content .w-8.h-8.bg-green-100 {
+  background-color: #f3f4f6 !important; /* gray-100 */
+}
+
+.year-page-content .text-amber-600,
+.year-page-content .text-indigo-600,
+.year-page-content .text-emerald-600,
+.year-page-content .text-blue-600,
+.year-page-content .text-purple-600,
+.year-page-content .text-orange-600,
+.year-page-content .text-cyan-600,
+.year-page-content .text-green-600 {
+  color: #4b5563 !important; /* gray-600 */
+}

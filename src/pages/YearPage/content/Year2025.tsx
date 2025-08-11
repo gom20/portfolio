@@ -142,9 +142,9 @@ export default function Year2025({}: Year2025Props) {
             <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -180,9 +180,9 @@ export default function Year2025({}: Year2025Props) {
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-green-600"
+                      className="w-5 h-5 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -211,9 +211,9 @@ export default function Year2025({}: Year2025Props) {
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-6 h-6 text-cyan-600 mt-px"
+                      className="w-6 h-6 text-gray-600 mt-px"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -253,9 +253,9 @@ export default function Year2025({}: Year2025Props) {
 
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-orange-600"
+                      className="w-5 h-5 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

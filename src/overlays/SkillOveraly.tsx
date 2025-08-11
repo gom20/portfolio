@@ -47,42 +47,45 @@ export default function SkillsContent({
 
   const responsivePadding = getResponsivePadding();
   const skills = {
-    frontend: [
-      { name: 'React', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Next.js', level: 80 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'HTML/CSS', level: 95 },
-    ],
     backend: [
-      { name: 'Node.js', level: 85 },
-      { name: 'Express', level: 80 },
-      { name: 'Python', level: 75 },
-      { name: 'PostgreSQL', level: 70 },
-      { name: 'MongoDB', level: 75 },
+      { name: 'Java', category: 'Language', experience: '5+ years' },
+      { name: 'Spring Boot', category: 'Framework', experience: '3+ years' },
+      { name: 'OracleSQL', category: 'Database', experience: '3+ years' },
+    ],
+    frontend: [
+      { name: 'JavaScript', category: 'Language', experience: '5+ years' },
+      { name: 'TypeScript', category: 'Language', experience: '3+ years' },
+      { name: 'React', category: 'Framework', experience: '3+ years' },
+      { name: 'Redux', category: 'State Management', experience: '2+ years' },
+    ],
+    database: [
+      { name: 'Oracle', category: 'RDBMS', experience: '3+ years' },
+      { name: 'MySQL', category: 'RDBMS', experience: '2+ years' },
+      { name: 'Redis', category: 'NoSQL', experience: '1+ years' },
+    ],
+    ide: [
+      { name: 'Eclipse', category: 'Java IDE', experience: '3+ years' },
+      {
+        name: 'Visual Studio Code',
+        category: 'Code Editor',
+        experience: '3+ years',
+      },
+      { name: 'IntelliJ', category: 'Java IDE', experience: '2+ years' },
+    ],
+    versionControl: [
+      { name: 'GitHub', category: 'Version Control', experience: '3+ years' },
+      { name: 'SVN', category: 'Version Control', experience: '3+ years' },
     ],
     tools: [
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 70 },
-      { name: 'AWS', level: 65 },
-      { name: 'Figma', level: 75 },
-      { name: 'Jest', level: 80 },
+      { name: 'JIRA', category: 'Project Management', experience: '3+ years' },
+      { name: 'Confluence', category: 'Documentation', experience: '3+ years' },
     ],
   };
 
-  const SkillBar = ({ name, level }: { name: string; level: number }) => (
-    <div className="mb-3">
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-sm md:text-base font-medium">{name}</span>
-        <span className="text-xs md:text-sm text-gray-400">{level}%</span>
-      </div>
-      <div className="w-full bg-gray-700 rounded-full h-1.5">
-        <div
-          className="bg-white h-1.5 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${level}%` }}
-        />
-      </div>
-    </div>
+  const SkillTag = ({ skill }: { skill: any }) => (
+    <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 text-xs text-white hover:bg-white/15 transition-all duration-300 hover:scale-105 mr-2 mb-2">
+      {skill.name}
+    </span>
   );
 
   return (
@@ -223,77 +226,123 @@ export default function SkillsContent({
             transform: scale(1.1);
           }
         `}</style>
-        <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-6">
+        <h2
+          className="text-lg md:text-xl lg:text-xl font-semibold mb-6"
+          style={{ fontFamily: 'TheJamsil' }}
+        >
           Skills & Technologies
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div>
-            <h3 className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2">
-              Frontend
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              Back-end
             </h3>
-            <div className="space-y-3">
-              {skills.frontend.map((skill, index) => (
-                <div
-                  key={skill.name}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <SkillBar name={skill.name} level={skill.level} />
-                </div>
+            <div className="flex flex-wrap mb-4">
+              {skills.backend.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
               ))}
             </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Retail 솔루션 개발 업무로 Spring 기반 웹서버를 개발한 경험이
+              있습니다. MES 시스템 운영 업무로 Java 기반의 배치 프로그램을
+              유지보수 하였습니다.
+            </p>
           </div>
 
           <div>
-            <h3 className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2">
-              Backend
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              Front-end
             </h3>
-            <div className="space-y-3">
-              {skills.backend.map((skill, index) => (
-                <div
-                  key={skill.name}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <SkillBar name={skill.name} level={skill.level} />
-                </div>
+            <div className="flex flex-wrap mb-4">
+              {skills.frontend.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
               ))}
             </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Smart TV 웹앱 개발자로 경력을 시작했습니다. Javascript, HTML,
+              CSS와 같은 기본적인 프론트엔드 기술에 익숙하며 최신 프론트엔드
+              기술도 지속적으로 학습하고 있습니다.
+            </p>
           </div>
 
           <div>
-            <h3 className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2">
-              Tools & Others
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              Database
             </h3>
-            <div className="space-y-3">
-              {skills.tools.map((skill, index) => (
-                <div
-                  key={skill.name}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <SkillBar name={skill.name} level={skill.level} />
-                </div>
+            <div className="flex flex-wrap mb-4">
+              {skills.database.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
               ))}
             </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Oracle과 MySQL을 활용한 관계형 데이터베이스 설계 및 최적화 경험이
+              있습니다. Redis를 통한 캐싱 시스템 구축 경험도 보유하고 있습니다.
+            </p>
           </div>
-        </div>
 
-        <div className="mt-8">
-          <h3 className="text-base md:text-lg font-semibold mb-4">
-            Learning Philosophy
-          </h3>
-          <p className="text-sm md:text-base leading-relaxed text-gray-300">
-            기술은 끊임없이 발전하고 있습니다. 저는 항상 새로운 기술을 배우고
-            기존 지식을 업데이트하며, 더 나은 개발자가 되기 위해 노력하고
-            있습니다. 각 기술 스택에서 실무 경험을 바탕으로 지속적인 성장을
-            추구하며, 팀과 프로젝트에 최적화된 솔루션을 제공하기 위해 끊임없이
-            학습하고 있습니다.
-          </p>
+          <div>
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              IDE
+            </h3>
+            <div className="flex flex-wrap mb-4">
+              {skills.ide.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
+              ))}
+            </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Java 로 개발하는 업무는 주로 Eclipse IDE를 사용하였습니다.
+              프론트엔드 개발은 주로 Visual Studio Code를 사용합니다.
+            </p>
+          </div>
+
+          <div>
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              Version Control
+            </h3>
+            <div className="flex flex-wrap mb-4">
+              {skills.versionControl.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
+              ))}
+            </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              실무에서 SVN과 Git 모두 사용한 경험이 있습니다. 현재는 Github를
+              사용하여 형상 관리를 하고 있습니다.
+            </p>
+          </div>
+
+          <div>
+            <h3
+              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2"
+              style={{ fontFamily: 'TheJamsil' }}
+            >
+              Tool
+            </h3>
+            <div className="flex flex-wrap mb-4">
+              {skills.tools.map(skill => (
+                <SkillTag key={skill.name} skill={skill} />
+              ))}
+            </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              솔루션 개발 업무에서 Jira로 이슈 관리를 하였습니다. 시스템 운영
+              업무에서 Confluence를 사용하여 운영 정보를 공유하였습니다.
+            </p>
+          </div>
         </div>
       </div>
     </div>
