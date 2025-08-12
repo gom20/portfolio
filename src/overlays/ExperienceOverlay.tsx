@@ -87,12 +87,13 @@ export default function ExperienceOverlay({
   const experiences = [
     {
       id: 0,
-      company: 'Now',
-      period: '2025.08 - 현재',
+      company: 'Open to opportunities',
+      period: '2025.08 - Present',
       position: 'Full-Stack Developer',
-      description: '현재 진행 중인 프로젝트 및 새로운 도전',
-      technologies: ['React', 'TypeScript', 'Next.js', 'Node.js'],
-      year: '2025-현재',
+      description:
+        '개인 프로젝트를 진행하며 다양한 분야의 기회를 탐색 중입니다',
+      technologies: ['QofRP'],
+      year: '2025-Present',
     },
     {
       id: 1,
@@ -283,22 +284,22 @@ export default function ExperienceOverlay({
             transform: translateY(0);
           }
           
-                     .timeline-dot {
-              position: absolute;
-              width: 10px;
-              height: 10px;
-              background: #ffffff;
-              border: 2px solid rgba(255, 255, 255, 0.3);
-              border-radius: 50%;
-              opacity: 0;
-              transform: scale(0);
-              transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-            }
+                                                                                                                                   .timeline-dot {
+               position: absolute;
+               width: 10px;
+               height: 10px;
+               background: #ffffff;
+               border: 2px solid rgba(255, 255, 255, 0.3);
+               border-radius: 50%;
+               opacity: 0;
+               transform: scale(0) translateY(-5px);
+               transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+             }
           
-          .timeline-item.visible .timeline-dot {
-            opacity: 1;
-            transform: scale(1);
-          }
+                                                                                       .timeline-item.visible .timeline-dot {
+               opacity: 1;
+               transform: scale(1) translateY(-5px);
+             }
           
                      .timeline-line {
              position: absolute;
@@ -339,7 +340,7 @@ export default function ExperienceOverlay({
           <div className="timeline-line hidden lg:block"></div>
 
           {/* 경력 아이템들 */}
-          <div className="space-y-12">
+          <div className="space-y-12" style={{ paddingTop: '5px' }}>
             {experiences.map((experience, index) => (
               <div
                 key={experience.id}
@@ -382,18 +383,36 @@ export default function ExperienceOverlay({
                 >
                   {/* 연도 표시 */}
                   <div className="absolute top-4 right-4">
-                    <span className="bg-gray-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                    <span
+                      className="bg-gray-600 px-2 py-1 rounded-md text-xs font-normal"
+                      style={{
+                        fontFamily: "'TheJamsil', sans-serif",
+                        color: 'rgb(209, 213, 219)',
+                      }}
+                    >
                       {experience.year}
                     </span>
                   </div>
 
                   {/* 회사명 */}
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">
+                  <h3
+                    className="text-lg md:text-xl font-semibold mb-2"
+                    style={{
+                      fontFamily:
+                        experience.company === 'Open to opportunities'
+                          ? "'TheJamsil', sans-serif"
+                          : "'Noto Sans KR', sans-serif",
+                      color: 'rgb(209, 213, 219)',
+                    }}
+                  >
                     {experience.company}
                   </h3>
 
                   {/* 기간과 포지션 */}
-                  <p className="text-gray-300 text-sm font-medium mb-3">
+                  <p
+                    className="text-gray-300 text-sm font-light mb-3"
+                    style={{ fontFamily: "'TheJamsil', sans-serif" }}
+                  >
                     {experience.period} | {experience.position}
                   </p>
 
@@ -524,25 +543,9 @@ export default function ExperienceOverlay({
                       </div>
                     </div>
                   ) : experience.id === 0 ? (
-                    <div className="mb-6">
-                      {/* 세로줄 */}
-                      <div className="relative">
-                        <div
-                          className="absolute left-2 top-0 bottom-0 w-px bg-white/20"
-                          style={{ width: '1px', maxWidth: '1px' }}
-                        ></div>
-                        <div className="ml-6 space-y-4">
-                          <div>
-                            <div className="text-xs text-gray-400 mb-1 font-medium">
-                              2025.08 - 현재
-                            </div>
-                            <div className="text-gray-300 text-sm">
-                              현재 진행 중인 프로젝트 및 새로운 도전
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-2">
+                      {experience.description}
+                    </p>
                   ) : (
                     <p
                       className={`text-gray-300 text-sm leading-relaxed ${
