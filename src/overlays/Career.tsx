@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CareerProps {
   isActive: boolean;
@@ -10,8 +10,6 @@ export default function Career({ isActive, onClose }: CareerProps) {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
-  const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (isActive) {
@@ -29,40 +27,6 @@ export default function Career({ isActive, onClose }: CareerProps) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Intersection Observer 설정
-  const observerCallback = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const itemId = parseInt(
-            entry.target.getAttribute('data-item-id') || '0'
-          );
-          setVisibleItems(prev => new Set([...prev, itemId]));
-        }
-      });
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (!shouldAnimate) return;
-
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.3,
-      rootMargin: '0px 0px -50px 0px',
-    });
-
-    timelineRefs.current.forEach(ref => {
-      if (ref) {
-        observer.observe(ref);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [shouldAnimate, observerCallback]);
 
   // 반응형 패딩 계산
   const getResponsivePadding = () => {
@@ -270,65 +234,29 @@ export default function Career({ isActive, onClose }: CareerProps) {
             transform: scale(1.1);
           }
           
-          .timeline-item {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateX(-50%);
           }
           
-          .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
+          .timeline-content {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0px;
+            padding: 20px;
+            transition: all 0.3s ease;
           }
           
-                                                                                                                                   .timeline-dot {
-               position: absolute;
-               width: 10px;
-               height: 10px;
-               background: #ffffff;
-               border: 2px solid rgba(255, 255, 255, 0.3);
-               border-radius: 50%;
-               opacity: 0;
-               transform: scale(0) translateY(-5px);
-               transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-             }
-          
-                                                                                       .timeline-item.visible .timeline-dot {
-               opacity: 1;
-               transform: scale(1) translateY(-5px);
-             }
-          
-                     .timeline-line {
-             position: absolute;
-             left: 50%;
-             top: 0;
-             bottom: 0;
-             width: 1px;
-             background: rgba(255, 255, 255, 0.4);
-             transform: translateX(-50%);
-           }
-          
-                     .timeline-content {
-             position: relative;
-             background: rgba(255, 255, 255, 0.03);
-             border: 1px solid rgba(255, 255, 255, 0.08);
-             border-radius: 0px;
-             padding: 20px;
-             transition: all 0.3s ease;
-             opacity: 0;
-             transform: translateY(20px);
-             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
-           }
-          
-          .timeline-item.visible .timeline-content {
-            opacity: 1;
-            transform: translateY(0);
+          .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
           }
-          
-                     .timeline-content:hover {
-             background: rgba(255, 255, 255, 0.05);
-             border-color: rgba(255, 255, 255, 0.2);
-           }
         `}</style>
 
         {/* 타임라인 컨테이너 */}
@@ -341,13 +269,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
             {experiences.map((experience, index) => (
               <div
                 key={experience.id}
-                ref={el => {
-                  timelineRefs.current[index] = el;
-                }}
-                data-item-id={experience.id}
                 className={`timeline-item relative ${
-                  visibleItems.has(experience.id) ? 'visible' : ''
-                } ${
                   index % 2 === 0
                     ? 'lg:pr-[50%] lg:pl-0'
                     : 'lg:pl-[50%] lg:pr-0'
@@ -355,7 +277,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
               >
                 {/* 타임라인 점 */}
                 <div
-                  className={`timeline-dot hidden lg:block ${
+                  className={`absolute top-0 w-2.5 h-2.5 bg-white border-2 border-white/30 rounded-full hidden lg:block ${
                     index % 2 === 0
                       ? 'lg:right-[calc(50%-5px)]'
                       : 'lg:left-[calc(50%-5px)]'

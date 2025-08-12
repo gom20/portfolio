@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 interface LabsProps {
   isActive: boolean;
@@ -14,9 +14,6 @@ interface ProjectCardProps {
   technologies: string[];
   description: string;
   link: string;
-  isVisible: boolean;
-  animationDelay: string;
-  onRef: (el: HTMLDivElement | null) => void;
 }
 
 // 기술 태그 컴포넌트
@@ -49,21 +46,8 @@ const ProjectCard = ({
   technologies,
   description,
   link,
-  isVisible,
-  animationDelay,
-  onRef,
 }: ProjectCardProps) => (
-  <div
-    ref={onRef}
-    data-section-id={id}
-    className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group"
-    style={{
-      animationDelay,
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-      transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
-    }}
-  >
+  <div className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group">
     <div className="mb-4">
       <img
         src={image}
@@ -174,11 +158,6 @@ export default function Labs({ isActive, onClose }: LabsProps) {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(
-    new Set()
-  );
-  const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isActive) {
@@ -188,7 +167,6 @@ export default function Labs({ isActive, onClose }: LabsProps) {
       return () => clearTimeout(timer);
     } else {
       setShouldAnimate(false);
-      setVisibleSections(new Set());
     }
   }, [isActive]);
 
@@ -200,38 +178,6 @@ export default function Labs({ isActive, onClose }: LabsProps) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Intersection Observer를 사용한 스크롤 애니메이션
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const sectionId = entry.target.getAttribute('data-section-id');
-        if (sectionId) {
-          setVisibleSections(prev => new Set([...prev, sectionId]));
-        }
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (!isActive || !shouldAnimate) return;
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-    });
-
-    Object.values(sectionRefs.current).forEach(ref => {
-      if (ref) {
-        observer.observe(ref);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [isActive, shouldAnimate]);
-
-  // 애니메이션 지연 시간 계산
-  const getAnimationDelay = (index: number) => `${index * 0.1}s`;
 
   // 반응형 패딩 계산
   const getResponsivePadding = () => {
@@ -339,7 +285,6 @@ export default function Labs({ isActive, onClose }: LabsProps) {
       </button>
 
       <div
-        ref={containerRef}
         className="max-w-7xl text-white overflow-y-auto w-full custom-scrollbar"
         style={{
           paddingLeft: responsivePadding,
@@ -383,15 +328,7 @@ export default function Labs({ isActive, onClose }: LabsProps) {
             {/* 프로젝트 카드 섹션 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {PROJECTS_DATA.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  {...project}
-                  isVisible={visibleSections.has(project.id)}
-                  animationDelay={getAnimationDelay(index)}
-                  onRef={el => {
-                    sectionRefs.current[project.id] = el;
-                  }}
-                />
+                <ProjectCard key={project.id} {...project} />
               ))}
             </div>
           </div>
