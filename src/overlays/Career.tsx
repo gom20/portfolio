@@ -1,14 +1,11 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-interface ExperienceContentProps {
+interface CareerProps {
   isActive: boolean;
   onClose: () => void;
 }
 
-export default function ExperienceOverlay({
-  isActive,
-  onClose,
-}: ExperienceContentProps) {
+export default function Career({ isActive, onClose }: CareerProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
@@ -396,12 +393,9 @@ export default function ExperienceOverlay({
 
                   {/* 회사명 */}
                   <h3
-                    className="text-lg md:text-xl font-semibold mb-2"
+                    className="text-lg md:text-xl font-medium mb-2"
                     style={{
-                      fontFamily:
-                        experience.company === 'Open to opportunities'
-                          ? "'TheJamsil', sans-serif"
-                          : "'Noto Sans KR', sans-serif",
+                      fontFamily: "'TheJamsil', sans-serif",
                       color: 'rgb(209, 213, 219)',
                     }}
                   >

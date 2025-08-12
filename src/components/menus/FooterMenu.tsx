@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import AboutOverlay from '../../overlays/AboutOverlay';
-import ExperienceOverlay from '../../overlays/ExperienceOverlay';
-import SkillsContent from '../../overlays/SkillOveraly';
-import LabsOverlay from '../../overlays/LabsOverlay';
+import About from '../../overlays/About';
+import Career from '../../overlays/Career';
+import Skills from '../../overlays/Skills';
+import Labs from '../../overlays/Labs';
 import {
   useResponsivePadding,
   useIsMobile,
@@ -116,7 +116,7 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          <AboutOverlay
+          <About
             isActive={isAboutActive}
             onClose={() => setIsAboutActive(false)}
           />
@@ -132,7 +132,7 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          <ExperienceOverlay
+          <Career
             isActive={isExperienceActive}
             onClose={() => setIsExperienceActive(false)}
           />
@@ -148,7 +148,7 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          <SkillsContent
+          <Skills
             isActive={isSkillsActive}
             onClose={() => setIsSkillsActive(false)}
           />
@@ -164,7 +164,7 @@ export default function SideMenu({
             backdropFilter: 'blur(10px)',
           }}
         >
-          <LabsOverlay
+          <Labs
             isActive={isLabsActive}
             onClose={() => setIsLabsActive(false)}
           />

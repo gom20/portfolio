@@ -9,15 +9,12 @@ import {
   FaFileAlt,
 } from 'react-icons/fa';
 
-interface SkillsContentProps {
+interface SkillsProps {
   isActive: boolean;
   onClose: () => void;
 }
 
-export default function SkillsContent({
-  isActive,
-  onClose,
-}: SkillsContentProps) {
+export default function Skills({ isActive, onClose }: SkillsProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
@@ -328,10 +325,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -374,10 +370,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -417,10 +412,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -461,10 +455,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -506,10 +499,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -549,10 +541,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >
@@ -593,10 +584,9 @@ export default function SkillsContent({
             }}
           >
             <h3
-              className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
+              className="text-base md:text-lg font-medium mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
                 fontFamily: 'TheJamsil',
-                fontWeight: '400',
                 opacity: 0.85,
               }}
             >

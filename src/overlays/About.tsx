@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { FaGithub, FaEnvelope } from 'react-icons/fa';
 
-interface AboutContentProps {
+interface AboutProps {
   isActive: boolean;
   onClose: () => void;
 }
 
-export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
+export default function About({ isActive, onClose }: AboutProps) {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
@@ -219,7 +219,7 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
                     />
                     <p
                       className="text-sm font-light text-white"
-                      style={{ fontFamily: 'TheJamsil' }}
+                      style={{ fontFamily: 'TheJamsil', opacity: 0.8 }}
                     >
                       rhaldud89@gmail.com
                     </p>
