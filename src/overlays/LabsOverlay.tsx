@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 interface LabsOverlayProps {
   isActive: boolean;
@@ -10,12 +10,22 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(
+    new Set()
+  );
+  const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isActive) {
-      setShouldAnimate(true);
+      // 약간의 지연을 두어 초기 렌더링 완료 후 애니메이션 시작
+      const timer = setTimeout(() => {
+        setShouldAnimate(true);
+      }, 50);
+      return () => clearTimeout(timer);
     } else {
       setShouldAnimate(false);
+      setVisibleSections(new Set());
     }
   }, [isActive]);
 
@@ -27,6 +37,44 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Intersection Observer를 사용한 스크롤 애니메이션
+  const handleIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section-id');
+          if (sectionId) {
+            setVisibleSections(prev => new Set([...prev, sectionId]));
+          }
+        }
+      });
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!isActive || !shouldAnimate) return;
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    });
+
+    // 모든 섹션을 관찰
+    Object.values(sectionRefs.current).forEach(ref => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [isActive, shouldAnimate, handleIntersection]);
+
+  // 애니메이션 지연 시간 계산
+  const getAnimationDelay = (index: number) => {
+    return `${index * 0.1}s`;
+  };
 
   // 반응형 패딩 계산
   const getResponsivePadding = () => {
@@ -145,6 +193,7 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
       </button>
 
       <div
+        ref={containerRef}
         className="max-w-7xl text-white overflow-y-auto w-full custom-scrollbar"
         style={{
           paddingLeft: responsivePadding,
@@ -188,7 +237,21 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
             {/* 프로젝트 카드 섹션 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* 프로젝트 카드 1 */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group">
+              <div
+                ref={el => {
+                  sectionRefs.current['project1'] = el;
+                }}
+                data-section-id="project1"
+                className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group"
+                style={{
+                  animationDelay: getAnimationDelay(0),
+                  opacity: visibleSections.has('project1') ? 1 : 0,
+                  transform: visibleSections.has('project1')
+                    ? 'translateY(0)'
+                    : 'translateY(20px)',
+                  transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                }}
+              >
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
@@ -318,7 +381,21 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
               </div>
 
               {/* 프로젝트 카드 2 - 글적글적 연구소 */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group">
+              <div
+                ref={el => {
+                  sectionRefs.current['project2'] = el;
+                }}
+                data-section-id="project2"
+                className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group"
+                style={{
+                  animationDelay: getAnimationDelay(1),
+                  opacity: visibleSections.has('project2') ? 1 : 0,
+                  transform: visibleSections.has('project2')
+                    ? 'translateY(0)'
+                    : 'translateY(20px)',
+                  transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                }}
+              >
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
@@ -446,7 +523,21 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
               </div>
 
               {/* 프로젝트 카드 3 - 경력 기술서 웹 페이지 */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group">
+              <div
+                ref={el => {
+                  sectionRefs.current['project3'] = el;
+                }}
+                data-section-id="project3"
+                className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group"
+                style={{
+                  animationDelay: getAnimationDelay(2),
+                  opacity: visibleSections.has('project3') ? 1 : 0,
+                  transform: visibleSections.has('project3')
+                    ? 'translateY(0)'
+                    : 'translateY(20px)',
+                  transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                }}
+              >
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
@@ -559,7 +650,21 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
               </div>
 
               {/* 프로젝트 카드 4 - Mountain Go */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group">
+              <div
+                ref={el => {
+                  sectionRefs.current['project4'] = el;
+                }}
+                data-section-id="project4"
+                className="bg-black/30 rounded-lg p-6 border border-white/10 hover:border-white/20 transition-all duration-300 relative group"
+                style={{
+                  animationDelay: getAnimationDelay(3),
+                  opacity: visibleSections.has('project4') ? 1 : 0,
+                  transform: visibleSections.has('project4')
+                    ? 'translateY(0)'
+                    : 'translateY(20px)',
+                  transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                }}
+              >
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img

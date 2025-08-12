@@ -355,6 +355,7 @@ export default function SkillsContent({
               프로토콜을 활용한 인터페이스 개발을 진행하며 기술 역량을
               확장했습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -397,6 +398,7 @@ export default function SkillsContent({
               간단한 애플리케이션을 개발하여 안드로이드 마켓에 출시한 경험도
               있습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -440,6 +442,7 @@ export default function SkillsContent({
               로직을 개발했으며, 최근 현대글로비스 차량 위치 관리 시스템에서는
               MariaDB 기반의 전체 테이블 설계를 주도적으로 수행했습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -484,6 +487,7 @@ export default function SkillsContent({
               프로토타이핑하고, 기술적 완성도와 개발 효율성을 동시에 추구하고
               있습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -526,6 +530,7 @@ export default function SkillsContent({
               프로젝트 규모에 따른 적절한 버전 관리 전략을 선택하여 효율적인
               개발 워크플로우를 구축하고 있습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -569,6 +574,7 @@ export default function SkillsContent({
               또한, 신규 시스템 구축 시 Figma를 활용하여 초기 와이어프레임을
               제작하고 기획 방향을 시각적으로 정리하였습니다.
             </p>
+            <br />
           </div>
 
           <div
@@ -609,6 +615,7 @@ export default function SkillsContent({
               관리하였습니다. 이러한 문서화 작업을 통해 요구사항을 명확히 하고
               구현 방향을 구체화하여, 프로젝트의 일관성과 품질을 유지하였습니다.
             </p>
+            <br />
           </div>
         </div>
       </div>
