@@ -113,7 +113,7 @@ export default function Year2024({}: Year2024Props) {
               마련했습니다.
             </p>
             <img
-              src="/2024.png"
+              src="/images/years/2024.png"
               alt="의장 라인 스마트태그 시스템"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
               style={{ objectPosition: 'center 65%' }}

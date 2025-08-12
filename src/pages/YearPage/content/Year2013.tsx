@@ -109,7 +109,7 @@ export default function Year2013({}: Year2013Props) {
               신속한 대응을 통해 서비스 품질 향상에 기여했습니다.
             </p>
             <img
-              src="/2013.png"
+              src="/images/years/2013.png"
               alt="삼성전자 Smart TV Application"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-center"
               style={{ objectPosition: 'center 44%' }}

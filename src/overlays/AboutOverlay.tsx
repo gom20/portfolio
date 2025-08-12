@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaGithub, FaBlog, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaEnvelope } from 'react-icons/fa';
 
 interface AboutContentProps {
   isActive: boolean;
@@ -243,7 +243,7 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
                     style={{ opacity: 0.85 }}
                   >
                     <img
-                      src="/tistory.svg"
+                      src="/images/icons/tistory.svg"
                       alt="Tistory"
                       className="w-6 h-6"
                       style={{ filter: 'brightness(0) invert(1)' }}
@@ -257,7 +257,7 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
                     style={{ opacity: 0.85 }}
                   >
                     <img
-                      src="/kakao.svg"
+                      src="/images/icons/kakao.svg"
                       alt="Kakao"
                       className="w-6 h-6"
                       style={{ filter: 'brightness(0) invert(1)' }}

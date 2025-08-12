@@ -106,7 +106,7 @@ export default function Year2021({}: Year2021Props) {
               업무를 수행했습니다.
             </p>
             <img
-              src="/2021.png"
+              src="/images/years/2021.png"
               alt="반도체 자재 사용량 분석 시스템 개발 프로젝트"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
               style={{ objectPosition: 'center 39%' }}

@@ -104,7 +104,7 @@ export default function Year2014({}: Year2014Props) {
               프로세스를 습득하였습니다.
             </p>
             <img
-              src="/2014.png"
+              src="/images/years/2014.png"
               alt="삼성 SDS Nexshop Sales 솔루션"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-center"
               style={{ objectPosition: 'center 50%' }}

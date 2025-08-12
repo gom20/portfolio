@@ -109,7 +109,7 @@ export default function Year2023({}: Year2023Props) {
               주도적으로 개발을 수행했습니다.
             </p>
             <img
-              src="/2023.jpg"
+              src="/images/years/2023.jpg"
               alt="넥슨 사내 설문 시스템"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
               style={{ objectPosition: 'center 65%' }}

@@ -192,7 +192,7 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
-                    src="/portfolio2.png"
+                    src="/images/labs/portfolio2.png"
                     alt="포트폴리오 사이트 스크린샷"
                     className="w-full h-64 object-cover rounded-lg mb-3"
                   />
@@ -322,7 +322,7 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
-                    src="/gjgj.png"
+                    src="/images/labs/gjgj.png"
                     alt="글적글적 연구소 정적 마케팅 페이지 스크린샷"
                     className="w-full h-64 object-cover rounded-lg mb-3"
                   />
@@ -450,7 +450,7 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
-                    src="/cv.png"
+                    src="/images/labs/portfolio1.png"
                     alt="경력 기술서 웹 페이지 스크린샷"
                     className="w-full h-64 object-cover rounded-lg mb-3"
                   />
@@ -563,7 +563,7 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
                 {/* 프로젝트 이미지 */}
                 <div className="mb-4">
                   <img
-                    src="/mago.jpg"
+                    src="/images/labs/mago.jpg"
                     alt="마운틴고 앱 스크린샷"
                     className="w-full h-64 object-cover rounded-lg mb-3"
                   />

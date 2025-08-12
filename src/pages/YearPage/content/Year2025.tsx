@@ -114,7 +114,7 @@ export default function Year2025({}: Year2025Props) {
               테스트까지 전체 개발 생명주기를 주도적으로 수행했습니다.
             </p>
             <img
-              src="/2025.png"
+              src="/images/years/2025.png"
               alt="주차장 차량 위치 관리 시스템"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
               style={{ objectPosition: 'center 40%' }}

@@ -114,7 +114,7 @@ export default function Year2017({}: Year2017Props) {
               지원했습니다.
             </p>
             <img
-              src="/2017.png"
+              src="/images/years/2017.png"
               alt="반도체 자재 사용량 분석 시스템"
               className="hidden md:block w-full max-h-64 object-cover shadow-lg object-bottom"
               style={{ objectPosition: 'center 50%' }}
