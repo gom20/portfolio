@@ -208,50 +208,62 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
               창출하는 개발자로 성장하고자 합니다.
             </p>
 
-            {/* 링크 섹션 */}
-            <div className="pt-8">
-              <h3
-                className="text-lg md:text-xl font-medium mb-6 text-left"
-                style={{
-                  fontFamily: 'TheJamsil',
-                  opacity: 0.85,
-                }}
-              >
-                Contact
-              </h3>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://github.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
-                >
-                  <FaGithub className="text-2xl" />
-                </a>
-
-                <a
-                  href="https://yourblog.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
+            {/* 우측 Github 아이콘과 Tistory 아이콘 */}
+            <div className="pt-8 flex justify-end">
+              <div className="flex flex-col items-end gap-4">
+                <div className="text-right">
+                  <div className="flex items-center gap-2">
+                    <FaEnvelope
+                      className="text-sm text-white"
+                      style={{ opacity: 0.85 }}
+                    />
+                    <p
+                      className="text-sm font-light text-white"
+                      style={{ fontFamily: 'TheJamsil' }}
+                    >
+                      rhaldud89@gmail.com
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6">
+                  <a
+                    href="https://github.com/gom20"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
+                    style={{ opacity: 0.85 }}
                   >
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                  </svg>
-                </a>
-
-                <a
-                  href="mailto:your.email@example.com"
-                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
-                >
-                  <FaEnvelope className="text-xl" />
-                  <span>Email</span>
-                </a>
+                    <FaGithub className="text-2xl" />
+                  </a>
+                  <a
+                    href="https://gom20.tistory.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
+                    style={{ opacity: 0.85 }}
+                  >
+                    <img
+                      src="/tistory.svg"
+                      alt="Tistory"
+                      className="w-6 h-6"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                  </a>
+                  <a
+                    href="https://open.kakao.com/o/swKFAh4e"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
+                    style={{ opacity: 0.85 }}
+                  >
+                    <img
+                      src="/kakao.svg"
+                      alt="Kakao"
+                      className="w-6 h-6"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
