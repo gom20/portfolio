@@ -440,9 +440,8 @@ export default function LabsOverlay({ isActive, onClose }: LabsOverlayProps) {
                   원페이지 스크롤 방식의 반응형 웹으로 구현되었습니다. 주요
                   섹션을 스크롤에 따라 순차적으로 노출되도록 구성하여 사용자가
                   자연스럽게 정보를 습득하고 행동(신청, 문의)으로 이어질 수
-                  있도록 설계했습니다. 개발은 HTML, CSS, JavaScript(또는
-                  React/Next.js 기반)로 진행하였으며, 정적 페이지 형태로 빌드한
-                  뒤 Vercel을 이용해 배포했습니다.
+                  있도록 설계했습니다. 개발은 React기반으로 진행하였으며, 정적
+                  페이지 형태로 빌드한 뒤 Vercel을 이용해 배포했습니다.
                 </p>
               </div>
 
