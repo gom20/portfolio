@@ -226,16 +226,10 @@ export default function Year2017({}: Year2017Props) {
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
                       className="w-5 h-5 text-gray-600"
-                      fill="none"
-                      stroke="currentColor"
+                      fill="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 17V9m4 8v-4m4 4V7M4 19h16"
-                      />
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                   </div>
                   <h4 className="text-base font-medium text-gray-800">
@@ -309,7 +303,7 @@ export default function Year2017({}: Year2017Props) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M12 3a9 9 0 100 18 9 9 0 000-18z"
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
                   </div>

@@ -325,7 +325,7 @@ export default function YearPage({
             right: windowWidth < 768 ? '8px' : '65px',
           }}
         >
-          <div className="relative cursor-pointer group">
+          <div className="relative group">
             <div
               style={{
                 fontSize: windowWidth < 768 ? '72px' : '128px',
@@ -333,7 +333,7 @@ export default function YearPage({
                 fontWeight: '800',
                 color: 'transparent',
                 WebkitTextStroke: '1px #1A1A1A',
-                opacity: isVisible ? (scrollY > 50 ? 0 : 0.7) : 0,
+                opacity: isVisible ? (scrollY > 50 ? 0 : 0.5) : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition:
                   scrollY > 50

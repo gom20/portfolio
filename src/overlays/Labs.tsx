@@ -326,7 +326,7 @@ export default function Labs({ isActive, onClose }: LabsProps) {
           <div className="space-y-8">
             {/* 프로젝트 카드 섹션 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {PROJECTS_DATA.map((project) => (
+              {PROJECTS_DATA.map(project => (
                 <ProjectCard key={project.id} {...project} />
               ))}
             </div>

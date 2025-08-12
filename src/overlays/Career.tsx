@@ -247,7 +247,8 @@ export default function Career({ isActive, onClose }: CareerProps) {
           .timeline-content {
             position: relative;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 0px;
             padding: 20px;
             transition: all 0.3s ease;
@@ -277,11 +278,12 @@ export default function Career({ isActive, onClose }: CareerProps) {
               >
                 {/* 타임라인 점 */}
                 <div
-                  className={`absolute top-0 w-2.5 h-2.5 bg-white border-2 border-white/30 rounded-full hidden lg:block ${
+                  className={`absolute w-2.5 h-2.5 bg-white border-2 border-white/30 rounded-full hidden lg:block ${
                     index % 2 === 0
                       ? 'lg:right-[calc(50%-5px)]'
                       : 'lg:left-[calc(50%-5px)]'
                   }`}
+                  style={{ top: '-4px' }}
                 ></div>
 
                 {/* 경력 내용 */}
