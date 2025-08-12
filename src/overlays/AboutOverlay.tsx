@@ -185,84 +185,64 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
         `}</style>
         <div>
           <div className="space-y-8">
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              안녕하세요, 고미영입니다. 저는 2013년부터 현재까지 다양한 환경에서
-              풀스택 개발자로서 성장해온 개발자입니다. 삼성SDS에서 시작하여 넥슨
-              등에서 Java/Spring Boot 기반의 백엔드 개발과 React, Vue.js를
-              활용한 프론트엔드 개발을 모두 담당하며 풀스택 개발 역량을
-              쌓아왔습니다.
+            <p
+              className="text-sm md:text-base lg:text-base leading-relaxed"
+              style={{ color: 'rgb(209 213 219 / var(--tw-text-opacity, 1))' }}
+            >
+              완성도와 디테일을 중시하는 Full-Stack Developer 고미영입니다.
             </p>
 
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              삼성SDS에서는 PeakPerformance Framework를 활용한 대규모
-              엔터프라이즈 시스템 구축 경험을 통해 안정성과 확장성의 중요성을
-              깊이 이해했습니다. 특히 OracleDB와 SQL을 활용한 데이터베이스 설계
-              및 최적화, 그리고 Eclipse, SVN, JIRA, Confluence 등을 통한
-              체계적인 개발 프로세스 관리 경험을 쌓았습니다.
-            </p>
-
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              넥슨에서는 사내 설문 시스템 신규 기능 개발과 백오피스 대시보드
-              구축을 담당했습니다. Spring Boot와 Vue.js를 활용한 NPTI 설문 유형
-              기능 개발을 통해 풀스택 구현 능력을 입증했으며, 이는 실제 서비스에
-              성공적으로 적용되어 비즈니스 가치를 창출했습니다. 또한 Parse,
-              Node.js, Express 기반의 백오피스 시스템과 MongoDB, MySQL,
-              QueryDSL을 활용한 데이터베이스 설계 경험도 보유하고 있습니다.
-            </p>
-
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              개발자로서 지속적인 성장을 위해 새로운 기술 트렌드를 적극적으로
-              학습하고 적용하고 있습니다. IntelliJ, WebStorm 등 현대적인 개발
-              도구를 활용하며, Git을 통한 버전 관리와 체계적인 코드 리뷰
-              프로세스를 통해 코드 품질 향상에 기여하고 있습니다. 특히 사용자
-              중심의 개발 철학을 바탕으로 안정적이고 확장 가능한 시스템을
-              구축하는 것이 목표입니다.
-            </p>
-
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              프로젝트 관리와 협업에서는 단독 개발자로서 주도적으로 프로젝트를
-              진행하는 능력을 보유하고 있으며, 팀 프로젝트에서도 효과적인 소통과
-              협업을 통해 성과를 달성해왔습니다. 다양한 규모의 조직에서 근무하며
-              폭넓은 시각을 갖춘 개발자로 성장했으며, 새로운 기술 도입 시에는
-              항상 팀원들과 충분한 논의를 거쳐 최적의 기술 스택을 선택하고자
-              노력합니다.
-            </p>
-
-            <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
-              앞으로도 클라우드 네이티브 아키텍처와 마이크로서비스, DevOps
-              문화에 대한 학습을 통해 더욱 현대적이고 효율적인 개발 환경을
-              구축하고 싶습니다. 또한 AI와 머신러닝 기술을 웹 개발에 접목시켜
-              더욱 지능적이고 개인화된 사용자 경험을 제공하는 서비스를 만들어
-              가겠습니다.
+            <p
+              className="text-sm md:text-base lg:text-base leading-relaxed"
+              style={{ color: 'rgb(209 213 219 / var(--tw-text-opacity, 1))' }}
+            >
+              복잡한 요구사항도 체계적으로 분석하고 단계별로 해결하며, 문제
+              상황에서는 다양한 시도를 통해 최적의 해답을 찾아냅니다. 무엇보다
+              주석 없이도 이해되는 명확하고 깔끔한 코드 작성을 개발의 핵심
+              원칙으로 삼고 있습니다. 가독성과 유지보수성을 고려한 구조 설계를
+              통해 확장 가능한 소프트웨어를 만들어내며, 사용자 경험과 기술적
+              완성도를 모두 만족시키는 결과물을 추구합니다. 새로운 기술은 이론적
+              학습보다는 직접 구현과 실험을 통해 빠르게 습득하며, 이 과정에서
+              얻는 성취감이 지속적인 성장의 동력이 됩니다. 앞으로는 AI 프롬프트
+              엔지니어링과 아키텍처 설계 역량을 강화해, 기술로 더 큰 가치를
+              창출하는 개발자로 성장하고자 합니다.
             </p>
 
             {/* 링크 섹션 */}
-            <div className="pt-8 border-t border-gray-600">
+            <div className="pt-8">
               <h3
-                className="text-lg md:text-xl font-semibold mb-6 text-white"
-                style={{ fontFamily: 'TheJamsil' }}
+                className="text-lg md:text-xl font-medium mb-6 text-left"
+                style={{
+                  fontFamily: 'TheJamsil',
+                  opacity: 0.85,
+                }}
               >
-                Contact & Links
+                Contact
               </h3>
               <div className="flex flex-wrap gap-4">
                 <a
                   href="https://github.com/yourusername"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                  className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
                 >
-                  <FaGithub className="text-xl" />
-                  <span>GitHub</span>
+                  <FaGithub className="text-2xl" />
                 </a>
 
                 <a
                   href="https://yourblog.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                  className="text-white hover:text-gray-300 transition-all duration-300 hover:scale-105"
                 >
-                  <FaBlog className="text-xl" />
-                  <span>Blog</span>
+                  <svg
+                    className="w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                  </svg>
                 </a>
 
                 <a

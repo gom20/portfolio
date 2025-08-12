@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import {
   FaServer,
   FaCode,
@@ -22,6 +22,11 @@ export default function SkillsContent({
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(
+    new Set()
+  );
+  const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isActive) {
@@ -32,6 +37,7 @@ export default function SkillsContent({
       return () => clearTimeout(timer);
     } else {
       setShouldAnimate(false);
+      setVisibleSections(new Set());
     }
   }, [isActive]);
 
@@ -43,6 +49,39 @@ export default function SkillsContent({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Intersection Observer를 사용한 스크롤 애니메이션
+  const handleIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section-id');
+          if (sectionId) {
+            setVisibleSections(prev => new Set([...prev, sectionId]));
+          }
+        }
+      });
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!isActive || !shouldAnimate) return;
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    });
+
+    // 모든 섹션을 관찰
+    Object.values(sectionRefs.current).forEach(ref => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [isActive, shouldAnimate, handleIntersection]);
 
   // 반응형 패딩 계산
   const getResponsivePadding = () => {
@@ -126,6 +165,11 @@ export default function SkillsContent({
       {skill.name}
     </span>
   );
+
+  // 애니메이션 지연 시간 계산
+  const getAnimationDelay = (index: number) => {
+    return `${index * 0.1}s`;
+  };
 
   return (
     <div
@@ -228,6 +272,7 @@ export default function SkillsContent({
       </button>
 
       <div
+        ref={containerRef}
         className="max-w-7xl text-white overflow-y-auto w-full custom-scrollbar"
         style={{
           paddingLeft: responsivePadding,
@@ -267,7 +312,21 @@ export default function SkillsContent({
         `}</style>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.backend = el;
+            }}
+            data-section-id="backend"
+            style={{
+              transform: visibleSections.has('backend')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('backend') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(0),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -298,7 +357,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.frontend = el;
+            }}
+            data-section-id="frontend"
+            style={{
+              transform: visibleSections.has('frontend')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('frontend') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(1),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -326,7 +399,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.database = el;
+            }}
+            data-section-id="database"
+            style={{
+              transform: visibleSections.has('database')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('database') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(2),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -355,7 +442,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.ide = el;
+            }}
+            data-section-id="ide"
+            style={{
+              transform: visibleSections.has('ide')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('ide') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(3),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -385,7 +486,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.versionControl = el;
+            }}
+            data-section-id="versionControl"
+            style={{
+              transform: visibleSections.has('versionControl')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('versionControl') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(4),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -413,7 +528,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.tools = el;
+            }}
+            data-section-id="tools"
+            style={{
+              transform: visibleSections.has('tools')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('tools') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(5),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
@@ -442,7 +571,21 @@ export default function SkillsContent({
             </p>
           </div>
 
-          <div>
+          <div
+            ref={el => {
+              sectionRefs.current.documentation = el;
+            }}
+            data-section-id="documentation"
+            style={{
+              transform: visibleSections.has('documentation')
+                ? 'translateY(0)'
+                : 'translateY(30px)',
+              opacity: visibleSections.has('documentation') ? 1 : 0,
+              transition:
+                'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transitionDelay: getAnimationDelay(6),
+            }}
+          >
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
               style={{
