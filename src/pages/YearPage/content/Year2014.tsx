@@ -8,12 +8,10 @@ export default function Year2014({}: Year2014Props) {
   const headerRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
   const achievementsRef = useRef<HTMLDivElement>(null);
-  const techStackRef = useRef<HTMLDivElement>(null);
 
   const [headerVisible, setHeaderVisible] = useState(false);
   const [overviewVisible, setOverviewVisible] = useState(false);
   const [achievementsVisible, setAchievementsVisible] = useState(false);
-  const [techStackVisible, setTechStackVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,8 +24,6 @@ export default function Year2014({}: Year2014Props) {
               setOverviewVisible(true);
             } else if (entry.target === achievementsRef.current) {
               setAchievementsVisible(true);
-            } else if (entry.target === techStackRef.current) {
-              setTechStackVisible(true);
             }
           }
         });
@@ -41,7 +37,6 @@ export default function Year2014({}: Year2014Props) {
     if (headerRef.current) observer.observe(headerRef.current);
     if (overviewRef.current) observer.observe(overviewRef.current);
     if (achievementsRef.current) observer.observe(achievementsRef.current);
-    if (techStackRef.current) observer.observe(techStackRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -216,76 +211,6 @@ export default function Year2014({}: Year2014Props) {
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 통신사 웹서비스 연동을 위한 SOAP 기반 클라이언트 구현</p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Technology Stack */}
-          <div
-            ref={techStackRef}
-            style={fadeInStyle(techStackVisible)}
-            className="mb-16"
-          >
-            <div className="mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
-                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
-                  사용 기술 및 환경
-                </h3>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Backend
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Java</li>
-                  <li>Spring Framework</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Frontend
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>JSP</li>
-                  <li>JavaScript</li>
-                  <li>jQuery</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Database
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>MariaDB</li>
-                  <li>SQL</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  IDE
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Eclipse</li>
-                  <li>IntelliJ</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
-                </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
-                  <li>Git</li>
-                  <li>JIRA</li>
-                  <li>Confluence</li>
-                </ul>
               </div>
             </div>
           </div>

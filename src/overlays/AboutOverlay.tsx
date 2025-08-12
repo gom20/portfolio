@@ -187,9 +187,9 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
           <div className="space-y-8">
             <p className="text-sm md:text-base lg:text-base leading-relaxed text-gray-300">
               안녕하세요, 고미영입니다. 저는 2013년부터 현재까지 다양한 환경에서
-              풀스택 개발자로서 성장해온 개발자입니다. 삼성SDS에서 시작하여
-              넥슨, 스타트업 등에서 Java/Spring Boot 기반의 백엔드 개발과 React,
-              Vue.js를 활용한 프론트엔드 개발을 모두 담당하며 풀스택 개발 역량을
+              풀스택 개발자로서 성장해온 개발자입니다. 삼성SDS에서 시작하여 넥슨
+              등에서 Java/Spring Boot 기반의 백엔드 개발과 React, Vue.js를
+              활용한 프론트엔드 개발을 모두 담당하며 풀스택 개발 역량을
               쌓아왔습니다.
             </p>
 

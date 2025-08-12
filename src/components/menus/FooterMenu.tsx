@@ -34,7 +34,7 @@ export default function SideMenu({
 
   const menuItems = [
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
-    { id: 'experience', number: '02', label: 'Work', type: 'overlay' },
+    { id: 'experience', number: '02', label: 'Career', type: 'overlay' },
     { id: 'skills', number: '03', label: 'Skills', type: 'overlay' },
     { id: 'toy', number: '04', label: 'Toy', type: 'overlay' },
   ];
@@ -206,7 +206,7 @@ export default function SideMenu({
                   transition:
                     'transform 0.8s ease-out 0.4s, color 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-text-stroke 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   color: 'rgb(255, 255, 255, 0.8)',
-                  WebkitTextStroke: '0.5px rgb(255, 255, 255, 0.8)',
+                  WebkitTextStroke: '0.5px rgb(255, 255, 255, 0.75)',
                 }}
               >
                 MIYOUNG

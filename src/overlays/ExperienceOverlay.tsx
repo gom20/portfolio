@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 interface ExperienceContentProps {
   isActive: boolean;
@@ -13,6 +13,8 @@ export default function ExperienceOverlay({
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+  const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (isActive) {
@@ -31,6 +33,40 @@ export default function ExperienceOverlay({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Intersection Observer 설정
+  const observerCallback = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const itemId = parseInt(
+            entry.target.getAttribute('data-item-id') || '0'
+          );
+          setVisibleItems(prev => new Set([...prev, itemId]));
+        }
+      });
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!shouldAnimate) return;
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px',
+    });
+
+    timelineRefs.current.forEach(ref => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [shouldAnimate, observerCallback]);
+
   // 반응형 패딩 계산
   const getResponsivePadding = () => {
     if (windowWidth < 768) {
@@ -46,6 +82,57 @@ export default function ExperienceOverlay({
   };
 
   const responsivePadding = getResponsivePadding();
+
+  // 경력 데이터
+  const experiences = [
+    {
+      id: 0,
+      company: 'Now',
+      period: '2025.08 - 현재',
+      position: 'Full-Stack Developer',
+      description: '현재 진행 중인 프로젝트 및 새로운 도전',
+      technologies: ['React', 'TypeScript', 'Next.js', 'Node.js'],
+      year: '2025-현재',
+    },
+    {
+      id: 1,
+      company: '현대오토에버',
+      period: '2023.12 - 2025.08',
+      position: 'Backend Developer',
+      description:
+        '글로비스 차량 위치 관리 시스템 구축, KIA 광명공장 스마트 태그 시스템 구축',
+      technologies: ['React', 'TypeScript', 'Spring Boot', 'Java', 'Oracle'],
+      year: '2023-2025',
+    },
+    {
+      id: 2,
+      company: '미띵스',
+      period: '2023.04 - 2023.12',
+      position: 'Full-Stack Developer',
+      description:
+        '넥슨 퍼스트 설문 대시보드 개발, 넥슨 설문 시스템 NPTI 유형 신규 개발',
+      technologies: ['React', 'TypeScript', 'Spring Boot', 'Java', 'Oracle'],
+      year: '2023',
+    },
+    {
+      id: 3,
+      company: '삼성SDS',
+      period: '2013.02 - 2020.07',
+      position: 'Software Engineer',
+      description:
+        '삼성전자 반도체 제조 시스템 운영 및 모니터링 (2017.11 - 2020.07)\n삼성SDS Nexshop Sales 리테일 솔루션 개발 (2014.12 - 2017.10)\n삼성전자 Smart TV 웹앱 개발 및 유지보수 (2013.02 - 2014.11)',
+      technologies: [
+        'Java',
+        'Spring Framework',
+        'Oracle',
+        'MySQL',
+        'JavaScript',
+        'HTML/CSS',
+        'Smart TV SDK',
+      ],
+      year: '2013-2020',
+    },
+  ];
 
   return (
     <div
@@ -184,78 +271,295 @@ export default function ExperienceOverlay({
             background: rgba(226, 232, 240, 0.6);
             transform: scale(1.1);
           }
+          
+          .timeline-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          
+          .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          
+                     .timeline-dot {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              background: #ffffff;
+              border: 2px solid rgba(255, 255, 255, 0.3);
+              border-radius: 50%;
+              opacity: 0;
+              transform: scale(0);
+              transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+            }
+          
+          .timeline-item.visible .timeline-dot {
+            opacity: 1;
+            transform: scale(1);
+          }
+          
+                     .timeline-line {
+             position: absolute;
+             left: 50%;
+             top: 0;
+             bottom: 0;
+             width: 1px;
+             background: rgba(255, 255, 255, 0.4);
+             transform: translateX(-50%);
+           }
+          
+                     .timeline-content {
+             position: relative;
+             background: rgba(255, 255, 255, 0.03);
+             border: 1px solid rgba(255, 255, 255, 0.08);
+             border-radius: 0px;
+             padding: 20px;
+             transition: all 0.3s ease;
+             opacity: 0;
+             transform: translateY(20px);
+             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+           }
+          
+          .timeline-item.visible .timeline-content {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          
+                     .timeline-content:hover {
+             background: rgba(255, 255, 255, 0.05);
+             border-color: rgba(255, 255, 255, 0.2);
+           }
         `}</style>
-        <div>
-          <h2 className="text-lg md:text-xl lg:text-xl font-semibold mb-6">
-            Experience
-          </h2>
 
-          <div className="space-y-8">
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="text-base md:text-lg lg:text-xl font-medium mb-2">
-                현대오토에버
-              </h3>
-              <p className="text-sm md:text-base lg:text-base text-gray-300 italic mb-3">
-                2023.12 - 2025.08 | Full-Stack Developer
-              </p>
-              <ul className="text-sm md:text-base lg:text-base text-gray-300 space-y-2">
-                <li>• 차량 위치 관리 시스템 구축 및 운영</li>
-                <li>• 의장 차량 트래킹 시스템 I/F 개발</li>
-                <li>• React, TypeScript 기반 프론트엔드 개발</li>
-                <li>• Spring Boot, Java 기반 백엔드 API 개발</li>
-                <li>• Oracle Database 연동 및 최적화</li>
-              </ul>
-            </div>
+        {/* 타임라인 컨테이너 */}
+        <div className="relative">
+          {/* 중앙 세로선 */}
+          <div className="timeline-line hidden lg:block"></div>
 
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="text-base md:text-lg lg:text-xl font-medium mb-2">
-                미띵스
-              </h3>
-              <p className="text-sm md:text-base lg:text-base text-gray-300 italic mb-3">
-                2023.04 - 2023.12 | Frontend Developer
-              </p>
-              <ul className="text-sm md:text-base lg:text-base text-gray-300 space-y-2">
-                <li>• 리서치 서비스 유지보수 및 신규 기능 개발</li>
-                <li>• Vue.js, JavaScript 기반 SPA 개발</li>
-                <li>• RESTful API 연동 및 상태 관리</li>
-                <li>• 사용자 경험 개선을 위한 UI/UX 최적화</li>
-                <li>• 반응형 웹 디자인 구현</li>
-              </ul>
-            </div>
+          {/* 경력 아이템들 */}
+          <div className="space-y-12">
+            {experiences.map((experience, index) => (
+              <div
+                key={experience.id}
+                ref={el => {
+                  timelineRefs.current[index] = el;
+                }}
+                data-item-id={experience.id}
+                className={`timeline-item relative ${
+                  visibleItems.has(experience.id) ? 'visible' : ''
+                } ${
+                  index % 2 === 0
+                    ? 'lg:pr-[50%] lg:pl-0'
+                    : 'lg:pl-[50%] lg:pr-0'
+                }`}
+              >
+                {/* 타임라인 점 */}
+                <div
+                  className={`timeline-dot hidden lg:block ${
+                    index % 2 === 0
+                      ? 'lg:right-[calc(50%-5px)]'
+                      : 'lg:left-[calc(50%-5px)]'
+                  }`}
+                ></div>
 
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="text-base md:text-lg lg:text-xl font-medium mb-2">
-                프리랜서
-              </h3>
-              <p className="text-sm md:text-base lg:text-base text-gray-300 italic mb-3">
-                2021.04 - 2021.07 | Full-Stack Developer
-              </p>
-              <ul className="text-sm md:text-base lg:text-base text-gray-300 space-y-2">
-                <li>• 반도체 자재 사용량 분석 시스템 개발</li>
-                <li>• Python, Django를 활용한 데이터 분석 시스템 구축</li>
-                <li>• PostgreSQL 데이터베이스 설계 및 구현</li>
-                <li>• 데이터 시각화 대시보드 개발</li>
-                <li>• 클라이언트 요구사항 분석 및 솔루션 제안</li>
-              </ul>
-            </div>
+                {/* 경력 내용 */}
+                <div
+                  className="timeline-content"
+                  style={{
+                    padding:
+                      experience.id === 4
+                        ? '28px'
+                        : experience.id === 1
+                        ? '24px'
+                        : experience.id === 0
+                        ? '20px'
+                        : '22px',
+                    paddingTop: '20px',
+                    paddingBottom: '20px',
+                  }}
+                >
+                  {/* 연도 표시 */}
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-gray-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                      {experience.year}
+                    </span>
+                  </div>
 
-            <div className="border-l-4 border-white pl-6">
-              <h3 className="text-base md:text-lg lg:text-xl font-medium mb-2">
-                삼성SDS
-              </h3>
-              <p className="text-sm md:text-base lg:text-base text-gray-300 italic mb-3">
-                2013.02 - 2020.07 | Software Engineer
-              </p>
-              <ul className="text-sm md:text-base lg:text-base text-gray-300 space-y-2">
-                <li>• 반도체 자재 사용량 분석 시스템 운영 및 개선</li>
-                <li>• 리테일 솔루션 Admin 모듈 개발</li>
-                <li>• SMART TV 앱 유지보수 및 신규 기능 개발</li>
-                <li>• Java, Spring Framework 기반 엔터프라이즈 시스템 개발</li>
-                <li>• Oracle, MySQL 데이터베이스 관리 및 성능 튜닝</li>
-                <li>• 대규모 트래픽 처리를 위한 시스템 아키텍처 설계</li>
-                <li>• 레거시 시스템 마이그레이션 프로젝트 참여</li>
-              </ul>
-            </div>
+                  {/* 회사명 */}
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">
+                    {experience.company}
+                  </h3>
+
+                  {/* 기간과 포지션 */}
+                  <p className="text-gray-300 text-sm font-medium mb-3">
+                    {experience.period} | {experience.position}
+                  </p>
+
+                  {/* 설명 */}
+                  {experience.id === 4 ? (
+                    <div className="mb-6">
+                      {/* 세로줄 */}
+                      <div className="relative">
+                        <div className="absolute left-2 top-2 bottom-0 w-px bg-white/20"></div>
+                        <div className="ml-6 space-y-3">
+                          <div className="text-xs text-gray-400 mb-0.5 font-medium">
+                            2017.11 - 2020.07
+                          </div>
+                          <div className="text-gray-300 text-sm">
+                            반도체 제조 시스템 운영 및 모니터링
+                          </div>
+
+                          <div className="text-xs text-gray-400 mb-0.5 font-medium">
+                            2014.12 - 2017.10
+                          </div>
+                          <div className="text-gray-300 text-sm">
+                            Nexshop Sales 리테일 솔루션 개발
+                          </div>
+
+                          <div className="text-xs text-gray-400 mb-0.5 font-medium">
+                            2013.05 - 2014.11
+                          </div>
+                          <div className="text-gray-300 text-sm">
+                            Smart TV 웹앱 개발 및 유지보수
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : experience.id === 1 ? (
+                    <div className="mb-6">
+                      {/* 세로줄 */}
+                      <div className="relative">
+                        <div
+                          className="absolute left-2 top-0 bottom-0 w-px bg-white/20"
+                          style={{ width: '1px', maxWidth: '1px' }}
+                        ></div>
+                        <div className="ml-6 space-y-4">
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2024.09 - 2025.08
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              글로비스 차량 위치 관리 시스템 구축
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2024.01 - 2024.08
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              KIA 광명공장 스마트 태그 시스템 구축
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : experience.id === 2 ? (
+                    <div className="mb-6">
+                      {/* 세로줄 */}
+                      <div className="relative">
+                        <div
+                          className="absolute left-2 top-0 bottom-0 w-px bg-white/20"
+                          style={{ width: '1px', maxWidth: '1px' }}
+                        ></div>
+                        <div className="ml-6 space-y-4">
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2023.09 - 2023.12
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              넥슨 퍼스트 설문 대시보드 개발
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2023.04 - 2023.08
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              넥슨 설문 시스템 NPTI 유형 신규 개발
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : experience.id === 3 ? (
+                    <div className="mb-6">
+                      {/* 세로줄 */}
+                      <div className="relative">
+                        <div
+                          className="absolute left-2 top-0 bottom-0 w-px bg-white/20"
+                          style={{ width: '1px', maxWidth: '1px' }}
+                        ></div>
+                        <div className="ml-6 space-y-4">
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2017.11 - 2020.07
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              반도체 제조 시스템 운영 및 모니터링
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2014.12 - 2017.10
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              Nexshop Sales 리테일 솔루션 개발
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2013.02 - 2014.11
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              Smart TV 웹앱 개발 및 유지보수
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : experience.id === 0 ? (
+                    <div className="mb-6">
+                      {/* 세로줄 */}
+                      <div className="relative">
+                        <div
+                          className="absolute left-2 top-0 bottom-0 w-px bg-white/20"
+                          style={{ width: '1px', maxWidth: '1px' }}
+                        ></div>
+                        <div className="ml-6 space-y-4">
+                          <div>
+                            <div className="text-xs text-gray-400 mb-1 font-medium">
+                              2025.08 - 현재
+                            </div>
+                            <div className="text-gray-300 text-sm">
+                              현재 진행 중인 프로젝트 및 새로운 도전
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <p
+                      className={`text-gray-300 text-sm leading-relaxed ${
+                        experience.id === 1
+                          ? 'mb-4'
+                          : experience.id === 0
+                          ? 'mb-2'
+                          : 'mb-3'
+                      }`}
+                      style={{ whiteSpace: 'pre-line' }}
+                    >
+                      {experience.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

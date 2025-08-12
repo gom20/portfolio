@@ -25,7 +25,11 @@ export default function SkillsContent({
 
   useEffect(() => {
     if (isActive) {
-      setShouldAnimate(true);
+      // 약간의 지연을 두어 초기 렌더링 완료 후 애니메이션 시작
+      const timer = setTimeout(() => {
+        setShouldAnimate(true);
+      }, 50);
+      return () => clearTimeout(timer);
     } else {
       setShouldAnimate(false);
     }
@@ -99,12 +103,7 @@ export default function SkillsContent({
         experience: '3+ years',
       },
       {
-        name: 'API Documentation',
-        category: 'Documentation',
-        experience: '2+ years',
-      },
-      {
-        name: 'User Manual',
+        name: 'System Design Documentation',
         category: 'Documentation',
         experience: '2+ years',
       },
@@ -112,7 +111,18 @@ export default function SkillsContent({
   };
 
   const SkillTag = ({ skill }: { skill: any }) => (
-    <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 text-xs text-white hover:bg-white/15 transition-all duration-300 hover:scale-105 mr-2 mb-2">
+    <span
+      className="inline-block border border-white/20 rounded-full px-2 py-1 text-xs text-white mr-2 mb-2"
+      style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+      }}
+    >
       {skill.name}
     </span>
   );
@@ -231,7 +241,7 @@ export default function SkillsContent({
           transform: shouldAnimate ? 'translateY(0)' : 'translateY(80px)',
           opacity: shouldAnimate ? 1 : 0,
           transition: shouldAnimate
-            ? 'transform 0.5s ease-out 0.5s, opacity 0.5s ease-out 0.6s'
+            ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s, opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s'
             : 'none',
           visibility: isActive ? 'visible' : 'hidden',
         }}
@@ -255,18 +265,16 @@ export default function SkillsContent({
             transform: scale(1.1);
           }
         `}</style>
-        <h2
-          className="text-lg md:text-xl lg:text-xl font-semibold mb-6"
-          style={{ fontFamily: 'TheJamsil' }}
-        >
-          Skills & Technologies
-        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaServer className="text-blue-400" />
               Backend
@@ -293,7 +301,11 @@ export default function SkillsContent({
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaCode className="text-green-400" />
               Frontend
@@ -305,8 +317,8 @@ export default function SkillsContent({
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
               삼성전자 Smart TV 웹앱 개발자로 경력을 시작하여 JavaScript, HTML,
-              CSS 등 웹 기술 기반의 UI 개발 경험을 쌓았습니다. 삼성 SDS Nexshop
-              Sales 솔루션에서는 Javascript를 활용한 관리자 웹 화면을
+              CSS 등 웹 기술 기반의 Frontend 개발 경험을 쌓았습니다. 삼성 SDS
+              Nexshop Sales 솔루션에서는 Javascript를 활용한 관리자 웹 화면을
               구현했으며, 넥슨 사내 설문 시스템에서는 Vue.js 환경에서 신규 기능
               개발을 담당했습니다. 또한 개인 프로젝트로 React Native를 활용하여
               간단한 애플리케이션을 개발하여 안드로이드 마켓에 출시한 경험도
@@ -317,7 +329,11 @@ export default function SkillsContent({
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaDatabase className="text-yellow-400" />
               Database
@@ -328,11 +344,11 @@ export default function SkillsContent({
               ))}
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              삼성 SDS Nexshop Sales 솔루션에서 MariaDB기반 담당 모듈의 테이블
+              삼성 SDS Nexshop Sales 솔루션에서 MariaDB 기반 담당 모듈의 테이블
               설계를 시작으로 데이터베이스 기술 역량을 쌓았습니다. 삼성전자
               반도체 자재 사용량 분석 시스템에서는 Oracle 환경에서 대용량 데이터
               처리와 쿼리 성능 최적화 작업을 수행했으며, 넥슨 퍼스트 유지보수
-              업무를 통해 MongoDB를 접해보며 NoSQL 운영 경험을 쌓았습니다. KIA
+              업무를 통해 MongoDB를 접해보며 NoSQL 운영 경험을 해보았습니다. KIA
               자동차 스마트태그 시스템에서는 Tibero DB 환경에서의 데이터 CRUD
               로직을 개발했으며, 최근 현대글로비스 차량 위치 관리 시스템에서는
               MariaDB 기반의 전체 테이블 설계를 주도적으로 수행했습니다.
@@ -342,7 +358,11 @@ export default function SkillsContent({
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaDesktop className="text-purple-400" />
               IDE
@@ -353,20 +373,26 @@ export default function SkillsContent({
               ))}
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Backend 개발의 경우 IntelliJ를 즐겨 사용하고 있습니다. Frontend
-              개발은 Visual Studio Code를 주로 사용했으며, 최근에는 Cursor를
-              활용한 AI 코딩 도구를 적극적으로 사용하고 있습니다. ChatGPT,
-              Claude, Gemini 등 다양한 AI 모델을 활용하여 프롬프트 엔지니어링
-              경험을 쌓고 있으며, AI와의 효과적인 협업을 통해 코드 품질과 개발
-              속도를 개선하고 있습니다. 특히 Vibe Coding을 즐기며 개발하고 있어
-              AI와 함께하는 창의적인 코딩 환경을 추구합니다.
+              Backend 개발에서는 IntelliJ IDEA를 주력으로 사용하고 있으며,
+              Frontend 개발은 Visual Studio Code를 기반으로 하되 최근에는
+              Cursor를 통한 AI 코딩 환경으로 전환하여 개발 효율성을 높이고
+              있습니다. ChatGPT, Claude, Gemini 등 다양한 AI 모델과의 협업을
+              통해 프롬프트 엔지니어링 역량을 축적했으며, AI 페어 프로그래밍을
+              활용하여 코드 품질 향상과 개발 속도 최적화를 실현하고 있습니다.
+              AI와 함께하는 직관적인 개발 과정을 통해 아이디어를 빠르게
+              프로토타이핑하고, 기술적 완성도와 개발 효율성을 동시에 추구하고
+              있습니다.
             </p>
           </div>
 
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaGitAlt className="text-orange-400" />
               Version Control
@@ -377,19 +403,24 @@ export default function SkillsContent({
               ))}
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Git을 주로 사용하고 있으며, Nexshop Sales와 넥슨 퍼스트 개발
-              시에는 GitFlow를 경험해보았습니다. 오래 전에는 SVN을 사용했는데,
-              제조업 쪽은 폐쇄망 환경이고 SI 프로젝트의 경우 SVN을 사용하는
-              경우가 많았습니다. 최근에는 Git 기반의 현대적인 버전 관리
-              시스템으로 전환하여 브랜치 전략과 협업 워크플로우를 체계적으로
-              관리하고 있습니다.
+              제조 분야 업무에서는 폐쇄망과 레거시 시스템 환경 특성상 SVN을
+              활용한 버전 관리를 경험했습니다. 팀 협업 프로젝트에서는 주로 Git을
+              사용하였으며, GitFlow 브랜치 전략을 적용하여 체계적인 코드 관리와
+              배포 프로세스를 수행했습니다. 개인 프로젝트 및 일반적인 개발
+              업무에서도 주로 Git을 사용하고 있습니다. 다양한 개발 환경과
+              프로젝트 규모에 따른 적절한 버전 관리 전략을 선택하여 효율적인
+              개발 워크플로우를 구축하고 있습니다.
             </p>
           </div>
 
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaTools className="text-red-400" />
               Tool
@@ -400,15 +431,25 @@ export default function SkillsContent({
               ))}
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              솔루션 개발 업무에서 Jira로 이슈 관리를 하였습니다. 시스템 운영
-              업무에서 Confluence를 사용하여 운영 정보를 공유하였습니다.
+              솔루션 개발 프로젝트에서 Jira를 활용하여 이슈 등록, 우선순위 지정,
+              진행 상태 추적을 수행하였으며, 백로그와 칸반 보드를 통해 팀원 간
+              작업 현황을 시각적으로 공유하고 업무 병목을 조기에 발견하였습니다.
+              시스템 운영 업무에서는 Confluence를 사용하여 운영 매뉴얼, 장애
+              대응 절차, 배포 이력 등 주요 문서를 작성·관리하고, 권한 설정을
+              통해 보안성을 확보하며 운영 정보를 체계적으로 공유하였습니다.
+              또한, 신규 시스템 구축 시 Figma를 활용하여 초기 와이어프레임을
+              제작하고 기획 방향을 시각적으로 정리하였습니다.
             </p>
           </div>
 
           <div>
             <h3
               className="text-base md:text-lg font-semibold mb-4 border-b border-gray-400 pb-2 flex items-center gap-2"
-              style={{ fontFamily: 'TheJamsil' }}
+              style={{
+                fontFamily: 'TheJamsil',
+                fontWeight: '400',
+                opacity: 0.85,
+              }}
             >
               <FaFileAlt className="text-green-400" />
               Documentation
@@ -420,10 +461,10 @@ export default function SkillsContent({
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
               인터페이스 설계서, 화면설계서, 요구사항 정의서, 요구사항 추적
-              메트릭스, 단위테스트 명세서, 테이블 정의서, 시스템 데이터 플로우
-              등 다양한 설계 문서를 작성한 경험이 있습니다. 이러한 문서화를 통해
-              개발팀과 운영팀 간의 원활한 소통을 지원하며, 프로젝트의 일관성과
-              품질을 보장하고 있습니다.
+              매트릭스, 단위테스트 명세서, 테이블 정의서, 시스템 데이터 플로우
+              등 다양한 설계 문서를 작성하여 프로젝트의 핵심 산출물을 체계적으로
+              관리하였습니다. 이러한 문서화 작업을 통해 요구사항을 명확히 하고
+              구현 방향을 구체화하여, 프로젝트의 일관성과 품질을 유지하였습니다.
             </p>
           </div>
         </div>
