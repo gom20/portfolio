@@ -335,7 +335,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaServer className="text-blue-400" />
+              <FaServer className="text-gray-300" />
               Backend
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -380,7 +380,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaCode className="text-green-400" />
+              <FaCode className="text-gray-300" />
               Frontend
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -422,7 +422,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaDatabase className="text-yellow-400" />
+              <FaDatabase className="text-gray-300" />
               Database
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -465,7 +465,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaDesktop className="text-purple-400" />
+              <FaDesktop className="text-gray-300" />
               IDE
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -509,7 +509,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaGitAlt className="text-orange-400" />
+              <FaGitAlt className="text-gray-300" />
               Version Control
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -551,7 +551,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaTools className="text-red-400" />
+              <FaTools className="text-gray-300" />
               Tool
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -594,7 +594,7 @@ export default function SkillsContent({
                 opacity: 0.85,
               }}
             >
-              <FaFileAlt className="text-green-400" />
+              <FaFileAlt className="text-gray-300" />
               Documentation
             </h3>
             <div className="flex flex-wrap mb-4">

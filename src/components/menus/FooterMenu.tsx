@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AboutOverlay from '../../overlays/AboutOverlay';
 import ExperienceOverlay from '../../overlays/ExperienceOverlay';
 import SkillsContent from '../../overlays/SkillOveraly';
+import LabsOverlay from '../../overlays/LabsOverlay';
 import {
   useResponsivePadding,
   useIsMobile,
@@ -22,6 +23,7 @@ export default function SideMenu({
   const [isAboutActive, setIsAboutActive] = useState(false);
   const [isExperienceActive, setIsExperienceActive] = useState(false);
   const [isSkillsActive, setIsSkillsActive] = useState(false);
+  const [isLabsActive, setIsLabsActive] = useState(false);
 
   // 리팩토링된 반응형 훅 사용
   const windowWidth = useWindowWidth();
@@ -36,13 +38,14 @@ export default function SideMenu({
     { id: 'about', number: '01', label: 'About', type: 'overlay' },
     { id: 'experience', number: '02', label: 'Career', type: 'overlay' },
     { id: 'skills', number: '03', label: 'Skills', type: 'overlay' },
+    { id: 'labs', number: '04', label: 'Labs', type: 'overlay' },
   ];
 
   // 반응형 메뉴 스타일 계산 (간소화됨)
   const menuStyles = isMobile
-    ? { gap: '12px', bottom: '16px', showAllItems: false }
+    ? { gap: '8px', bottom: '16px', showAllItems: false }
     : {
-        gap: windowWidth < 1024 ? '18px' : '24px',
+        gap: windowWidth < 1024 ? '14px' : '18px',
         bottom: '32px',
         showAllItems: true,
       };
@@ -98,6 +101,10 @@ export default function SideMenu({
     setIsSkillsActive(true);
   };
 
+  const handleLabsClick = () => {
+    setIsLabsActive(true);
+  };
+
   return (
     <>
       {/* About 레이어 */}
@@ -148,6 +155,22 @@ export default function SideMenu({
         </div>
       )}
 
+      {/* Labs 레이어 */}
+      {isLabsActive && (
+        <div
+          className="fixed inset-0 z-40"
+          style={{
+            background: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          <LabsOverlay
+            isActive={isLabsActive}
+            onClose={() => setIsLabsActive(false)}
+          />
+        </div>
+      )}
+
       {/* 이름 부분 - 이동하는 애니메이션 */}
       <div
         className="fixed z-50"
@@ -168,7 +191,10 @@ export default function SideMenu({
             fontWeight: '800',
             color: 'rgb(255, 255, 255, 0.8)',
             transform:
-              isAboutActive || isExperienceActive || isSkillsActive
+              isAboutActive ||
+              isExperienceActive ||
+              isSkillsActive ||
+              isLabsActive
                 ? `translateY(-${window.innerHeight - 250}px)`
                 : 'translateY(0)',
             transition: 'transform 1.2s cubic-bezier(0.175, 0.885, 0.1, 1.0)',
@@ -236,7 +262,8 @@ export default function SideMenu({
                 nameAnimation &&
                 !isAboutActive &&
                 !isExperienceActive &&
-                !isSkillsActive
+                !isSkillsActive &&
+                !isLabsActive
                   ? 1
                   : 0,
               transform: nameAnimation ? 'translateY(0)' : 'translateY(20px)',
@@ -278,7 +305,7 @@ export default function SideMenu({
                   marginBottom: '8px',
                   color:
                     hoveredItem === item.id
-                      ? 'rgb(94 234 212)'
+                      ? 'rgba(255, 255, 255, 0.9)'
                       : 'rgba(255, 255, 255, 0.7)',
                   cursor: 'pointer',
                   display: 'flex',
@@ -287,7 +314,8 @@ export default function SideMenu({
                     nameAnimation &&
                     !isAboutActive &&
                     !isExperienceActive &&
-                    !isSkillsActive
+                    !isSkillsActive &&
+                    !isLabsActive
                       ? 1
                       : 0,
                   transition: nameAnimation
@@ -302,9 +330,10 @@ export default function SideMenu({
                   if (item.id === 'about') handleAboutClick();
                   if (item.id === 'experience') handleExperienceClick();
                   if (item.id === 'skills') handleSkillsClick();
+                  if (item.id === 'labs') handleLabsClick();
                 }}
               >
-                <span style={{ fontWeight: '400', marginRight: '8px' }}>
+                <span style={{ fontWeight: '300', marginRight: '4px' }}>
                   {item.number}
                 </span>
                 {item.label}

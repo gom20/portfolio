@@ -189,7 +189,7 @@ export default function AboutOverlay({ isActive, onClose }: AboutContentProps) {
               className="text-sm md:text-base lg:text-base leading-relaxed"
               style={{ color: 'rgb(209 213 219 / var(--tw-text-opacity, 1))' }}
             >
-              완성도와 디테일을 중시하는 Full-Stack Developer 고미영입니다.
+              완성도와 디테일을 중시하는 10년차 개발자 고미영입니다.
             </p>
 
             <p
