@@ -115,7 +115,7 @@ const PROJECTS_DATA = [
     technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
     description:
       'React와 TypeScript를 기반으로 제작한 개인 포트폴리오 웹사이트입니다. Vite를 사용하여 빠르고 효율적인 개발 환경을 구축했으며, Tailwind CSS로 모던하고 반응형 UI를 구현했습니다. 연도별 경력, 기술 스택, 프로젝트 경험을 체계적으로 정리하여 보여주는 화면 전환과 인터랙티브 오버레이 방식을 함께 적용해 부드러운 사용자 경험을 구현했습니다. 개발 과정 전반을 AI를 활용한 바이브 코딩 방식으로 진행하여, 세밀한 UI/UX 디테일과 복잡한 인터랙션을 구현했습니다.',
-    link: 'https://github.com/gom20/resume',
+    link: 'https://gom20portfolio.vercel.app',
   },
   {
     id: 'project2',
