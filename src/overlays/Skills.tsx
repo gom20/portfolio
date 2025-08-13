@@ -272,7 +272,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaServer className="text-gray-300" />
+              <FaServer style={{ color: 'var(--third)' }} />
               Backend
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -303,7 +303,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaCode className="text-gray-300" />
+              <FaCode style={{ color: 'var(--third)' }} />
               Frontend
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -331,7 +331,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaDatabase className="text-gray-300" />
+              <FaDatabase style={{ color: 'var(--third)' }} />
               Database
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -360,7 +360,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaDesktop className="text-gray-300" />
+              <FaDesktop style={{ color: 'var(--third)' }} />
               IDE
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -390,7 +390,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaGitAlt className="text-gray-300" />
+              <FaGitAlt style={{ color: 'var(--third)' }} />
               Version Control
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -418,7 +418,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaTools className="text-gray-300" />
+              <FaTools style={{ color: 'var(--third)' }} />
               Tool
             </h3>
             <div className="flex flex-wrap mb-4">
@@ -447,7 +447,7 @@ export default function Skills({ isActive, onClose }: SkillsProps) {
                 opacity: 0.85,
               }}
             >
-              <FaFileAlt className="text-gray-300" />
+              <FaFileAlt style={{ color: 'var(--third)' }} />
               Documentation
             </h3>
             <div className="flex flex-wrap mb-4">

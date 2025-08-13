@@ -305,7 +305,7 @@ export default function SideMenu({
                   marginBottom: '8px',
                   color:
                     hoveredItem === item.id
-                      ? 'rgba(255, 255, 255, 0.9)'
+                      ? 'var(--third)'
                       : 'rgba(255, 255, 255, 0.7)',
                   cursor: 'pointer',
                   display: 'flex',

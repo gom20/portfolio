@@ -77,19 +77,49 @@ export default function Year2017({}: Year2017Props) {
               반도체 자재 사용량 분석 시스템 운영
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 시스템 운영
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 배치 작업
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 데이터 가공
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 성능 개선
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 해외 확산
               </span>
             </div>
@@ -129,7 +159,10 @@ export default function Year2017({}: Year2017Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
                 <h3
                   className="text-xl font-bold text-gray-800 tracking-wide"
                   style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
@@ -143,11 +176,14 @@ export default function Year2017({}: Year2017Props) {
               {/* 시스템 모니터링 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -187,11 +223,14 @@ export default function Year2017({}: Year2017Props) {
               {/* 유지보수 및 성능 개선 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -223,10 +262,13 @@ export default function Year2017({}: Year2017Props) {
               {/* 고객 SR/VOC 대응 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
-                      fill="currentColor"
+                      className="w-5 h-5"
+                      fill="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -255,11 +297,14 @@ export default function Year2017({}: Year2017Props) {
               {/* 운영 업무 체계화 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -292,11 +337,14 @@ export default function Year2017({}: Year2017Props) {
               {/* 해외 법인 확산 지원 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -333,7 +381,10 @@ export default function Year2017({}: Year2017Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
                 <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>

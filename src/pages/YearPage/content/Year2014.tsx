@@ -8,10 +8,12 @@ export default function Year2014({}: Year2014Props) {
   const headerRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
   const achievementsRef = useRef<HTMLDivElement>(null);
+  const techStackRef = useRef<HTMLDivElement>(null);
 
   const [headerVisible, setHeaderVisible] = useState(false);
   const [overviewVisible, setOverviewVisible] = useState(false);
   const [achievementsVisible, setAchievementsVisible] = useState(false);
+  const [techStackVisible, setTechStackVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,6 +26,8 @@ export default function Year2014({}: Year2014Props) {
               setOverviewVisible(true);
             } else if (entry.target === achievementsRef.current) {
               setAchievementsVisible(true);
+            } else if (entry.target === techStackRef.current) {
+              setTechStackVisible(true);
             }
           }
         });
@@ -37,6 +41,7 @@ export default function Year2014({}: Year2014Props) {
     if (headerRef.current) observer.observe(headerRef.current);
     if (overviewRef.current) observer.observe(overviewRef.current);
     if (achievementsRef.current) observer.observe(achievementsRef.current);
+    if (techStackRef.current) observer.observe(techStackRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -72,13 +77,31 @@ export default function Year2014({}: Year2014Props) {
               Nexshop Sales 솔루션 개발
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 Customer 모듈 개발
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 Admin 모듈 유지보수
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 SOAP 클라이언트 개발
               </span>
             </div>
@@ -119,7 +142,10 @@ export default function Year2014({}: Year2014Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
                 <h3
                   className="text-xl font-bold text-gray-800 tracking-wide"
                   style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
@@ -135,10 +161,11 @@ export default function Year2014({}: Year2014Props) {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      style={{ color: 'var(--primary)' }}
                     >
                       <path
                         strokeLinecap="round"
@@ -163,10 +190,11 @@ export default function Year2014({}: Year2014Props) {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      style={{ color: 'var(--primary)' }}
                     >
                       <path
                         strokeLinecap="round"
@@ -195,12 +223,16 @@ export default function Year2014({}: Year2014Props) {
               {/* 개통 연동(SOAP) */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      style={{ color: 'var(--primary)' }}
                     >
                       <path
                         strokeLinecap="round"
@@ -217,6 +249,69 @@ export default function Year2014({}: Year2014Props) {
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 통신사 웹서비스 연동을 위한 SOAP 기반 클라이언트 구현</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Technology Stack */}
+          <div
+            ref={techStackRef}
+            style={fadeInStyle(techStackVisible)}
+            className="mb-16"
+          >
+            <div className="mb-8">
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
+                <h3 className="text-xl font-bold text-gray-800 tracking-wide">
+                  사용 기술 및 환경
+                </h3>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Backend
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Java</li>
+                  <li>Spring Framework</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Frontend
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>JavaScript</li>
+                  <li>jQuery</li>
+                  <li>HTML/CSS</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Database
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>MariaDB</li>
+                  <li>SQL</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
+                  Tools
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  <li>Git</li>
+                  <li>JIRA</li>
+                  <li>Confluence</li>
+                </ul>
               </div>
             </div>
           </div>

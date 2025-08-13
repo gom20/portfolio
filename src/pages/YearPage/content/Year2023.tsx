@@ -77,13 +77,31 @@ export default function Year2023({}: Year2023Props) {
               사내 설문 시스템 신규 기능 및 백오피스 대시보드 개발
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 NPTI 설문 유형
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 백오피스 대시보드
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 풀스택 개발
               </span>
             </div>
@@ -124,7 +142,12 @@ export default function Year2023({}: Year2023Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{
+                    background: 'var(--primary)',
+                  }}
+                ></div>
                 <h3
                   className="text-xl font-bold text-gray-800 tracking-wide"
                   style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
@@ -138,11 +161,14 @@ export default function Year2023({}: Year2023Props) {
               {/* NPTI 신규 기능 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -176,11 +202,14 @@ export default function Year2023({}: Year2023Props) {
               {/* 백오피스 대시보드 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -212,7 +241,12 @@ export default function Year2023({}: Year2023Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{
+                    background: 'var(--primary)',
+                  }}
+                ></div>
                 <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>

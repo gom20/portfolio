@@ -77,13 +77,31 @@ export default function Year2021({}: Year2021Props) {
               반도체 자재 사용량 분석 시스템 개발 프로젝트
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 영향도 분석
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 개발 지원
               </span>
-              <span className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded-full">
+              <span
+                className="px-3 py-1 text-xs font-medium rounded-full"
+                style={{
+                  background: 'var(--secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 테스트 지원
               </span>
             </div>
@@ -121,7 +139,10 @@ export default function Year2021({}: Year2021Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
                 <h3
                   className="text-xl font-bold text-gray-800 tracking-wide"
                   style={{ fontFamily: 'Pretendard', fontWeight: '700' }}
@@ -135,11 +156,14 @@ export default function Year2021({}: Year2021Props) {
               {/* 영향도 분석 및 수정 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -166,18 +190,21 @@ export default function Year2021({}: Year2021Props) {
               {/* 개발 환경 셋업 및 테스트 지원 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826-3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
                       />
                       <path
                         strokeLinecap="round"
@@ -202,10 +229,13 @@ export default function Year2021({}: Year2021Props) {
               {/* 비즈니스 로직 문의 대응 */}
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: 'var(--secondary)' }}
+                  >
                     <svg
-                      className="w-5 h-5 text-gray-600"
-                      fill="currentColor"
+                      className="w-5 h-5"
+                      fill="var(--primary)"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -234,7 +264,10 @@ export default function Year2021({}: Year2021Props) {
           >
             <div className="mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-1 h-6 bg-gray-400 rounded-full"></div>
+                <div
+                  className="w-1 h-6 rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                ></div>
                 <h3 className="text-xl font-bold text-gray-800 tracking-wide">
                   사용 기술 및 환경
                 </h3>

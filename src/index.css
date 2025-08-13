@@ -142,6 +142,11 @@
   font-family: 'Pretendard', system-ui, Avenir, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* 홈페이지 전체 포인트 컬러 */
+  --primary: rgb(23, 58, 153);
+  --secondary: #eff3ff;
+  --third: rgb(125, 166, 255);
 }
 
 body {

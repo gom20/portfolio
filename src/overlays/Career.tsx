@@ -305,10 +305,11 @@ export default function Career({ isActive, onClose }: CareerProps) {
                   {/* 연도 표시 */}
                   <div className="absolute top-4 right-4">
                     <span
-                      className="bg-gray-600 px-2 py-1 rounded-md text-xs font-normal"
+                      className="px-2 py-1 rounded-md text-xs font-normal"
                       style={{
                         fontFamily: "'TheJamsil', sans-serif",
-                        color: 'rgb(209, 213, 219)',
+                        backgroundColor: 'var(--primary)',
+                        color: 'var(--secondary)',
                       }}
                     >
                       {experience.year}
@@ -384,7 +385,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
 
                           <div>
                             <div className="text-xs text-gray-400 mb-1 font-medium">
-                              2024.01 - 2024.08
+                              2023.12 - 2024.08
                             </div>
                             <div className="text-gray-300 text-sm">
                               KIA 광명공장 스마트 태그 시스템 구축
