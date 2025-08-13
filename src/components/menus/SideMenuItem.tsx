@@ -31,6 +31,7 @@ function MenuItem({
   responsiveStyles: { fontSize: string; padding: string; strokeWidth: string };
 }) {
   const [opacity, setOpacity] = useState(0);
+  const [isPressed, setIsPressed] = useState(false);
 
   // 초기 나타나는 애니메이션 상태
   const isInitialAppearing = opacity === 0;
@@ -71,6 +72,34 @@ function MenuItem({
   const textOpacity = Math.max(0.3, 1 - (index / (totalItems - 1)) * 0.7); // 1.0 ~ 0.3 범위
   const textColor = `rgba(226, 232, 240, ${textOpacity})`;
 
+  // 사파리 호환성을 위한 이벤트 핸들러
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsPressed(true);
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsPressed(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsPressed(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault();
+    setIsPressed(false);
+    onClick();
+  };
+
   return (
     <div
       className="menu-item"
@@ -109,10 +138,24 @@ function MenuItem({
         fontFamily: 'sans-serif',
         userSelect: 'none',
         cursor: 'pointer',
+        // 사파리에서 클릭 이벤트 보장
+        pointerEvents: 'auto',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        // 사파리에서 touch 이벤트 지원
+        WebkitTouchCallout: 'none',
+        WebkitTapHighlightColor: 'transparent',
       }}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={onHover}
       onMouseLeave={onUnhover}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      // 사파리에서 이벤트 캡처 개선
+      onTouchMove={e => e.preventDefault()}
     >
       {text}
     </div>
