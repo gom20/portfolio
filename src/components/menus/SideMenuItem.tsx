@@ -7,17 +7,6 @@ interface MenuItemProps {
   onItemClick?: (index: number) => void;
 }
 
-// Chrome 브라우저 감지 함수
-const isChrome = () => {
-  if (typeof window === 'undefined') return false;
-  const userAgent = navigator.userAgent;
-  return (
-    /Chrome/.test(userAgent) &&
-    /Google Inc/.test(navigator.vendor) &&
-    !/Edg/.test(userAgent)
-  );
-};
-
 function MenuItem({
   text,
   index,
