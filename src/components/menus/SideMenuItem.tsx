@@ -7,6 +7,17 @@ interface MenuItemProps {
   onItemClick?: (index: number) => void;
 }
 
+// Chrome 브라우저 감지 함수
+const isChrome = () => {
+  if (typeof window === 'undefined') return false;
+  const userAgent = navigator.userAgent;
+  return (
+    /Chrome/.test(userAgent) &&
+    /Google Inc/.test(navigator.vendor) &&
+    !/Edg/.test(userAgent)
+  );
+};
+
 function MenuItem({
   text,
   index,
@@ -31,7 +42,6 @@ function MenuItem({
   responsiveStyles: { fontSize: string; padding: string; strokeWidth: string };
 }) {
   const [opacity, setOpacity] = useState(0);
-  const [isPressed, setIsPressed] = useState(false);
 
   // 초기 나타나는 애니메이션 상태
   const isInitialAppearing = opacity === 0;
@@ -72,34 +82,6 @@ function MenuItem({
   const textOpacity = Math.max(0.3, 1 - (index / (totalItems - 1)) * 0.7); // 1.0 ~ 0.3 범위
   const textColor = `rgba(226, 232, 240, ${textOpacity})`;
 
-  // 사파리 호환성을 위한 이벤트 핸들러
-  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onClick();
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsPressed(true);
-  };
-
-  const handleMouseUp = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsPressed(false);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault();
-    setIsPressed(true);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    e.preventDefault();
-    setIsPressed(false);
-    onClick();
-  };
-
   return (
     <div
       className="menu-item"
@@ -138,24 +120,10 @@ function MenuItem({
         fontFamily: 'sans-serif',
         userSelect: 'none',
         cursor: 'pointer',
-        // 사파리에서 클릭 이벤트 보장
-        pointerEvents: 'auto',
-        WebkitUserSelect: 'none',
-        MozUserSelect: 'none',
-        msUserSelect: 'none',
-        // 사파리에서 touch 이벤트 지원
-        WebkitTouchCallout: 'none',
-        WebkitTapHighlightColor: 'transparent',
       }}
-      onClick={handleClick}
+      onClick={onClick}
       onMouseEnter={onHover}
       onMouseLeave={onUnhover}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      // 사파리에서 이벤트 캡처 개선
-      onTouchMove={e => e.preventDefault()}
     >
       {text}
     </div>
@@ -182,39 +150,65 @@ export default function Menu3D({ items, onItemClick }: MenuItemProps) {
   }[breakpoint];
 
   return (
-    <div
-      className="w-full h-full flex items-start justify-end"
-      style={{
-        perspective: '1000px',
-        paddingTop: responsiveStyles.padding,
-        paddingLeft: responsiveStyles.padding,
-        paddingRight: responsiveStyles.padding,
-      }}
-    >
+    <>
+      {/* Chrome이 아닌 브라우저에서만 표시되는 최적화 안내 문구 */}
+      {!isChrome() && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '16px',
+            left: '16px',
+            zIndex: 1000,
+            fontSize: '12px',
+            color: 'rgba(255, 255, 255, 0.6)',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontWeight: '400',
+            lineHeight: '1.4',
+            maxWidth: '200px',
+            textAlign: 'left',
+            pointerEvents: 'none',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          This site is optimized for Chrome browser
+        </div>
+      )}
+
       <div
-        className="menu-container"
+        className="w-full h-full flex items-start justify-end"
         style={{
-          transformStyle: 'preserve-3d',
-          padding: responsiveStyles.padding,
+          perspective: '1000px',
           paddingTop: responsiveStyles.padding,
+          paddingLeft: responsiveStyles.padding,
+          paddingRight: responsiveStyles.padding,
         }}
       >
-        {items.map((item, index) => (
-          <MenuItem
-            key={item}
-            text={item}
-            index={index}
-            totalItems={items.length}
-            isHovered={hoveredIndex === index}
-            isSelected={selectedIndex === index}
-            isAnySelected={selectedIndex !== null}
-            onClick={() => handleItemClick(index)}
-            onHover={() => setHoveredIndex(index)}
-            onUnhover={() => setHoveredIndex(null)}
-            responsiveStyles={responsiveStyles}
-          />
-        ))}
+        <div
+          className="menu-container"
+          style={{
+            transformStyle: 'preserve-3d',
+            padding: responsiveStyles.padding,
+            paddingTop: responsiveStyles.padding,
+          }}
+        >
+          {items.map((item, index) => (
+            <MenuItem
+              key={item}
+              text={item}
+              index={index}
+              totalItems={items.length}
+              isHovered={hoveredIndex === index}
+              isSelected={selectedIndex === index}
+              isAnySelected={selectedIndex !== null}
+              onClick={() => handleItemClick(index)}
+              onHover={() => setHoveredIndex(index)}
+              onUnhover={() => setHoveredIndex(null)}
+              responsiveStyles={responsiveStyles}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
