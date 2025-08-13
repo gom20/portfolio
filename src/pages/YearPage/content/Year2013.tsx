@@ -193,9 +193,9 @@ export default function Year2013({}: Year2013Props) {
                   </h4>
                 </div>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 양산 테스트 Defect, VOC, 로직 변경 요청 대응</p>
                   <p>• 기존 코드 리팩토링 및 안정성/성능 개선</p>
                   <p>• 대우증권 App GUI 리뉴얼</p>
+                  <p>• 코드 구조 개선 및 유지보수성 향상</p>
                 </div>
               </div>
 
@@ -249,9 +249,8 @@ export default function Year2013({}: Year2013Props) {
                   </h4>
                 </div>
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p>• 양산 테스트 Defect 대응</p>
-                  <p>• 고객 VOC 분석 및 해결</p>
-                  <p>• 로직 변경 및 신규 기능 추가</p>
+                  <p>• 양산 테스트 Defect, VOC 대응</p>
+                  <p>• 로직 변경 요청 및 신규 기능 추가</p>
                 </div>
               </div>
             </div>
@@ -290,7 +289,7 @@ export default function Year2013({}: Year2013Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Sublime Text</li>

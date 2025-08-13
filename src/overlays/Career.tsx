@@ -62,7 +62,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
       period: '2023.12 - 2025.08',
       position: 'Backend Developer',
       description:
-        '글로비스 차량 위치 관리 시스템 구축, KIA 광명공장 스마트 태그 시스템 구축',
+        '햔대 글로비스 차량 위치 관리 시스템 구축, 기아자동차 광명공장 스마트 태그 시스템 구축',
       technologies: ['React', 'TypeScript', 'Spring Boot', 'Java', 'Oracle'],
       year: '2023-2025',
     },
@@ -379,7 +379,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
                               2024.09 - 2025.08
                             </div>
                             <div className="text-gray-300 text-sm">
-                              글로비스 차량 위치 관리 시스템 구축
+                              현대글로비스 차량 위치 관리 시스템 구축
                             </div>
                           </div>
 
@@ -388,7 +388,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
                               2023.12 - 2024.08
                             </div>
                             <div className="text-gray-300 text-sm">
-                              KIA 광명공장 스마트 태그 시스템 구축
+                              기아자동차 광명공장 스마트태그 시스템 구축
                             </div>
                           </div>
                         </div>
@@ -437,7 +437,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
                               2017.11 - 2020.07
                             </div>
                             <div className="text-gray-300 text-sm">
-                              반도체 제조 시스템 운영 및 모니터링
+                              삼성전자 반도체 자재 사용량 분석 시스템 운영
                             </div>
                           </div>
 
@@ -446,7 +446,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
                               2014.12 - 2017.10
                             </div>
                             <div className="text-gray-300 text-sm">
-                              Nexshop Sales 리테일 솔루션 개발
+                              삼성SDS Nexshop Sales 리테일 솔루션 개발
                             </div>
                           </div>
 
@@ -455,7 +455,7 @@ export default function Career({ isActive, onClose }: CareerProps) {
                               2013.02 - 2014.11
                             </div>
                             <div className="text-gray-300 text-sm">
-                              Smart TV 웹앱 개발 및 유지보수
+                              삼성전자 Smart TV 웹앱 개발 및 유지보수
                             </div>
                           </div>
                         </div>

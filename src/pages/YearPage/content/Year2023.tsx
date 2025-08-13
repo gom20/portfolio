@@ -188,13 +188,10 @@ export default function Year2023({}: Year2023Props) {
                     • NPTI 설문 유형 등록/배포 기능 풀스택 구현 (Spring Boot +
                     Vue.js)
                   </p>
+                  <p>• 백오피스/API 서버, 프론트 연계 개발 및 배포 반영</p>
                   <p>
-                    • 이벤트 적용: ‘나의 리더십 유형’(넥슨 빌딩앤파이터)
+                    • 게임 오픈 이벤트 ‘나의 리더십 유형’(넥슨 빌딩앤파이터)
                     실서비스 적용
-                  </p>
-                  <p>
-                    • 백오피스/API 서버, 프론트 연계 개발 및 배포 파이프라인
-                    반영
                   </p>
                 </div>
               </div>
@@ -301,7 +298,7 @@ export default function Year2023({}: Year2023Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Git</li>

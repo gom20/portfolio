@@ -114,8 +114,8 @@ export default function Year2014({}: Year2014Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              삼성 SDS Nexshop Sales 리테일 솔루션의 웹 서버 및 프론트엔드
-              개발을 담당했습니다. Spring Framework 기반의 API 서버와
+              삼성 SDS Nexshop Sales 리테일 솔루션의 웹 서버 및 UI 개발을
+              담당했습니다. Spring Framework 기반의 API 서버와
               JSP/JavaScript/jQuery를 활용한 UI 구현을 통해 일반적인 웹 개발
               경험을 쌓았습니다. 주요 업무로는 고객 관리를 위한 Customer 모듈의
               RESTful API 설계 및 구현, 시스템 관리자를 위한 Admin 모듈의
@@ -182,6 +182,7 @@ export default function Year2014({}: Year2014Props) {
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 고객 관련 데이터 처리를 위한 RESTful API 설계 및 구현</p>
                   <p>• Spring Framework 기반 서비스/DAO 계층 개발</p>
+                  <p>• Javascript 기반 UI 개발 및 유지보수</p>
                 </div>
               </div>
 
@@ -216,7 +217,7 @@ export default function Year2014({}: Year2014Props) {
                 </div>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p>• 사용자/로그인/메뉴 관리 기능 로직 개선 및 버그 수정</p>
-                  <p>• UI 개선 및 사용성 향상을 위한 jQuery 기반 화면 보완</p>
+                  <p>• UI 개선 및 사용성 향상을 위한 화면 개발</p>
                 </div>
               </div>
 
@@ -305,7 +306,7 @@ export default function Year2014({}: Year2014Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>Git</li>

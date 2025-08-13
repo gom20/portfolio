@@ -306,7 +306,7 @@ export default function Year2021({}: Year2021Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>SVN</li>

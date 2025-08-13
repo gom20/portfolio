@@ -210,10 +210,6 @@ export default function Year2017({}: Year2017Props) {
                     모니터링 수행
                   </p>
                   <p>
-                    • 시스템 로그 분석을 통한 선제적 장애 대응 및 시스템 안정화
-                    달성
-                  </p>
-                  <p>
                     • 지속적인 모니터링을 통한 시스템 가용성 향상 및 운영 안정성
                     확보
                   </p>
@@ -423,7 +419,7 @@ export default function Year2017({}: Year2017Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>SVN</li>

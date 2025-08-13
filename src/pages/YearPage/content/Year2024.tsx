@@ -64,7 +64,7 @@ export default function Year2024({}: Year2024Props) {
           >
             <div className="flex items-center gap-6 mb-1">
               <h2 className="text-2xl font-light text-gray-900 tracking-tight">
-                KIA 자동차 광명 공장
+                기아자동차 광명공장
               </h2>
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
@@ -74,7 +74,7 @@ export default function Year2024({}: Year2024Props) {
               </div>
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-2 tracking-wide">
-              의장 라인 스마트태그 시스템 구축
+              스마트태그 시스템 구축
             </h3>
             <div className="flex flex-wrap gap-2 mb-6">
               <span
@@ -132,7 +132,7 @@ export default function Year2024({}: Year2024Props) {
             className="mb-16"
           >
             <p className="text-gray-700 leading-relaxed text-base mb-8">
-              KIA자동차 광명공장의 스마트태그 기반 차량 트래킹 시스템 구축
+              기아자동차 광명공장의 스마트태그 기반 차량 트래킹 시스템 구축
               프로젝트에 참여하여, 기존 협력사 주도로 운영되던 시스템을
               내재화하기 위해 직접 개발 업무를 담당했습니다. 주요 개발
               내용으로는 의장 라인 내 설비의 체결 정보 인터페이스와 MES로부터
@@ -201,7 +201,7 @@ export default function Year2024({}: Year2024Props) {
                     • 자사 솔루션 기반의 TCP Socket 통신을 통해 MES로부터 차량
                     서열 데이터 실시간 수신 구현
                   </p>
-                  <p>• PLC 데이터 인터페이스 구현</p>
+                  <p>• 체결 설비 PLC 데이터 인터페이스 구현</p>
                   <p>• 안정적인 실시간 데이터 처리 및 통신 환경 구축</p>
                 </div>
               </div>
@@ -344,7 +344,7 @@ export default function Year2024({}: Year2024Props) {
 
               <div>
                 <h4 className="text-sm font-semibold text-gray-800 tracking-wider mb-3 border-b border-gray-200 pb-2">
-                  Tools
+                  Tool
                 </h4>
                 <ul className="space-y-1 text-sm text-gray-700">
                   <li>SVN</li>
