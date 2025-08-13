@@ -229,6 +229,18 @@ html {
   font-style: normal !important;
 }
 
+/* 사파리 전용 스타일 - 링크 클릭만 동작하도록 최소한의 수정 */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  _::-webkit-full-page-media,
+  _:future,
+  :root .menu-item {
+    /* 사파리에서 pointer events 보장 - 클릭 동작을 위해 */
+    pointer-events: auto !important;
+    -webkit-pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+}
+
 /* 한글 텍스트 전용 폰트 클래스 */
 .korean-text {
   font-family: 'Pretendard', sans-serif !important;
