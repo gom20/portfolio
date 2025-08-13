@@ -150,65 +150,39 @@ export default function Menu3D({ items, onItemClick }: MenuItemProps) {
   }[breakpoint];
 
   return (
-    <>
-      {/* Chrome이 아닌 브라우저에서만 표시되는 최적화 안내 문구 */}
-      {!isChrome() && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '16px',
-            left: '16px',
-            zIndex: 1000,
-            fontSize: '12px',
-            color: 'rgba(255, 255, 255, 0.6)',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
-            fontWeight: '400',
-            lineHeight: '1.4',
-            maxWidth: '200px',
-            textAlign: 'left',
-            pointerEvents: 'none',
-            userSelect: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          This site is optimized for Chrome browser
-        </div>
-      )}
-
+    <div
+      className="w-full h-full flex items-start justify-end"
+      style={{
+        perspective: '1000px',
+        paddingTop: responsiveStyles.padding,
+        paddingLeft: responsiveStyles.padding,
+        paddingRight: responsiveStyles.padding,
+      }}
+    >
       <div
-        className="w-full h-full flex items-start justify-end"
+        className="menu-container"
         style={{
-          perspective: '1000px',
+          transformStyle: 'preserve-3d',
+          padding: responsiveStyles.padding,
           paddingTop: responsiveStyles.padding,
-          paddingLeft: responsiveStyles.padding,
-          paddingRight: responsiveStyles.padding,
         }}
       >
-        <div
-          className="menu-container"
-          style={{
-            transformStyle: 'preserve-3d',
-            padding: responsiveStyles.padding,
-            paddingTop: responsiveStyles.padding,
-          }}
-        >
-          {items.map((item, index) => (
-            <MenuItem
-              key={item}
-              text={item}
-              index={index}
-              totalItems={items.length}
-              isHovered={hoveredIndex === index}
-              isSelected={selectedIndex === index}
-              isAnySelected={selectedIndex !== null}
-              onClick={() => handleItemClick(index)}
-              onHover={() => setHoveredIndex(index)}
-              onUnhover={() => setHoveredIndex(null)}
-              responsiveStyles={responsiveStyles}
-            />
-          ))}
-        </div>
+        {items.map((item, index) => (
+          <MenuItem
+            key={item}
+            text={item}
+            index={index}
+            totalItems={items.length}
+            isHovered={hoveredIndex === index}
+            isSelected={selectedIndex === index}
+            isAnySelected={selectedIndex !== null}
+            onClick={() => handleItemClick(index)}
+            onHover={() => setHoveredIndex(index)}
+            onUnhover={() => setHoveredIndex(null)}
+            responsiveStyles={responsiveStyles}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 }

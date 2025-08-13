@@ -6,6 +6,17 @@ import SideMenu from './components/menus/FooterMenu';
 import { useNameAnimation } from './hooks/useNameAnimation';
 import { menuItems } from './data/menuData';
 
+// Chrome 브라우저 감지 함수
+const isChrome = () => {
+  if (typeof window === 'undefined') return false;
+  const userAgent = navigator.userAgent;
+  return (
+    /Chrome/.test(userAgent) &&
+    /Google Inc/.test(navigator.vendor) &&
+    !/Edg/.test(userAgent)
+  );
+};
+
 // 애니메이션 상수
 const ANIMATION_DELAYS = {
   MENU_DISAPPEAR: 2400,
@@ -53,6 +64,31 @@ export default function App() {
           'background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       }}
     >
+      {/* Chrome이 아닌 브라우저에서만 표시되는 최적화 안내 문구 */}
+      {!isChrome() && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '16px',
+            left: '16px',
+            zIndex: 9999,
+            fontSize: '12px',
+            color: 'rgba(255, 255, 255, 0.6)',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontWeight: '400',
+            lineHeight: '1.4',
+            maxWidth: '200px',
+            textAlign: 'left',
+            pointerEvents: 'none',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+            transform: 'none',
+          }}
+        >
+          This site is optimized for Chrome browser
+        </div>
+      )}
+
       {!selectedYear && <MouseLight isTransitioning={isTransitioning} />}
 
       {isMenuVisible && (
