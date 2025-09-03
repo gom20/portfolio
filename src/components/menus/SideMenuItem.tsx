@@ -73,48 +73,58 @@ function MenuItem({
 
   return (
     <div
-      className="menu-item"
       style={{
-        opacity: shouldDisappear ? 0 : isInitialAppearing ? 0 : opacity,
-        transform: shouldDisappear
-          ? 'perspective(1000px) rotateY(90deg) translateX(100px)'
-          : `perspective(1000px) rotateX(${
-              isInitialAppearing ? -30 : 0
-            }deg) rotateY(${
-              isInitialAppearing ? -90 : rotationDegrees
-            }deg) scale(${scale}) translateZ(${
-              isInitialAppearing ? '-200px' : '0px'
-            }) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
-        transition: shouldDisappear
-          ? 'opacity 600ms ease-out 400ms, transform 1000ms ease-out'
-          : isInitialAppearing
-          ? 'opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          : isHovered
-          ? 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        transitionDelay: shouldDisappear
-          ? `${delay}ms`
-          : isInitialAppearing
-          ? `${initialDelay}ms`
-          : '0ms',
-        marginBottom: '-10px',
-        margin: '0px',
-        padding: '0px',
-        lineHeight: '0.9',
-        transformOrigin: 'right center',
-        color: isHovered || isSelected ? 'transparent' : textColor,
-        WebkitTextStroke: `${responsiveStyles.strokeWidth} rgba(226, 232, 240, ${textOpacity})`,
-        fontSize: responsiveStyles.fontSize,
-        fontWeight: '900',
-        fontFamily: 'sans-serif',
-        userSelect: 'none',
+        position: 'relative',
+        zIndex: totalItems - index,
+        // 가상 호버 영역 - 기울기에 영향 주지 않도록 조정
+        padding: '0px 80px',
+        margin: '0px -80px',
         cursor: 'pointer',
+        // 3D 변환에 영향 주지 않도록 설정
+        transform: 'none',
+        transformStyle: 'preserve-3d',
       }}
-      onClick={onClick}
       onMouseEnter={onHover}
       onMouseLeave={onUnhover}
+      onClick={onClick}
     >
-      {text}
+      <div
+        className="menu-item"
+        style={{
+          opacity: shouldDisappear ? 0 : isInitialAppearing ? 0 : opacity,
+          transform: shouldDisappear
+            ? 'perspective(1000px) rotateY(90deg) translateX(100px)'
+            : `perspective(1000px) rotateX(${
+                isInitialAppearing ? -30 : 0
+              }deg) rotateY(${
+                isInitialAppearing ? -90 : rotationDegrees
+              }deg) scale(${scale}) translateZ(${
+                isInitialAppearing ? '-200px' : '0px'
+              }) translateX(${isInitialAppearing ? '-100px' : '0px'})`,
+          transition: shouldDisappear
+            ? `opacity 600ms ease-out ${delay}ms, transform 1000ms ease-out ${delay}ms`
+            : isInitialAppearing
+            ? `opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${initialDelay}ms, transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${initialDelay}ms`
+            : isHovered
+            ? 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            : 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          marginBottom: '-10px',
+          margin: '0px',
+          padding: '0px 0px 10px 0px',
+          lineHeight: '0.9',
+          transformOrigin: 'right center',
+          color: isHovered || isSelected ? 'transparent' : textColor,
+          WebkitTextStroke: `${responsiveStyles.strokeWidth} rgba(226, 232, 240, ${textOpacity})`,
+          fontSize: responsiveStyles.fontSize,
+          fontWeight: '900',
+          fontFamily: 'sans-serif',
+          userSelect: 'none',
+          cursor: 'pointer',
+          pointerEvents: 'none', // 실제 텍스트는 클릭 이벤트를 받지 않음
+        }}
+      >
+        {text}
+      </div>
     </div>
   );
 }
